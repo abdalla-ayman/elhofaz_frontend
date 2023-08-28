@@ -1,7 +1,7 @@
 export default function FormInput(props) {
   let { type, setValue, label } = props;
   return (
-    <div>
+    <div className="form-group">
       <label htmlFor="">{label}</label>
       <input
         type={type}

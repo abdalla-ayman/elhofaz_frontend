@@ -44,7 +44,8 @@ export default function Register() {
 
   return (
     <div>
-      <form >
+      <form className="w-80 m-auto my-6">
+        <h2 className="text-2xl text-center">التسجيل في مقارئ الحفاظ</h2>
         <FormInput label="اسم المستخدم" type="text" setValue={setUsername} />
         <FormInput label="كلمة المرور" type="password" setValue={setPassword} />
         <FormInput label="الاسم الرباعي" type="text" setValue={setFullname} />
@@ -87,7 +88,9 @@ export default function Register() {
         )}
 
         <div>
-          <button type="submit">التسجيل</button>
+          <button type="submit" className="bg-sky-500 mx-auto block">
+            التسجيل
+          </button>
         </div>
       </form>
     </div>
