@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import FormInput from "../../components/FormInput";
+import login from "../../../lib/login";
 
 export default function Login() {
   let [username, setUsername] = useState("");
@@ -11,15 +12,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await fetch("http://localhost:8000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+      let res = await login({
+        username,
+        password,
       });
       let data = await res.json();
       if (res.ok) {

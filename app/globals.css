@@ -18,7 +18,7 @@ button {
   @apply my-1;
 }
 
-.form-group input {
+.form-group input, .form-group textarea {
   @apply rounded border-solid py-1 border outline-none;
   border-color: hsl(0, 0%, 80%);
 }

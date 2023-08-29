@@ -1,6 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import country_list from "/public/countries.json";
+import signup from "../../../lib/singup";
 
 //compnents
 import FormInput from "../../components/FormInput";
@@ -47,24 +48,19 @@ export default function Register() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await fetch("http://localhost:8000/api/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-          fullname,
-          gender,
-          age,
-          nationality,
-          residential,
-          phone_number,
-          track,
-          role,
-        }),
+      let res = await signup({
+        username,
+        password,
+        fullname,
+        gender,
+        age,
+        nationality,
+        residential,
+        phone_number,
+        track,
+        role,
       });
+
       let data = await res.json();
       if (res.ok) {
         // success logic
