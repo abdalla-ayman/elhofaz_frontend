@@ -11,8 +11,8 @@ const AuthContextProvider = (props) => {
   });
 
   //Login and SignUp Function
-  const SignInUser = (res) => {
-    setAuth({ ...auth, ...res, isAuthenticated: true });
+  const SignInUser = (resData) => {
+    setAuth({ ...auth, ...resData, isAuthenticated: true });
   };
 
   //logout User
