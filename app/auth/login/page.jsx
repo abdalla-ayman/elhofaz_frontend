@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useCookies } from "next-client-cookies";
 //components
 import FormInput from "../../components/FormInput";
 import login from "../../../lib/login";
@@ -10,7 +9,6 @@ export default function Login() {
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
-  let cookies = useCookies();
 
   const handleSubmit = async (e) => {
     try {
@@ -22,7 +20,6 @@ export default function Login() {
       let data = await res.json();
       if (res.ok) {
         // success logic
-        cookies.set("auth_token", data.token);
       } else {
         //failure logic
         setError(data.message);
