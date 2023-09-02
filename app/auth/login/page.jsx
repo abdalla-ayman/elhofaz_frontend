@@ -1,10 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import { AuthContext } from "../../context/AuthContext";
 //components
 import FormInput from "../../components/FormInput";
 import login from "../../../lib/login";
 
 export default function Login() {
+  const { SignInUser } = useContext(AuthContext);
+
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
@@ -20,6 +24,7 @@ export default function Login() {
       let data = await res.json();
       if (res.ok) {
         // success logic
+        SignInUser(data);
       } else {
         //failure logic
         setError(data.message);
