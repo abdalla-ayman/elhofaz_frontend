@@ -9,7 +9,11 @@ export default async function Questions() {
       <h2>قائمة الاسئلة</h2>
       {data ? (
         data.questions.map((question) => (
-          <Link id={question._id} href={`/dashboard/questions/${question._id}`}>
+          <Link
+            id={question._id}
+            key={question._id}
+            href={`/dashboard/questions/${question._id}`}
+          >
             <div>{question.question.slice(0, 20)}</div>
           </Link>
         ))
