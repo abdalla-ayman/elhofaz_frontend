@@ -22,6 +22,8 @@ export default function Login() {
         password,
       });
       let data = await res.json();
+      console.log(data);
+
       if (res.ok) {
         // success logic
         SignInUser(data);
@@ -29,10 +31,9 @@ export default function Login() {
         //failure logic
         setError(data.message);
       }
-
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      throw error;
     }
   };
 

@@ -6,19 +6,29 @@ export const AuthContext = createContext();
 const AuthContextProvider = (props) => {
   const [auth, setAuth] = useState({
     user: null,
-    token: localStorage.getItem("token"),
+    token: () => {
+      if (typeof window !== "undefined") {
+        return localStorage.setItem("token", resData.token);
+      }
+    },
     isAuthenticated: false,
   });
 
   //Login and SignUp Function
   const SignInUser = (resData) => {
-    localStorage.setItem("token", resData.token);
+    //wait tell the server load then use LocalStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("token", resData.token);
+    }
     setAuth({ ...auth, ...resData, isAuthenticated: true });
   };
 
   //logout User
   const LogoutUser = () => {
-    localStorage.removeItem("token");
+    //wait tell the server load then use LocalStorage
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+    }
     setAuth({ user: null, token: null, isAuthenticated: false });
   };
 
