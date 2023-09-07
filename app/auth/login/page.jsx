@@ -1,36 +1,28 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
 
-import { AuthContext } from "../../context/AuthContext";
 //components
 import FormInput from "../../components/FormInput";
 import login from "../../../lib/login";
 
 export default function Login() {
-  const { SignInUser } = useContext(AuthContext);
-
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
+  let { data: session } = useSession();
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await login({
-        username,
-        password,
-      });
-      let data = await res.json();
-      console.log(data);
+      signIn("credentials", { username, password, redirect: false });
 
-      if (res.ok) {
-        // success logic
-        SignInUser(data);
-      } else {
-        //failure logic
-        setError(data.message);
-      }
+      // }
     } catch (error) {
       // console.log(error);
       throw error;
@@ -39,7 +31,7 @@ export default function Login() {
 
   return (
     <div className="h-screen flex">
-      <form className="w-80 m-auto" onSubmit={handleSubmit}>
+      <form className="w-80 m-auto" action={"#"} onSubmit={handleSubmit}>
         <h2 className="text-2xl text-center">تسجيل الدخول</h2>
         <FormInput label="اسم المستخدم" type="text" setValue={setUsername} />
         <FormInput label="كلمة المرور" type="password" setValue={setPassword} />
