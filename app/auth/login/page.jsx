@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
-
 //components
 import FormInput from "../../components/FormInput";
 import login from "../../../lib/login";

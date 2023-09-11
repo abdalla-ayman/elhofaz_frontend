@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions = {
   pages: {
     signIn: "/auth/login",
+    error: "/auth/login",             
   },
   providers: [
     CredentialsProvider({
@@ -36,6 +37,8 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, token, user }: any) {
+
+      console.log("workgin")
       session.accessToken = token.accessToken;
       session.user = token.user;
       return session;
