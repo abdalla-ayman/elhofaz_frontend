@@ -1,15 +1,13 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+export const handler = NextAuth({
   pages: {
     signIn: "/auth/login",
-    error: "/auth/login",             
   },
   providers: [
     CredentialsProvider({
       async authorize(credentials: any, req) {
-        // const baseUrl = 'http://localhost:3000/api/v1/admin-auth/login';
         const baseUrl = "http://localhost:8000/api/users/login";
         const { username, password } = credentials;
         const response = await fetch(baseUrl, {
@@ -20,11 +18,10 @@ export const authOptions = {
           body: JSON.stringify({ username, password }),
         });
         const login = await response.json();
-        console.log(login);
 
-        if (login.success) {
-          const name = login.account.username;
-          return { ...login.account, name, accessToken: login.token };
+        if (login.user) {
+          const name = login.user.username;
+          return { ...login.user, name, accessToken: login.token };
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null;
@@ -37,8 +34,6 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, token, user }: any) {
-
-      console.log("workgin")
       session.accessToken = token.accessToken;
       session.user = token.user;
       return session;
@@ -50,6 +45,6 @@ export const authOptions = {
       return token;
     },
   },
-};
+});
 
-export default NextAuth(authOptions);
+export { handler as GET, handler as POST };

@@ -15,7 +15,7 @@ export default function FormSelect(props) {
       <Select
         options={options}
         onChange={(val) => setValue(val.value)}
-        value={defaultVal}
+        defaultValue={defaultVal}
         required={required}
         isDisabled={disabled}
       />
