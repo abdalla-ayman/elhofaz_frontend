@@ -1,27 +1,30 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, Fragment } from "react";
 import country_list from "/public/countries.json";
 import signup from "../../../lib/singup";
 
 //compnents
-import FormInput from "../../components/FormInput";
+import {
+  MenuItem,
+  Select,
+  TextField,
+  InputLabel,
+  Autocomplete,
+  Box,
+  FormControl,
+  RadioGroup,
+  FormLabel,
+  FormControlLabel,
+  Radio,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  Typography,
+} from "@mui/material";
 import FormSelect from "../../components/FormSelect";
 
-let gender_options = [
-  { label: "ذكر", value: "male" },
-  { label: "انثى", value: "female" },
-];
-
-let role_options = [
-  {
-    label: "شيخ",
-    value: "shekh",
-  },
-  {
-    label: "طالب",
-    value: "student",
-  },
-];
+const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
 let track_options = [
   { label: "التأهيلي", value: "المسار التأهيلي" },
@@ -38,11 +41,27 @@ export default function Register() {
   let [nationality, setNationality] = useState("");
   let [residential, setResidential] = useState("");
   let [phone_number, setPhone_number] = useState("");
-  let [role, setRole] = useState("student");
+  let [role, setRole] = useState("user");
   let [track, setTrack] = useState("");
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
   let [countries, setCountries] = useState(country_list);
+
+  // stepper state and functions
+  const [activeStep, setActiveStep] = useState(0);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
   //role/track
 
   const handleSubmit = async (e) => {
@@ -77,56 +96,52 @@ export default function Register() {
 
   return (
     <div>
-      <form className="w-80 m-auto my-6" onSubmit={handleSubmit}>
-        <h2 className="text-2xl text-center">التسجيل في مقارئ الحفاظ</h2>
-        <FormInput label="اسم المستخدم" type="text" setValue={setUsername} />
-        <FormInput label="كلمة المرور" type="password" setValue={setPassword} />
-        <FormInput label="الاسم الرباعي" type="text" setValue={setFullname} />
-        <FormInput label="رقم الهاتف" type="tel" setValue={setPhone_number} />
-        <FormInput label="العمر" type="number" setValue={setAge} />
-        <FormSelect
-          options={gender_options}
-          label="النوع"
-          setValue={setGender}
-          defaultVal="male"
-        />
-        <FormSelect
-          options={countries.map((country) => ({
-            label: country.name,
-            value: country.name,
-          }))}
-          label="الجنسية"
-          setValue={setNationality}
-        />
-        <FormSelect
-          options={countries.map((country) => ({
-            label: country.name,
-            value: country.name,
-          }))}
-          label="مكان الاقامة"
-          setValue={setResidential}
-        />
-        <FormSelect
-          options={role_options}
-          label="التسجيل ك "
-          setValue={setRole}
-          defaultVal="student"
-        />
-        {role === "student" && (
-          <FormSelect
-            options={track_options}
-            label="المسار"
-            setValue={setTrack}
-          />
-        )}
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
 
-        {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
-        <div>
-          <button type="submit" className="bg-sky-500 mx-auto block">
-            التسجيل
-          </button>
-        </div>
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Box sx={{ flex: "1 1 auto" }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: "1 1 auto" }} />
+
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? "Finish" : "Next"}
+            </Button>
+          </Box>
+        </Fragment>
+      )}
+      <form className="w-80 m-auto my-6 flex flex-col " onSubmit={handleSubmit}>
+        <h2 className="text-2xl text-center">التسجيل في مقارئ الحفاظ</h2>
       </form>
     </div>
   );
 }
+

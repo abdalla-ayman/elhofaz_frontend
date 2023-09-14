@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Mada } from "next/font/google";
 
+
 //provider
 import { Providers } from "./provider";
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     // <AuthContextProvider>
-    <html lang="en">
+    <html lang="en" dir="rtl">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

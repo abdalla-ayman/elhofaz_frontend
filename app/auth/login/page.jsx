@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
 //components
-import FormInput from "../../components/FormInput";
-import login from "../../../lib/login";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 export default function Login() {
   let [username, setUsername] = useState("");
@@ -30,16 +30,35 @@ export default function Login() {
 
   return (
     <div className="h-screen flex">
-      <form className="w-80 m-auto" action={"#"} onSubmit={handleSubmit}>
-        <h2 className="text-2xl text-center">تسجيل الدخول</h2>
-        <FormInput label="اسم المستخدم" type="text" setValue={setUsername} />
-        <FormInput label="كلمة المرور" type="password" setValue={setPassword} />
+      <form
+        className="w-80 m-auto flex items-center flex-col"
+        action={"#"}
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-2xl mb-4 text-center">تسجيل الدخول</h2>
+        <TextField
+          id="outlined-basic"
+          onChange={(e) => setUsername(e.target.value)}
+          label="اسم المستخدم"
+          variant="outlined"
+          type="text"
+          className="my-5"
+          sx={{ my: 1 }}
+        />
+        <TextField
+          id="outlined-basic"
+          onChange={(e) => setPassword(e.target.value)}
+          label="كلمة المرور"
+          variant="outlined"
+          type="password"
+          sx={{ my: 1 }}
+        />
         <div>
           {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
 
-          <button type="submit" className="bg-sky-500 mx-auto block">
+          <Button variant="contained" type="submit"  sx={{ my: 1 }}>
             تسجيل الدخول
-          </button>
+          </Button>
         </div>
       </form>
     </div>
