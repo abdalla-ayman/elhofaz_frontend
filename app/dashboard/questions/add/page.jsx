@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import add_question from "@/lib/add_question";
+import { addQuestion } from "@/lib/questions";
 
 //components
 import FormTextarea from "@/app/components/FormTextarea";
@@ -37,7 +37,7 @@ export default function AddQuestions() {
   let handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await add_question({
+      let res = await addQuestion({
         question,
         a,
         b,

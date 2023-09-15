@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import getQuestion from "@/lib/question";
-import deleteQuestion from "@/lib/delete_question";
-import editQuestion from "@/lib/edit_question";
+
+import { getQuestion, deleteQuestion, editQuestion } from "@/lib/questions";
 
 // components
 import FormTextarea from "@/app/components/FormTextarea";

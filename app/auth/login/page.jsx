@@ -19,11 +19,15 @@ export default function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      signIn("credentials", { username, password, redirect: false });
-
+      let result = await signIn("credentials", {
+        username,
+        password,
+        redirect: false,
+      });
+      //result.error for error
       // }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       throw error;
     }
   };
@@ -56,7 +60,7 @@ export default function Login() {
         <div>
           {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
 
-          <Button variant="contained" type="submit"  sx={{ my: 1 }}>
+          <Button variant="contained" type="submit" sx={{ my: 1 }}>
             تسجيل الدخول
           </Button>
         </div>
