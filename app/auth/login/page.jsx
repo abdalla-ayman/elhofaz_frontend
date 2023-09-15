@@ -19,11 +19,15 @@ export default function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      signIn("credentials", { username, password, redirect: false });
-
+      let result = await signIn("credentials", {
+        username,
+        password,
+        redirect: false,
+      });
+      //result.error for error
       // }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       throw error;
     }
   };
