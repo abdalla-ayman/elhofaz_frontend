@@ -1,28 +1,15 @@
 "use client";
 import { useState, Fragment } from "react";
-import country_list from "/public/countries.json";
 import { signup } from "../../../lib/users";
 
 //compnents
-import {
-  MenuItem,
-  Select,
-  TextField,
-  InputLabel,
-  Autocomplete,
-  Box,
-  FormControl,
-  RadioGroup,
-  FormLabel,
-  FormControlLabel,
-  Radio,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Typography,
-} from "@mui/material";
-import FormSelect from "../../components/FormSelect";
+import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import MobileStepper from "@mui/material/MobileStepper";
+import Container from "@mui/material/Container";
+
+// steps
+import Information from "./Information";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -33,19 +20,22 @@ let track_options = [
 ];
 
 export default function Register() {
-  let [username, setUsername] = useState("");
-  let [password, setPassword] = useState("");
-  let [fullname, setFullname] = useState("");
-  let [gender, setGender] = useState("male");
-  let [age, setAge] = useState(0);
-  let [nationality, setNationality] = useState("");
-  let [residential, setResidential] = useState("");
-  let [phone_number, setPhone_number] = useState("");
-  let [role, setRole] = useState("user");
-  let [track, setTrack] = useState("");
+  let [state, setState] = useState({
+    username: "",
+    passowrd: "",
+    name: "",
+    gender: "male",
+    age: "",
+    nationality: "",
+    residential: "",
+    country_code: "",
+    phone_number: "",
+    role: "user",
+    track: "",
+  });
+
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
-  let [countries, setCountries] = useState(country_list);
 
   // stepper state and functions
   const [activeStep, setActiveStep] = useState(0);
@@ -95,52 +85,42 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        my: 5,
+      }}
+      maxWidth={"xs"}
+    >
+      <Typography variant="h5" sx={{ textAlign: "center" }}>
+        {" "}
+        التسجيل في مقارئ الحفاظ
+      </Typography>
 
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
+      {activeStep == 0 && <Information state={state} setState={setState} />}
 
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
-            </Button>
-          </Box>
-        </Fragment>
-      )}
-      <form className="w-80 m-auto my-6 flex flex-col " onSubmit={handleSubmit}>
-        <h2 className="text-2xl text-center">التسجيل في مقارئ الحفاظ</h2>
-      </form>
-    </div>
+      <MobileStepper
+        variant="progress"
+        steps={3}
+        position="static"
+        activeStep={activeStep}
+        sx={{ maxWidth: 400, flexGrow: 1 }}
+        nextButton={
+          <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+            التالي
+          </Button>
+        }
+        backButton={
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+            السابق
+          </Button>
+        }
+      />
+      <form
+        className="w-80 m-auto my-6 flex flex-col "
+        onSubmit={handleSubmit}
+      ></form>
+    </Container>
   );
 }
