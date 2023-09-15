@@ -10,6 +10,8 @@ import Container from "@mui/material/Container";
 
 // steps
 import Information from "./Information";
+import Stage from "./Stage";
+import Track from "./Track";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -94,20 +96,21 @@ export default function Register() {
       maxWidth={"xs"}
     >
       <Typography variant="h5" sx={{ textAlign: "center" }}>
-        {" "}
         التسجيل في مقارئ الحفاظ
       </Typography>
 
       {activeStep == 0 && <Information state={state} setState={setState} />}
+      {activeStep == 1 && state.role == "user" && <Stage />}
+      {activeStep == 2 && state.role == "user" && <Track />}
 
       <MobileStepper
         variant="progress"
-        steps={3}
+        steps={state.role === "user" ? 3 : 1}
         position="static"
         activeStep={activeStep}
         sx={{ maxWidth: 400, flexGrow: 1 }}
         nextButton={
-          <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+          <Button size="small" onClick={handleNext} disabled={activeStep === 2}>
             التالي
           </Button>
         }

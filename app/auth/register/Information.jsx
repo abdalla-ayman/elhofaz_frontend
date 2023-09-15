@@ -31,7 +31,7 @@ export default function Information({ state, setState }) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        mt:3
+        mt: 3,
       }}
       maxWidth={"xs"}
     >
@@ -41,6 +41,7 @@ export default function Information({ state, setState }) {
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("username", e.target.value)}
+        value={state.username}
         label="اسم المستخدم"
         variant="outlined"
         type="text"
@@ -51,6 +52,7 @@ export default function Information({ state, setState }) {
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("passowrd", e.target.value)}
+        value={state.password}
         label="كلمة المرور"
         variant="outlined"
         type="password"
@@ -60,6 +62,7 @@ export default function Information({ state, setState }) {
         id="outlined-basic"
         onChange={(e) => handleStateChange("name", e.target.value)}
         label="الاسم الكامل"
+        value={state.name}
         variant="outlined"
         type="text"
         className="my-5"
@@ -74,6 +77,9 @@ export default function Information({ state, setState }) {
           onChange={(e, value) =>
             handleStateChange("country_code", value.dialCode)
           }
+          value={countries.find(
+            (country) => country.dialCode == state.country_code
+          )}
           sx={{ marginRight: 1, width: 100 }}
           renderOption={(props, option) => (
             <Box
@@ -107,6 +113,7 @@ export default function Information({ state, setState }) {
           id="outlined-basic"
           onChange={(e) => handleStateChange("phone_number", e.target.value)}
           label="رقم الهاتف"
+          value={state.phone_number}
           variant="outlined"
           type="tel"
           sx={{ my: 1, width: "100%" }}
@@ -131,6 +138,7 @@ export default function Information({ state, setState }) {
           id="outlined-basic"
           onChange={(e) => handleStateChange("age", e.target.value)}
           label="العمر"
+          value={state.age}
           variant="outlined"
           type="number"
           sx={{ my: 1, width: "100%" }}
@@ -141,6 +149,10 @@ export default function Information({ state, setState }) {
         disablePortal
         id="combo-box-demo"
         onChange={(e, value) => handleStateChange("nationality", value.label)}
+        // value={{
+        //   label: countries.find((country) => country.name == state.nationality)
+        //     .name,
+        // }}
         options={countries.map((country) => ({
           label: country.name,
         }))}
@@ -151,6 +163,11 @@ export default function Information({ state, setState }) {
         disablePortal
         id="combo-box-demo"
         onChange={(e, value) => handleStateChange("residential", value.label)}
+        //keeping tbe state of country and nationality when changing step and retreving the value by getting counry name and puting in in format {label: country_name}
+        // value={{
+        //   label: countries.find((country) => country.name == state.nationality)
+        //     .name,
+        // }}
         options={countries.map((country) => ({
           label: country.name,
         }))}
@@ -163,6 +180,7 @@ export default function Information({ state, setState }) {
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="user"
+          value={state.role}
           name="radio-buttons-group"
           onChange={(e) => handleStateChange("role", e.target.value)}
           row
