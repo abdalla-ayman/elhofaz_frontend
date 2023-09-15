@@ -1,7 +1,7 @@
 "use client";
 import { useState, Fragment } from "react";
 import country_list from "/public/countries.json";
-import {signup} from "../../../lib/users";
+import { signup } from "../../../lib/users";
 
 //compnents
 import {
