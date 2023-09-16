@@ -28,5 +28,8 @@
     "stylis-plugin-rtl": "^2.1.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/stylis": "^4.2.0"
   }
 }
