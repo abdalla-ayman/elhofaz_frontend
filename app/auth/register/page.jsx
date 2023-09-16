@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, forwardRef } from "react";
 import { signup } from "../../../lib/users";
+import { useSession, signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 //compnents
 import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
@@ -39,6 +41,12 @@ export default function Register() {
 
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
+  let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
+  let { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) redirect("/");
+  }, [session]);
 
   // stepper state and functions
   const [activeStep, setActiveStep] = useState(0);
@@ -87,10 +95,19 @@ export default function Register() {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
+      setLoadingMsg("جاري التسجيل");
       if (!formControl()) return;
 
       let { message, code, data } = await signup(state);
-      if (message) {
+      if (code == 200) {
+        setLoadingMsg("جاري تسجيل الدخول");
+        await signIn("credentials", {
+          username,
+          password,
+          redirect: false,
+        });
+        redirect("/");
+      } else {
         setActiveStep(0);
         setError(message);
       }
@@ -154,7 +171,7 @@ export default function Register() {
           </Button>
         }
       />
-      <Loading loading={loading} text={"جاري التسجيل"} />
+      <Loading loading={loading} text={loadingMsg} />
     </Container>
   );
 }

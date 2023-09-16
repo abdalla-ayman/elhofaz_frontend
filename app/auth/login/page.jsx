@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,7 +17,7 @@ export default function Login() {
   let { data: session } = useSession();
 
   useEffect(() => {
-    console.log(session);
+    if(session) redirect('/')
   }, [session]);
 
   useEffect(() => {
