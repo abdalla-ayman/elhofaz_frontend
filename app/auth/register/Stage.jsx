@@ -54,7 +54,7 @@ export default function Stage() {
             label="مرحلة القراءات"
           />
         </RadioGroup>
-        <FormLabel sx={{mt:4}} id="demo-radio-buttons-group-label">
+        <FormLabel sx={{ mt: 4 }} id="demo-radio-buttons-group-label">
           يبدأ كل الطلاب الجدد من مرحلة الضبط
         </FormLabel>
       </FormControl>

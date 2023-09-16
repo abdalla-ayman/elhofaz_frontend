@@ -1,5 +1,5 @@
 "use client";
-import { useState, Fragment } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { signup } from "../../../lib/users";
 
 //compnents
@@ -7,7 +7,8 @@ import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
 import Container from "@mui/material/Container";
-
+import Alert from "@mui/material/Alert";
+import Loading from "../../components/Loading";
 // steps
 import Information from "./Information";
 import Stage from "./Stage";
@@ -33,7 +34,7 @@ export default function Register() {
     country_code: "",
     phone_number: "",
     role: "user",
-    track: "",
+    track: "1",
   });
 
   let [error, setError] = useState("");
@@ -41,8 +42,22 @@ export default function Register() {
 
   // stepper state and functions
   const [activeStep, setActiveStep] = useState(0);
+  let [steps, setSteps] = useState(3);
+
+  useEffect(() => {
+    if (state.role == "user") setSteps(3);
+    else {
+      setSteps(1);
+      setActiveStep(0);
+    }
+  }, [state.role]);
+
+  useEffect(() => {
+    setError("");
+  }, [state]);
 
   const handleNext = () => {
+    if (!formControl()) return;
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -54,35 +69,36 @@ export default function Register() {
     setActiveStep(0);
   };
 
+  const formControl = () => {
+    if (activeStep == 0) {
+      for (const input_field in state) {
+        if (state[input_field] == "") {
+          setError("يجب ملء كل المعلومات الاساسية");
+          setLoading(false);
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
   //role/track
 
   const handleSubmit = async (e) => {
     try {
-      e.preventDefault();
-      let res = await signup({
-        username,
-        password,
-        fullname,
-        gender,
-        age,
-        nationality,
-        residential,
-        phone_number,
-        track,
-        role,
-      });
+      setLoading(true);
+      if (!formControl()) return;
 
-      let data = await res.json();
-      if (res.ok) {
-        // success logic
-      } else {
-        //failure logic
-        setError(data.message);
+      let { message, code, data } = await signup(state);
+      if (message) {
+        setActiveStep(0);
+        setError(message);
       }
 
-      console.log(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -101,7 +117,15 @@ export default function Register() {
 
       {activeStep == 0 && <Information state={state} setState={setState} />}
       {activeStep == 1 && state.role == "user" && <Stage />}
-      {activeStep == 2 && state.role == "user" && <Track />}
+      {activeStep == 2 && state.role == "user" && (
+        <Track setState={setState} track={state.track} />
+      )}
+
+      {error && (
+        <Alert severity="error" icon={false}>
+          {error}
+        </Alert>
+      )}
 
       <MobileStepper
         variant="progress"
@@ -110,20 +134,27 @@ export default function Register() {
         activeStep={activeStep}
         sx={{ maxWidth: 400, flexGrow: 1 }}
         nextButton={
-          <Button size="small" onClick={handleNext} disabled={activeStep === 2}>
-            التالي
-          </Button>
+          steps == 1 || activeStep == 2 ? (
+            <Button size="large" disabled={false} onClick={handleSubmit}>
+              التسجيل
+            </Button>
+          ) : (
+            <Button
+              size="large"
+              onClick={handleNext}
+              disabled={activeStep === 2}
+            >
+              التالي
+            </Button>
+          )
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
             السابق
           </Button>
         }
       />
-      <form
-        className="w-80 m-auto my-6 flex flex-col "
-        onSubmit={handleSubmit}
-      ></form>
+      <Loading loading={loading} text={"جاري التسجيل"} />
     </Container>
   );
 }

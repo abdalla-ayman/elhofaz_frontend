@@ -186,7 +186,7 @@ export default function Information({ state, setState }) {
           row
         >
           <FormControlLabel value="user" control={<Radio />} label="طالب" />
-          <FormControlLabel value="teacher" control={<Radio />} label="شيخ" />
+          <FormControlLabel value="teacher" control={<Radio />} label="معلم" />
         </RadioGroup>
       </FormControl>
     </Container>

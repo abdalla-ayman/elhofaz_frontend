@@ -4,7 +4,9 @@ import { useSession, signIn } from "next-auth/react";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 import { Link, Typography } from "@mui/material";
+import Loading from "@/app/components/Loading";
 
 export default function Login() {
   let [username, setUsername] = useState("");
@@ -17,18 +19,27 @@ export default function Login() {
     console.log(session);
   }, [session]);
 
+  useEffect(() => {
+    setError(false);
+  }, [username, password]);
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
       let result = await signIn("credentials", {
         username,
         password,
         redirect: false,
       });
+
+      if (result.error) setError(result.error);
+      setLoading(false);
       //result.error for error
       // }
     } catch (error) {
       console.log(error);
+      setLoading(false);
       throw error;
     }
   };
@@ -49,6 +60,7 @@ export default function Login() {
           type="text"
           className="my-5"
           sx={{ my: 1 }}
+          required
         />
         <TextField
           id="outlined-basic"
@@ -57,18 +69,24 @@ export default function Login() {
           variant="outlined"
           type="password"
           sx={{ my: 1 }}
+          required
         />
+
         <Typography>
           نسيت كلمة السر؟ <Link href={"/auth/reset_password"}>اضغط هنا</Link>
         </Typography>
         <div>
-          {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
-
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
           <Button variant="contained" type="submit" sx={{ my: 1 }}>
             تسجيل الدخول
           </Button>
         </div>
       </form>
+      <Loading loading={loading} text={"جاري تسجيل الدخول"} />
     </div>
   );
 }
