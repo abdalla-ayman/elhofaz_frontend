@@ -1,7 +1,8 @@
+import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "@/lib/users";
 
-const authOptions = {
+ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
@@ -40,5 +41,3 @@ const authOptions = {
   },
 };
 
-
-export { authOptions}
