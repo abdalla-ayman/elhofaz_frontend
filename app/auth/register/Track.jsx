@@ -113,7 +113,7 @@ export default function Track({ setState, track }) {
       <FormControl>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="1"
+          defaultValue="mid_level"
           value={track}
           onChange={(e) =>
             setState((prevState) => {
@@ -124,16 +124,20 @@ export default function Track({ setState, track }) {
           row
         >
           <FormControlLabel
-            value="1"
+            value="beginner"
             control={<Radio />}
             label="المسار التمهيدي"
           />
           <FormControlLabel
-            value="2"
+            value="mid_level"
             control={<Radio />}
             label="الحافظين الجدد"
           />
-          <FormControlLabel value="3" control={<Radio />} label="الخاتمين" />
+          <FormControlLabel
+            value="high_level"
+            control={<Radio />}
+            label="الخاتمين"
+          />
         </RadioGroup>
       </FormControl>
     </Container>

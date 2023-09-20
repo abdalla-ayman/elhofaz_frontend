@@ -27,14 +27,15 @@ let track_options = [
 export default function Register() {
   let [state, setState] = useState({
     username: "",
-    passowrd: "",
+    password: "",
     name: "",
+    email: "",
     gender: "male",
     age: "",
     nationality: "",
-    residential: "",
-    country_code: "",
-    phone_number: "",
+    residation: "",
+    phone_code: "",
+    phone: "",
     role: "user",
     track: "1",
   });
@@ -109,8 +110,8 @@ export default function Register() {
         redirect("/");
       } else {
         setActiveStep(0);
-        setError(message);
-      }
+        
+        setError(message);      }
 
       setLoading(false);
     } catch (error) {

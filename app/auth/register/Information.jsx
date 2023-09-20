@@ -51,7 +51,7 @@ export default function Information({ state, setState }) {
 
       <TextField
         id="outlined-basic"
-        onChange={(e) => handleStateChange("passowrd", e.target.value)}
+        onChange={(e) => handleStateChange("password", e.target.value)}
         value={state.password}
         label="كلمة المرور"
         variant="outlined"
@@ -61,10 +61,20 @@ export default function Information({ state, setState }) {
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("name", e.target.value)}
-        label="الاسم الكامل"
+        label="الاسم الرباعي"
         value={state.name}
         variant="outlined"
         type="text"
+        className="my-5"
+        sx={{ my: 1 }}
+      />
+      <TextField
+        id="outlined-basic"
+        onChange={(e) => handleStateChange("email", e.target.value)}
+        label="البريد الالكتروني"
+        value={state.email}
+        variant="outlined"
+        type="email"
         className="my-5"
         sx={{ my: 1 }}
       />
@@ -75,10 +85,10 @@ export default function Information({ state, setState }) {
           autoHighlight
           getOptionLabel={(option) => option.dialCode}
           onChange={(e, value) =>
-            handleStateChange("country_code", value.dialCode)
+            handleStateChange("phone_code", value.dialCode)
           }
           value={countries.find(
-            (country) => country.dialCode == state.country_code
+            (country) => country.dialCode == state.phone_code
           )}
           sx={{ marginRight: 1, width: 100 }}
           renderOption={(props, option) => (
@@ -111,9 +121,9 @@ export default function Information({ state, setState }) {
         />
         <TextField
           id="outlined-basic"
-          onChange={(e) => handleStateChange("phone_number", e.target.value)}
+          onChange={(e) => handleStateChange("phone", e.target.value)}
           label="رقم الهاتف"
-          value={state.phone_number}
+          value={state.phone}
           variant="outlined"
           type="tel"
           sx={{ my: 1, width: "100%" }}
@@ -162,7 +172,7 @@ export default function Information({ state, setState }) {
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        onChange={(e, value) => handleStateChange("residential", value.label)}
+        onChange={(e, value) => handleStateChange("residation", value.label)}
         //keeping tbe state of country and nationality when changing step and retreving the value by getting counry name and puting in in format {label: country_name}
         // value={{
         //   label: countries.find((country) => country.name == state.nationality)

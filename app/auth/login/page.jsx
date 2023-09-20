@@ -17,7 +17,7 @@ export default function Login() {
   let { data: session } = useSession();
 
   useEffect(() => {
-    if(session) redirect('/')
+    if (session) redirect("/");
   }, [session]);
 
   useEffect(() => {
@@ -28,16 +28,17 @@ export default function Login() {
     try {
       e.preventDefault();
       setLoading(true);
-      let result = await signIn("credentials", {
+      let { error, ok, status } = await signIn("credentials", {
         username,
         password,
         redirect: false,
       });
 
-      if (result.error) setError(result.error);
+      if (error) {
+        setError(error);
+      } else redirect("/");
+
       setLoading(false);
-      //result.error for error
-      // }
     } catch (error) {
       console.log(error);
       setLoading(false);
