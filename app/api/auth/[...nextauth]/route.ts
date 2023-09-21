@@ -25,12 +25,14 @@ const authOptions: NextAuthOptions = {
             );
           }
         } catch (error) {
-          throw new Error(JSON.stringify("حدثت مشكلة ما يرجى اعادة المحاولة"))
+          throw new Error(JSON.stringify("حدثت مشكلة ما يرجى اعادة المحاولة"));
         }
       },
       credentials: {},
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET
+  ,
   callbacks: {
     async session({ session, token, user }: any) {
       session.accessToken = token.accessToken;
