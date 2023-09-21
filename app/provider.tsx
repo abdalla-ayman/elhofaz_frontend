@@ -14,6 +14,15 @@ import Navbar from "./components/Navbar";
 
 const theme = createTheme({
   direction: "rtl", // Both here and <body dir="rtl">
+  palette: {
+    primary: {
+      main: "#53421f",
+    },
+  },
+
+  typography: {
+    fontFamily:'inherit'
+  }
 });
 // Create rtl cache
 const cacheRtl = createCache({
