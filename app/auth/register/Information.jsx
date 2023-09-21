@@ -17,10 +17,17 @@ import FormLabel from "@mui/material/FormLabel";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+const countriesOptions = country_list.map((country) => ({
+  label: country.name,
+  key: country.code,
+}));
+
 export default function Information({ state, setState }) {
   let [countries, setCountries] = useState(country_list);
 
   let handleStateChange = (input_name, value) => {
+    if (input_name == "phone" && value.length > 10) return;
+
     setState((prevState) => {
       return { ...prevState, [input_name]: value };
     });
@@ -158,29 +165,52 @@ export default function Information({ state, setState }) {
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        onChange={(e, value) => handleStateChange("nationality", value.label)}
-        // value={{
-        //   label: countries.find((country) => country.name == state.nationality)
-        //     .name,
-        // }}
-        options={countries.map((country) => ({
-          label: country.name,
-        }))}
+        onChange={(e, value) => {
+          if (value) handleStateChange("residation", value.label);
+          else handleStateChange("residation", "");
+        }}
+        renderOption={(props, option) => {
+          return (
+            <li {...props} key={option.key}>
+              {option.label}
+            </li>
+          );
+        }}
+        renderTags={(tagValue, getTagProps) => {
+          return tagValue.map((option, index) => (
+            <Chip {...getTagProps({ index })} key={option.key} label={option} />
+          ));
+        }}
+        // to fix some bugs https://stackoverflow.com/questions/75818761/material-ui-autocomplete-warning-a-props-object-containing-a-key-prop-is-be
+        options={countriesOptions}
         sx={{ my: 1 }}
         renderInput={(params) => <TextField {...params} label="الجنسية" />}
       />
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        onChange={(e, value) => handleStateChange("residation", value.label)}
+        onChange={(e, value) => {
+          if (value) handleStateChange("residation", value.label);
+          else handleStateChange("residation", "");
+        }}
         //keeping tbe state of country and nationality when changing step and retreving the value by getting counry name and puting in in format {label: country_name}
         // value={{
         //   label: countries.find((country) => country.name == state.nationality)
         //     .name,
         // }}
-        options={countries.map((country) => ({
-          label: country.name,
-        }))}
+        renderOption={(props, option) => {
+          return (
+            <li {...props} key={option.key}>
+              {option.label}
+            </li>
+          );
+        }}
+        renderTags={(tagValue, getTagProps) => {
+          return tagValue.map((option, index) => (
+            <Chip {...getTagProps({ index })} key={option.key} label={option} />
+          ));
+        }}
+        options={countriesOptions}
         sx={{ my: 1 }}
         renderInput={(params) => <TextField {...params} label="مكان الاقامة" />}
       />

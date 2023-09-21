@@ -2,7 +2,7 @@
 import { useState, useEffect, forwardRef } from "react";
 import { signup } from "../../../lib/users";
 import { useSession, signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 //compnents
 import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
@@ -44,9 +44,10 @@ export default function Register() {
   let [loading, setLoading] = useState(false);
   let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
   let { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
-    if (session) redirect("/");
+    if (session) router.push("/");
   }, [session]);
 
   // stepper state and functions
@@ -103,15 +104,16 @@ export default function Register() {
       if (code == 200) {
         setLoadingMsg("جاري تسجيل الدخول");
         await signIn("credentials", {
-          username,
-          password,
+          username: state.username,
+          password: state.password,
           redirect: false,
         });
-        redirect("/");
+        router.push("/");
       } else {
         setActiveStep(0);
-        
-        setError(message);      }
+
+        setError(message);
+      }
 
       setLoading(false);
     } catch (error) {
