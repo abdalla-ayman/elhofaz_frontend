@@ -19,7 +19,7 @@ export default function Login() {
 
   useEffect(() => {
     if (session) router.push("/");
-  }, [session]);
+  }, [session, router]);
 
   useEffect(() => {
     setError(false);

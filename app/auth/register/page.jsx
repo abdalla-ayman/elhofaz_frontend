@@ -48,7 +48,7 @@ export default function Register() {
 
   useEffect(() => {
     if (session) router.push("/");
-  }, [session]);
+  }, [session, router]);
 
   // stepper state and functions
   const [activeStep, setActiveStep] = useState(0);
