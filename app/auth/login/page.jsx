@@ -7,6 +7,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { Link, Typography } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 import Loading from "@/app/components/Loading";
 
 export default function Login() {
@@ -14,6 +21,7 @@ export default function Login() {
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
+  let [showPassword, setShowPassword] = useState(false);
   let { data: session } = useSession();
   const router = useRouter();
 
@@ -24,6 +32,8 @@ export default function Login() {
   useEffect(() => {
     setError(false);
   }, [username, password]);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleSubmit = async (e) => {
     try {
@@ -55,25 +65,43 @@ export default function Login() {
         onSubmit={handleSubmit}
       >
         <h2 className="text-2xl mb-4 text-center">تسجيل الدخول</h2>
-        <TextField
-          id="outlined-basic"
-          onChange={(e) => setUsername(e.target.value)}
-          label="اسم المستخدم"
-          variant="outlined"
-          type="text"
-          className="my-5"
-          sx={{ my: 1 }}
-          required
-        />
-        <TextField
-          id="outlined-basic"
-          onChange={(e) => setPassword(e.target.value)}
-          label="كلمة المرور"
-          variant="outlined"
-          type="password"
-          sx={{ my: 1 }}
-          required
-        />
+        <FormControl variant="outlined">
+          <TextField
+            id="outlined-basic"
+            onChange={(e) => setUsername(e.target.value)}
+            label="اسم المستخدم"
+            variant="outlined"
+            type="text"
+            className="my-5"
+            sx={{ my: 1, width: 300 }}
+            required
+          />
+        </FormControl>
+
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            كلمة المرور
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            sx={{ my: 1, width: 300 }}
+            // onChange={}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  // onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="كلمة المرور"
+          />
+        </FormControl>
 
         <Typography>
           نسيت كلمة السر؟ <Link href={"/auth/reset_password"}>اضغط هنا</Link>
