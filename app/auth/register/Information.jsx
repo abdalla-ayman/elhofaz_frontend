@@ -18,7 +18,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Chip from "@mui/material/Chip";
 
-
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
   key: country.code,
@@ -33,6 +32,12 @@ export default function Information({ state, setState }) {
     setState((prevState) => {
       return { ...prevState, [input_name]: value };
     });
+  };
+
+  let getCountry = (selector) => {
+    let country = countries.find((country) => country.name == state[selector]);
+
+    return country ? { label: country.name, key: country.code } : undefined;
   };
 
   return (
@@ -185,6 +190,8 @@ export default function Information({ state, setState }) {
         }}
         // to fix some bugs https://stackoverflow.com/questions/75818761/material-ui-autocomplete-warning-a-props-object-containing-a-key-prop-is-be
         options={countriesOptions}
+        value={getCountry("nationality")}
+        isOptionEqualToValue={(option, value) => option.key == value.key}
         sx={{ my: 1 }}
         renderInput={(params) => <TextField {...params} label="الجنسية" />}
       />
@@ -195,11 +202,9 @@ export default function Information({ state, setState }) {
           if (value) handleStateChange("residation", value.label);
           else handleStateChange("residation", "");
         }}
-        //keeping tbe state of country and nationality when changing step and retreving the value by getting counry name and puting in in format {label: country_name}
-        // value={{
-        //   label: countries.find((country) => country.name == state.nationality)
-        //     .name,
-        // }}
+        // keeping tbe state of country and nationality when changing step and retreving the value by getting counry name and puting in in format {label: country_name}
+        value={getCountry("residation")}
+        isOptionEqualToValue={(option, value) => option.key == value.key}
         renderOption={(props, option) => {
           return (
             <li {...props} key={option.key}>
