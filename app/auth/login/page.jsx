@@ -73,7 +73,7 @@ export default function Login() {
             variant="outlined"
             type="text"
             className="my-5"
-            sx={{ my: 1, width: 300 }}
+            sx={{ my: 1, width: "calc(100% + 40px)", transform: 'translateX(-20px)' }}
             required
           />
         </FormControl>
@@ -85,7 +85,7 @@ export default function Login() {
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
-            sx={{ my: 1, width: 300 }}
+            sx={{ my: 1, width: "100%" }}
             // onChange={}
             endAdornment={
               <InputAdornment position="end">
