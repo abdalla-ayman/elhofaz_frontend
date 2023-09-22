@@ -1,16 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
+import { updatePassword } from "@/lib/users";
+import { useRouter } from "next/navigation";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import Loading from "@/app/components/Loading";
 
-export default function Login() {
+export default function ResetPasswordEmail() {
   let [password, setPassword] = useState("");
   let [nw_password, setNw_Password] = useState("");
+  let [success, setSuccess] = useState("");
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
+  const router = useRouter();
+  const { email } = router.query;
 
   useEffect(() => {
     console.log(session);
@@ -18,7 +25,21 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     try {
+      setLoading(true);
       e.preventDefault();
+
+      //post to server
+      let res = await updatePassword({ email: "", password });
+
+      console.log(res);
+      if (res.code == 200) {
+        setLoading(false);
+        setError("");
+        setSuccess(res.message);
+      } else {
+        setLoading(false);
+        setError(res.message);
+      }
     } catch (error) {
       console.log(error);
       throw error;
@@ -52,13 +73,23 @@ export default function Login() {
           sx={{ my: 1 }}
         />
         <div>
-          {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
+          {success && (
+            <Alert severity="success" icon={false}>
+              {success}
+            </Alert>
+          )}
 
           <Button variant="contained" type="submit" sx={{ my: 1 }}>
             تغيير
           </Button>
         </div>
       </form>
+      <Loading loading={loading} text={"جاري تأكيد الايميل"} />
     </div>
   );
 }

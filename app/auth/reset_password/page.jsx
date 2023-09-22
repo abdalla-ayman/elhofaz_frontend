@@ -6,21 +6,41 @@ import { useRouter } from "next/navigation";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import { getCode } from "@/lib/users";
+import Loading from "@/app/components/Loading";
 
-export default function Login() {
+export default function ChangePassword() {
   let [email, setEmail] = useState("");
   let [error, setError] = useState("");
+  let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
   const router = useRouter();
+
   useEffect(() => {
     console.log(session);
   }, [session]);
 
   const handleSubmit = async (e) => {
     try {
+      setLoading(true);
+
       e.preventDefault();
-      router.push("/auth/reset_password/code");
+
+      //send request
+      let res = await getCode({ email });
+      console.log(res);
+
+      if (res.code == 200) {
+        setLoading(false);
+        setSuccess(res.message);
+        setError("");
+        router.push(`/auth/reset_password/code/${email}`);
+      } else {
+        setLoading(false);
+        setError(res.message);
+      }
     } catch (error) {
       console.log(error);
       throw error;
@@ -45,13 +65,23 @@ export default function Login() {
           sx={{ my: 1 }}
         />
         <div>
-          {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
+          {success && (
+            <Alert severity="success" icon={false}>
+              {success}
+            </Alert>
+          )}
 
           <Button variant="contained" type="submit" sx={{ my: 1 }}>
             تأكيد الايميل
           </Button>
         </div>
       </form>
+      <Loading loading={loading} text={"جاري تأكيد الايميل"} />
     </div>
   );
 }

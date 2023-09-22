@@ -4,14 +4,19 @@ import { useSession, signIn } from "next-auth/react";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 import { useRouter } from "next/navigation";
+import { confirmCode } from "@/lib/users";
+import Loading from "@/app/components/Loading";
 
-export default function Login() {
+export default function GetCodeEmail() {
   let [code, setCode] = useState("");
   let [error, setError] = useState("");
+  let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
   const router = useRouter();
+  const { email } = router.query;
 
   useEffect(() => {
     console.log(session);
@@ -19,8 +24,22 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     try {
-      router.push("/auth/reset_password/new_password");
+      setLoading(true);
       e.preventDefault();
+
+      //post to server
+      let res = await confirmCode({ email, code });
+
+      console.log(res);
+      if (res.code == 200) {
+        setLoading(false);
+        setError("");
+        setSuccess(res.message);
+        router.push(`/auth/reset_password/new_password/${email}`);
+      } else {
+        setLoading(false);
+        setError(res.message);
+      }
     } catch (error) {
       console.log(error);
       throw error;
@@ -45,13 +64,23 @@ export default function Login() {
           sx={{ my: 1 }}
         />
         <div>
-          {error && <p className="text-red-500 mt-1 mb-3">{error}</p>}
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
+          {success && (
+            <Alert severity="success" icon={false}>
+              {success}
+            </Alert>
+          )}
 
           <Button variant="contained" type="submit" sx={{ my: 1 }}>
             تأكيد الكود
           </Button>
         </div>
       </form>
+      <Loading loading={loading} text={"جاري تأكيد كود الايميل"} />
     </div>
   );
 }
