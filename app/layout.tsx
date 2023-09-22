@@ -1,12 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Mada } from "next/font/google";
-
+import { Kufam } from "next/font/google";
 
 //provider
 import { Providers } from "./provider";
 
-const inter = Mada({ subsets: ["arabic"] });
+const inter = Kufam({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "مقارئ السفرة",

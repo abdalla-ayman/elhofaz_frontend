@@ -1,8 +1,8 @@
 import Link from "next/link";
-// import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 // export default function Navbar() {
-//   const { data: session } = useSession();
+//
 //   return (
 //     <div className="flex p-3 bg-sky-300">
 //       <h3 className="mx-4 text-xl">مقارئ الحفاظ</h3>
@@ -29,7 +29,6 @@ import Link from "next/link";
 //   );
 // }
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -52,6 +51,7 @@ const navItems = [
 ];
 
 function DrawerAppBar(props) {
+  const { data: session } = useSession();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -66,15 +66,35 @@ function DrawerAppBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+        {session && (
+          <ListItem disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText>
-                <Link href={item.link}> {item.name}</Link>
+                <Button sx={{ width: '100%', mx: 1 }} onClick={signOut}>
+                  تسجيل الخروج
+                </Button>
               </ListItemText>
             </ListItemButton>
           </ListItem>
-        ))}
+        )}
+        {!session && (
+          <>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/auth/register"}>التسجيل</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/auth/login"}>تسجيل الدخول</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </>
+        )}
       </List>
     </Box>
   );
@@ -104,12 +124,26 @@ function DrawerAppBar(props) {
             مقارئ السفرة
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Link href={item.link} key={item} >
-                
-                <Button sx={{ color: "#fff" }}>{item.name}</Button>
-              </Link>
-            ))}
+            {session && (
+              <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
+                تسجيل الخروج
+              </Button>
+            )}
+            {!session && (
+              <>
+                {" "}
+                <Link href={"/auth/register"}>
+                  <Button
+                    sx={{ color: "#fff", bgcolor: "primary.light", mx: 1 }}
+                  >
+                    التسجيل
+                  </Button>
+                </Link>
+                <Link href={"/auth/login"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>تسجيل الدخول</Button>
+                </Link>
+              </>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

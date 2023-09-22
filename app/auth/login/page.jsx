@@ -48,7 +48,7 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen flex">
+    <div className="">
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}

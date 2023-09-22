@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { signup } from "../../../lib/users";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -11,10 +11,13 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Loading from "../../components/Loading";
+import Paper from "@mui/material/Paper";
+import BackgroundImage from "../../components/BackgroundImage";
 // steps
 import Information from "./Information";
 import Stage from "./Stage";
 import Track from "./Track";
+import zIndex from "@mui/material/styles/zIndex";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -123,16 +126,9 @@ export default function Register() {
   };
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        my: 5,
-      }}
-      maxWidth={"xs"}
-    >
+    <Fragment>
       <Typography variant="h5" sx={{ textAlign: "center" }}>
-        التسجيل في مقارئ الحفاظ
+        التسجيل في مقارئ السفرة
       </Typography>
 
       {activeStep == 0 && <Information state={state} setState={setState} />}
@@ -175,6 +171,6 @@ export default function Register() {
         }
       />
       <Loading loading={loading} text={loadingMsg} />
-    </Container>
+    </Fragment>
   );
 }

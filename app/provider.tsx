@@ -17,12 +17,13 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#53421f",
+      light: "#cba346",
     },
   },
 
   typography: {
-    fontFamily:'inherit'
-  }
+    fontFamily: "inherit",
+  },
 });
 // Create rtl cache
 const cacheRtl = createCache({
@@ -36,6 +37,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ThemeProvider theme={theme}>
         <SessionProvider>
           <Navbar />
+          <></>
           {children}
         </SessionProvider>
       </ThemeProvider>
