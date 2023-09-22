@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
-import { Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -69,23 +70,26 @@ export default function Login() {
           <TextField
             id="outlined-basic"
             onChange={(e) => setUsername(e.target.value)}
-            label="اسم المستخدم"
+            label="اسم المستخدم / رقم الهاتف"
             variant="outlined"
             type="text"
             className="my-5"
-            sx={{ my: 1, width: "calc(100% + 40px)", transform: 'translateX(-20px)' }}
+            sx={{
+              my: 1,
+              width: "calc(100% + 36px)",
+              transform: "translateX(-18px)",
+            }}
             required
           />
         </FormControl>
 
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" sx={{ my: 2 }}>
           <InputLabel htmlFor="outlined-adornment-password">
             كلمة المرور
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
-            sx={{ my: 1, width: "100%" }}
             // onChange={}
             endAdornment={
               <InputAdornment position="end">
@@ -100,11 +104,20 @@ export default function Login() {
               </InputAdornment>
             }
             label="كلمة المرور"
+            required
           />
         </FormControl>
 
         <Typography>
-          نسيت كلمة السر؟ <Link href={"/auth/reset_password"}>اضغط هنا</Link>
+          نسيت كلمة السر؟{" "}
+          <Link
+            href={"/auth/reset_password"}
+            style={{
+              textDecoration: "underline",
+            }}
+          >
+            اضغط هنا
+          </Link>
         </Typography>
         <div>
           {error && (
@@ -112,9 +125,18 @@ export default function Login() {
               {error}
             </Alert>
           )}
-          <Button variant="contained" type="submit" sx={{ my: 1 }}>
+          <Button variant="contained" type="submit" sx={{ m: 1 }}>
             تسجيل الدخول
           </Button>
+          <Link href={"/auth/register"}>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ m: 1, bgcolor: "primary.light" }}
+            >
+              ليس لديك حساب ؟
+            </Button>
+          </Link>
         </div>
       </form>
       <Loading loading={loading} text={"جاري تسجيل الدخول"} />

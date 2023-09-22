@@ -10,21 +10,15 @@ const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       async authorize(credentials: any, req) {
-        try {
-          let { data, code, message } = await login(credentials);
-          console.log(data, code, message);
+        let { data, code, message } = await login(credentials);
+        console.log(data, code, message);
 
-          if (code == 200) {
-            const name = data.user.name;
-            return { ...data.user, name, accessToken: data.token };
-          } else if (code == 402) {
-            throw new Error(JSON.stringify(message));
-          } else {
-            throw new Error(
-              JSON.stringify("حدثت مشكلة ما يرجى اعادة المحاولة")
-            );
-          }
-        } catch (error) {
+        if (code == 200) {
+          const name = data.user.name;
+          return { ...data.user, name, accessToken: data.token };
+        } else if (code == 422) {
+          throw new Error(JSON.stringify(message));
+        } else {
           throw new Error(JSON.stringify("حدثت مشكلة ما يرجى اعادة المحاولة"));
         }
       },
