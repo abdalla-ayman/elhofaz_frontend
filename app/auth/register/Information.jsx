@@ -168,8 +168,8 @@ export default function Information({ state, setState }) {
         disablePortal
         id="combo-box-demo"
         onChange={(e, value) => {
-          if (value) handleStateChange("residation", value.label);
-          else handleStateChange("residation", "");
+          if (value) handleStateChange("nationality", value.label);
+          else handleStateChange("nationality", "");
         }}
         renderOption={(props, option) => {
           return (
