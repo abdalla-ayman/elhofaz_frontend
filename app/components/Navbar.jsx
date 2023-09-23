@@ -125,9 +125,14 @@ function DrawerAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {session && (
-              <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
-                تسجيل الخروج
-              </Button>
+              <>
+                <Link href={"/user/profile"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
+                </Link>
+                <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
+                  تسجيل الخروج
+                </Button>
+              </>
             )}
             {!session && (
               <>

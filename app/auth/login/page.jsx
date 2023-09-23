@@ -90,6 +90,7 @@ export default function Login() {
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
+            onChange={(e) => setPassword(e.target.value)}
             // onChange={}
             endAdornment={
               <InputAdornment position="end">
