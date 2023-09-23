@@ -36,7 +36,7 @@ export default function ChangePassword() {
         setLoading(false);
         setSuccess(res.message);
         setError("");
-        router.push(`/auth/reset_password/code/${email}`);
+        router.push(`/auth/reset_password/code?email=${email}`);
       } else {
         setLoading(false);
         setError(res.message);

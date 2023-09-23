@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { confirmCode } from "@/lib/users";
 import Loading from "@/app/components/Loading";
 
@@ -16,7 +17,8 @@ export default function GetCodeEmail() {
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
   const router = useRouter();
-  const { email } = router.query;
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
 
   useEffect(() => {
     console.log(session);
@@ -35,7 +37,7 @@ export default function GetCodeEmail() {
         setLoading(false);
         setError("");
         setSuccess(res.message);
-        router.push(`/auth/reset_password/new_password/${email}`);
+        // router.push(`/auth/reset_password/new_password?email=${email}`);
       } else {
         setLoading(false);
         setError(res.message);

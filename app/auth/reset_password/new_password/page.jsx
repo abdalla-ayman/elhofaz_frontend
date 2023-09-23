@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { updatePassword } from "@/lib/users";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -17,7 +18,8 @@ export default function ResetPasswordEmail() {
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
   const router = useRouter();
-  const { email } = router.query;
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
 
   useEffect(() => {
     console.log(session);
@@ -29,7 +31,7 @@ export default function ResetPasswordEmail() {
       e.preventDefault();
 
       //post to server
-      let res = await updatePassword({ email: "", password });
+      let res = await updatePassword({ email, password });
 
       console.log(res);
       if (res.code == 200) {
