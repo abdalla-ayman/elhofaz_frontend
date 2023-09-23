@@ -40,7 +40,7 @@ export default function Register() {
     phone_code: "",
     phone: "",
     role: "user",
-    track: "1",
+    track: "mid_level",
   });
 
   let [error, setError] = useState("");

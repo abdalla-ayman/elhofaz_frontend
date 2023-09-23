@@ -70,7 +70,7 @@ function DrawerAppBar(props) {
           <ListItem disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText>
-                <Button sx={{ width: '100%', mx: 1 }} onClick={signOut}>
+                <Button sx={{ width: "100%", mx: 1 }} onClick={signOut}>
                   تسجيل الخروج
                 </Button>
               </ListItemText>
