@@ -38,6 +38,7 @@ export default function ResetPasswordEmail() {
         setLoading(false);
         setError("");
         setSuccess(res.message);
+        router.push("/auth/login");
       } else {
         setLoading(false);
         setError(res.message);
@@ -59,7 +60,7 @@ export default function ResetPasswordEmail() {
         <TextField
           id="outlined-basic"
           onChange={(e) => setPassword(e.target.value)}
-          label="كلمة السر"
+          label="كلمة السر الجديدة"
           variant="outlined"
           type="password"
           className="my-5"
@@ -91,7 +92,7 @@ export default function ResetPasswordEmail() {
           </Button>
         </div>
       </form>
-      <Loading loading={loading} text={"جاري تأكيد الايميل"} />
+      <Loading loading={loading} text={"يتم المعالجة"} />
     </div>
   );
 }

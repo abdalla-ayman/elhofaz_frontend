@@ -36,8 +36,8 @@ export default function GetCodeEmail() {
       if (res.code == 200) {
         setLoading(false);
         setError("");
-        setSuccess(res.message);
-        // router.push(`/auth/reset_password/new_password?email=${email}`);
+        setSuccess("تم تأكيد الكود بنجاح");
+        router.push(`/auth/reset_password/new_password?email=${email}`);
       } else {
         setLoading(false);
         setError(res.message);
@@ -82,7 +82,7 @@ export default function GetCodeEmail() {
           </Button>
         </div>
       </form>
-      <Loading loading={loading} text={"جاري تأكيد كود الايميل"} />
+      <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
     </div>
   );
 }
