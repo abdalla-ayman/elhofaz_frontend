@@ -16,7 +16,6 @@ export default function Profile() {
     mid_level: "الحافظين الجدد",
     hight_level: "الخاتمين ",
   };
-  console.log(session.user);
   return (
     <Container
       sx={{
@@ -66,7 +65,7 @@ export default function Profile() {
           </Typography>
         </Box>
 
-        <Container sx={{ mt: 3}}> 
+        <Container sx={{ mt: 3 }}>
           <Item label={"اسم المستخدم"} value={session.user.username} />
           <Item label={"الجنسية"} value={session.user.nationality} />
           <Item label={"مكان الاقامة"} value={session.user.residation} />
