@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Container } from "@mui/material";
 
-export default function page() {
+export default function Profile() {
   let { data: session } = useSession();
   return (
     <Container
