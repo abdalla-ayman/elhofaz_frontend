@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
@@ -16,6 +15,7 @@ export default function Profile() {
     mid_level: "الحافظين الجدد",
     hight_level: "الخاتمين ",
   };
+
   return (
     <Container
       sx={{
@@ -28,7 +28,7 @@ export default function Profile() {
       }}
     >
       <Typography variant="h5">الملف الشخصي</Typography>
-      <Box
+      {session && <Box
         sx={{
           mt: 4,
         }}
@@ -45,7 +45,7 @@ export default function Profile() {
               width: 200,
               height: 200,
             }}
-            src={session.user.image}
+            src={session.user?.image}
           />
           <Typography
             sx={{
@@ -53,7 +53,7 @@ export default function Profile() {
             }}
             variant="h6"
           >
-            {session.user.name}
+            {session.user?.name}
           </Typography>
           <Typography
             color={"gray"}
@@ -61,27 +61,28 @@ export default function Profile() {
               mt: 1,
             }}
           >
-            #{session.user.id}
+            #{session.user?.id}
           </Typography>
         </Box>
 
         <Container sx={{ mt: 3 }}>
-          <Item label={"اسم المستخدم"} value={session.user.username} />
-          <Item label={"الجنسية"} value={session.user.nationality} />
-          <Item label={"مكان الاقامة"} value={session.user.residation} />
+          <Item label={"اسم المستخدم"} value={session.user?.username} />
+          <Item label={"الجنسية"} value={session.user?.nationality} />
+          <Item label={"مكان الاقامة"} value={session.user?.residation} />
           <Item
             label={"رقم الهاتف"}
-            value={`${session.user.phone_code}${session.user.phone}`}
+            value={`${session.user?.phone_code}${session.user?.phone}`}
           />
-          <Item label={"العمر"} value={session.user.age} />
-          <Item label={"اسم المستخدم"} value={session.user.username} />
+          <Item label={"العمر"} value={session.user?.age} />
+          <Item label={"اسم المستخدم"} value={session.user?.username} />
           <Item
             label={"النوع"}
-            value={session.user.gender == "male" ? "ذكر" : "انثى"}
+            value={session.user?.gender == "male" ? "ذكر" : "انثى"}
           />
-          <Item label={"المسار"} value={tracks[session.user.track]} />
+          <Item label={"المسار"} value={tracks[session.user?.track]} />
         </Container>
-      </Box>
+      </Box> }
+      
     </Container>
   );
 }
