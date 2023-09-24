@@ -6,10 +6,17 @@ import { useSession } from "next-auth/react";
 //componentes
 import { Box, Container, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
 import Item from "./item";
 
 export default function Profile() {
   let { data: session } = useSession();
+
+  let tracks = {
+    begginer: "المسار التأهيلي",
+    mid_level: "الحافظين الجدد",
+    hight_level: "الخاتمين ",
+  };
   console.log(session.user);
   return (
     <Container
@@ -62,20 +69,20 @@ export default function Profile() {
 
         <Container>
           <Item label={"اسم المستخدم"} value={session.user.username} />
-          <Item label={"اسم المستخدم"} value={session.user.nationality} />
-          <Item label={"اسم المستخدم"} value={session.user.residation} />
-          <Item label={"اسم المستخدم"} value={`${session.user.phone_code}${session.user.phone}`} />
+          <Divider component="hr" />
+          <Item label={"الجنسية"} value={session.user.nationality} />
+          <Item label={"مكان الاقامة"} value={session.user.residation} />
+          <Item
+            label={"رقم الهاتف"}
+            value={`${session.user.phone_code}${session.user.phone}`}
+          />
+          <Item label={"العمر"} value={session.user.age} />
           <Item label={"اسم المستخدم"} value={session.user.username} />
-          <Item label={"اسم المستخدم"} value={session.user.username} />
-
-          <Typography>{session.user.nationality}</Typography>
-          <Typography>{session.user.residation}</Typography>
-          <Typography>
-            {session.user.phone_code + session.user.phone}
-          </Typography>
-          <Typography>{session.user.gender}</Typography>
-          <Typography>{session.user.track}</Typography>
-          <Typography>{session.user.age}</Typography>
+          <Item
+            label={"النوع"}
+            value={session.user.gender == "male" ? "ذكر" : "انثى"}
+          />
+          <Item label={"المسار"} value={tracks[session.user.track]} />
         </Container>
       </Box>
     </Container>
