@@ -1,27 +1,31 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 export default function Item({ label, value }) {
   return (
     <>
-      <Typography
+      <Divider sx={{ mb: 2}}>
+        <Chip label={label} />
+      </Divider>
+      {/* <Typography
         sx={{
           mt: 2,
         }}
       >
         {label}:
-      </Typography>
+      </Typography> */}
       <Typography
         sx={{
           fontStyle: "italic",
-          mb:2
+          mb: 2,
         }}
         align="center"
       >
         {value}
       </Typography>
-      <Divider component="hr" />
+      {/* <Divider component="hr" /> */}
     </>
   );
 }

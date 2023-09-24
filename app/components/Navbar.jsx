@@ -67,15 +67,24 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {session && (
-          <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText>
-                <Button sx={{ width: "100%", mx: 1 }} onClick={signOut}>
-                  تسجيل الخروج
-                </Button>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+          <>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/user/profile"}>الملف الشخصي</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Button sx={{ width: "100%", mx: "auto" }} onClick={signOut}>
+                    تسجيل الخروج
+                  </Button>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </>
         )}
         {!session && (
           <>

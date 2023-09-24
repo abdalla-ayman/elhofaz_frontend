@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 //componentes
 import { Box, Container, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
 import Item from "./item";
 
 export default function Profile() {
@@ -67,9 +66,8 @@ export default function Profile() {
           </Typography>
         </Box>
 
-        <Container>
+        <Container sx={{ mt: 3}}> 
           <Item label={"اسم المستخدم"} value={session.user.username} />
-          <Divider component="hr" />
           <Item label={"الجنسية"} value={session.user.nationality} />
           <Item label={"مكان الاقامة"} value={session.user.residation} />
           <Item
