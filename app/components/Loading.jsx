@@ -27,8 +27,9 @@ export default function Loading({ loading, text }) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: 200,
+          width: 300,
           height: 100,
+          p: 2,
         }}
       >
         <Typography> {text}</Typography>

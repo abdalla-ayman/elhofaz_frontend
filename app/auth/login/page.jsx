@@ -110,7 +110,7 @@ export default function Login() {
         </FormControl>
 
         <Typography>
-          نسيت كلمة السر؟{" "}
+          نسيت كلمة المرور؟{" "}
           <Link
             href={"/auth/reset_password"}
             style={{

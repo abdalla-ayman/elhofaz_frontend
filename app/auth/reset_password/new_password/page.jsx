@@ -37,7 +37,7 @@ export default function ResetPasswordEmail() {
       if (res.code == 200) {
         setLoading(false);
         setError("");
-        setSuccess(res.message);
+        setSuccess("تم تغيير كلمة المرور");
         router.push("/auth/login");
       } else {
         setLoading(false);
@@ -50,7 +50,7 @@ export default function ResetPasswordEmail() {
   };
 
   return (
-    <div className="h-screen flex">
+    <>
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
@@ -75,24 +75,22 @@ export default function ResetPasswordEmail() {
           className="my-5"
           sx={{ my: 1 }}
         />
-        <div>
-          {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )}
-          {success && (
-            <Alert severity="success" icon={false}>
-              {success}
-            </Alert>
-          )}
+        {error && (
+          <Alert severity="error" icon={false}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" icon={false}>
+            {success}
+          </Alert>
+        )}
 
-          <Button variant="contained" type="submit" sx={{ my: 1 }}>
-            تغيير
-          </Button>
-        </div>
+        <Button variant="contained" type="submit" sx={{ my: 1 }}>
+          تغيير كلمة المرور{" "}
+        </Button>
       </form>
       <Loading loading={loading} text={"يتم المعالجة"} />
-    </div>
+    </>
   );
 }

@@ -14,6 +14,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
+import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Chip from "@mui/material/Chip";
@@ -92,7 +93,7 @@ export default function Information({ state, setState }) {
         className="my-5"
         sx={{ my: 1 }}
       />
-      <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
+      <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
         <Autocomplete
           id="country-select-demo"
           options={countries}
@@ -104,7 +105,7 @@ export default function Information({ state, setState }) {
           value={countries.find(
             (country) => country.dialCode == state.phone_code
           )}
-          sx={{ marginRight: 1, width: 100 }}
+          sx={{ marginRight: 1, width: "60%" }}
           renderOption={(props, option) => (
             <Box
               component="li"
@@ -140,9 +141,17 @@ export default function Information({ state, setState }) {
           value={state.phone}
           variant="outlined"
           type="tel"
-          sx={{ my: 1, width: "100%" }}
+          sx={{ width: "100%" }}
         />
       </Box>
+      <FormHelperText
+        sx={{
+          textAlign: "center",
+        }}
+        id="component-helper-text"
+      >
+        الرقم في صورة 9xxxxxxxxx من دون صفر البداية
+      </FormHelperText>
 
       <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
         <FormControl sx={{ marginRight: 1, width: "100%" }}>

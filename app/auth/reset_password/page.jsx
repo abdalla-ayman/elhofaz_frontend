@@ -48,40 +48,38 @@ export default function ChangePassword() {
   };
 
   return (
-    <div className="h-screen flex">
+    <>
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl mb-4 text-center">تأكيد الايميل</h2>
+        <h2 className="text-2xl mb-4 text-center">تأكيد البريد الالكتروني</h2>
         <TextField
           id="outlined-basic"
           onChange={(e) => setEmail(e.target.value)}
-          label="ادخل الايميل"
+          label="ادخل البريد الالكتروني"
           variant="outlined"
           type="text"
           className="my-5"
           sx={{ my: 1 }}
         />
-        <div>
-          {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )}
-          {success && (
-            <Alert severity="success" icon={false}>
-              {success}
-            </Alert>
-          )}
+        {error && (
+          <Alert severity="error" icon={false}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" icon={false}>
+            {success}
+          </Alert>
+        )}
 
-          <Button variant="contained" type="submit" sx={{ my: 1 }}>
-            تأكيد الايميل
-          </Button>
-        </div>
+        <Button variant="contained" type="submit" sx={{ my: 1, mx: "auto" }}>
+          تأكيد البريد الالكتروني
+        </Button>
       </form>
-      <Loading loading={loading} text={"جاري تأكيد الايميل"} />
-    </div>
+      <Loading loading={loading} text={"جاري تأكيد البريد الالكتروني"} />
+    </>
   );
 }

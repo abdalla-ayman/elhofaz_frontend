@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 export default function Item({ label, value }) {
   return (
     <>
-      <Divider sx={{ mb: 2}}>
+      <Divider sx={{ mb: 2 }}>
         <Chip label={label} />
       </Divider>
       {/* <Typography
@@ -23,7 +23,7 @@ export default function Item({ label, value }) {
         }}
         align="center"
       >
-        {value}
+        {value || "---"}
       </Typography>
       {/* <Divider component="hr" /> */}
     </>

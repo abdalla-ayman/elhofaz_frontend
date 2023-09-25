@@ -49,7 +49,7 @@ export default function GetCodeEmail() {
   };
 
   return (
-    <div className="h-screen flex">
+    <>
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
@@ -65,24 +65,22 @@ export default function GetCodeEmail() {
           className="my-5"
           sx={{ my: 1 }}
         />
-        <div>
-          {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )}
-          {success && (
-            <Alert severity="success" icon={false}>
-              {success}
-            </Alert>
-          )}
+        {error && (
+          <Alert severity="error" icon={false}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" icon={false}>
+            {success}
+          </Alert>
+        )}
 
-          <Button variant="contained" type="submit" sx={{ my: 1 }}>
-            تأكيد الكود
-          </Button>
-        </div>
-      </form>
-      <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
-    </div>
+        <Button variant="contained" type="submit" sx={{ my: 1 }}>
+          تأكيد الكود
+        </Button>
+        </form>
+      <Loading loading={loading} text={"جاري التأكيد"} />
+    </>
   );
 }

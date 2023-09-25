@@ -66,6 +66,13 @@ function DrawerAppBar(props) {
       </Typography>
       <Divider />
       <List>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <Link href={"/"}>الرئيسية</Link>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
         {session && (
           <>
             <ListItem disablePadding>
