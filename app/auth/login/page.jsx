@@ -17,6 +17,9 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Loading from "@/app/components/Loading";
 
+//animation library test
+import "animate.css";
+
 export default function Login() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
@@ -59,7 +62,7 @@ export default function Login() {
   };
 
   return (
-    <div className="">
+    <div className="animate__animated animate__backInDown">
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
