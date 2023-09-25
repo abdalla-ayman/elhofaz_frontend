@@ -63,7 +63,7 @@ export default function Profile() {
           }}
         >
           <Grid container>
-            <Grid item md={3}>
+            <Grid item md={3} xs={12}>
               <Box
                 sx={{
                   display: "flex",
@@ -127,12 +127,12 @@ export default function Profile() {
               </Box>
             </Grid>
 
-            <Grid item md={9}>
+            <Grid item md={9} xs={12}>
               <Box
                 sx={{
                   mt: 3,
                   pt: 5,
-                  padding: "25px",
+                  padding: "20px",
                   backgroundColor: "#DBE9EE",
                   borderRadius: "12px",
                 }}

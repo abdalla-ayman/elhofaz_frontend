@@ -62,7 +62,7 @@ export default function Login() {
   };
 
   return (
-    <div className="animate__animated animate__backInDown">
+    <div className="">
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
