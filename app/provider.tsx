@@ -36,7 +36,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ThemeProvider theme={theme}>
         <SessionProvider>
           <Navbar />
-          <></>
           {children}
         </SessionProvider>
       </ThemeProvider>

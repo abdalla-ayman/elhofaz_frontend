@@ -32,7 +32,9 @@ export default function Loading({ loading, text }) {
           p: 2,
         }}
       >
-        <Typography> {text}</Typography>
+        <Typography component={"span"} variant="body2">
+          {text}
+        </Typography>
         <CircularProgress color="inherit" sx={{ mx: 1 }} size={25} />
       </DialogContentText>
     </Dialog>

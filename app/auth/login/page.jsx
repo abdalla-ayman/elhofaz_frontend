@@ -17,6 +17,9 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
+import Box from '@mui/material/Box'
+
+// own compoents
 import Loading from "@/app/components/Loading";
 
 //animation library test
@@ -159,7 +162,7 @@ export default function Login() {
           </Button>
 
           <br />
-          <Typography sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: "center" }}>
             <Divider sx={{ mb: 2 }}>او</Divider>
             <Link
               href={"/auth/register"}
@@ -171,7 +174,7 @@ export default function Login() {
             >
               حساب جديد ؟
             </Link>
-          </Typography>
+          </Box>
         </div>
       </form>
       <Loading loading={loading} text={"جاري تسجيل الدخول"} />
