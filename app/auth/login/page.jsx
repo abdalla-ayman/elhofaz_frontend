@@ -43,7 +43,7 @@ export default function Login() {
   useEffect(() => {
     if (localStorage.getItem("username")) {
       document.getElementById("outlined-adornment-password").focus();
-     setUsername(localStorage.getItem("username")) 
+      setUsername(localStorage.getItem("username"));
     }
   }, []);
 

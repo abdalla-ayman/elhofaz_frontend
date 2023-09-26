@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
+import IconButton from "@mui/material/IconButton";
+import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 import Item from "./item";
 
 export default function Profile() {
@@ -72,13 +74,41 @@ export default function Profile() {
                   marginRight: "20px",
                 }}
               >
-                <Avatar
+                <Box
                   sx={{
-                    width: 200,
-                    height: 200,
+                    position: "relative",
                   }}
-                  src={session.user?.image}
-                />
+                >
+                  <Avatar
+                    sx={{
+                      width: 200,
+                      height: 200,
+                    }}
+                    src={session.user?.image}
+                  />
+                  <IconButton
+                    aria-label="delete"
+                    color="info"
+                    onClick={() => {
+                      document.getElementById("image-upload").click();
+                    }}
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      width: "100%",
+                      height: "100%",
+                      transform: "translate(-50%,-50%)",
+                      color: "transparent",
+                      "&:hover": {
+                        color: "initial",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      },
+                    }}
+                  >
+                    <CloudUploadTwoToneIcon />
+                  </IconButton>
+                </Box>
                 <Typography
                   sx={{
                     mt: 2,
@@ -121,18 +151,6 @@ export default function Profile() {
                     type="file"
                     onChange={handleFileChange}
                   />
-
-                  <Button
-                    sx={{ mt: 2 }}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      document.getElementById("image-upload").click();
-                    }}
-                  >
-                    تغيير صورة الملف الشخصي
-                  </Button>
                 </form>
               </Box>
             </Grid>
