@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 //componentes
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Box, Button, Container, Divider, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import Item from "./item";
@@ -73,22 +73,27 @@ export default function Profile() {
             </Typography>
           </Box>
 
-          <Container sx={{ mt: 3 }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Chip
               label={
-                session.user.status == "pending" ? "الطلب قيد المعالجة" : "مفعل"
+                session.user.status == "pending"
+                  ? "قيد انتظار مراجعة الادارة"
+                  : "مفعل"
               }
+              variant="filled"
               sx={{
-                bgcolor:
-                  session.user.status == "pending"
-                    ? "warning.light"
-                    : "info.light",
+                // bgcolor:
+                //   session.user.status == "pending"
+                //     ? "warning.light"
+                //     : "info.light",
 
                 mt: 2,
                 mx: "auto",
               }}
             />
+          </Box>
 
+          <Container sx={{ mt: 3 }}>
             <Item label={"اسم المستخدم"} value={session.user.username} />
             <Item label={"البريد الالكتروني"} value={session.user.email} />
 
@@ -105,12 +110,17 @@ export default function Profile() {
               label={"النوع"}
               value={session.user.gender == "male" ? "ذكر" : "انثى"}
             />
-            <Item label={"المسار"} value={tracks[session.user.track]} />
+            {session.user.role == "user" && (
+              <Item label={"المسار"} value={tracks[session.user.track]} />
+            )}
             <Item
               label={"نوع الحساب"}
               value={"حساب " + roles[session.user.role]}
             />
           </Container>
+
+              <Divider/>
+          <Button></Button>
         </Box>
       )}
     </Container>
