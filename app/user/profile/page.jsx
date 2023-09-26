@@ -113,15 +113,25 @@ export default function Profile() {
                 />
                 <br />
                 <form className="text-center" onSubmit={handleSubmit}>
-                  <TextField type="file" onChange={handleFileChange} />
+                  <TextField
+                    id="image-upload"
+                    sx={{
+                      display: "none",
+                    }}
+                    type="file"
+                    onChange={handleFileChange}
+                  />
 
                   <Button
                     sx={{ mt: 2 }}
                     type="submit"
                     variant="contained"
                     color="primary"
+                    onClick={() => {
+                      document.getElementById("image-upload").click();
+                    }}
                   >
-                    تحميل صورة الملف
+                    تغيير صورة الملف الشخصي
                   </Button>
                 </form>
               </Box>
@@ -174,7 +184,7 @@ export default function Profile() {
                     <TextField
                       label="الهوية"
                       variant="outlined"
-                      value={session.user.identification}
+                      value={session.user.identification || "--------"}
                       fullWidth
                     />
                   </ListItem>
@@ -190,7 +200,7 @@ export default function Profile() {
                     <TextField
                       label="النوع"
                       variant="outlined"
-                      value={session.user.gender}
+                      value={session.user.gender == "male" ? "ذكر" : "انثى"}
                       fullWidth
                     />
                   </ListItem>

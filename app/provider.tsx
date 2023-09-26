@@ -19,8 +19,8 @@ const theme = createTheme({
       main: "#53421f",
       light: "#cba346",
     },
+  
   },
-
   typography: {
     fontFamily: "inherit",
   },
