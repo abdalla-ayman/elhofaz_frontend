@@ -2,19 +2,16 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import { updatePhoto, updateProfile } from "@/lib/profile";
+import { updatePhoto, updateProfile, getProfileData } from "@/lib/profile";
 
 //componentes
-import {
-  Box,
-  Container,
-  List,
-  ListItem,
-  Button,
-  Typography,
-  Grid,
-  TextField,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import IconButton from "@mui/material/IconButton";
@@ -23,8 +20,17 @@ import Item from "./item";
 
 export default function Profile() {
   let { data: session } = useSession();
+  const [user, setUser] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (session)
+      (async function () {
+        const userdata = await getProfileData(session.accessToken);
+        console.log(userdata);
+      })();
+  }, [session]);
 
   const handleFileChange = async (event) => {
     setLoading(true);
@@ -229,7 +235,11 @@ export default function Profile() {
                     />
                   </ListItem>
                   <br />
-                  <Item label={"المسار"} value={tracks[session.user.track]} />
+
+                  {session.user.role == "user" && (
+                    <Item label={"المسار"} value={tracks[session.user.track]} />
+                  )}
+
                   <Item
                     label={"نوع الحساب"}
                     value={"حساب " + roles[session.user.role]}
