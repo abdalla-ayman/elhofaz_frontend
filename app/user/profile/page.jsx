@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
+import { updatePhoto, updateProfile } from "@/lib/profile";
+
 //componentes
 import {
   Box,
@@ -22,9 +24,15 @@ import Item from "./item";
 export default function Profile() {
   let { data: session } = useSession();
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
+    setLoading(true);
     setSelectedFile(event.target.files[0]);
+    let formDate = new FormData();
+    formDate.append("image", selectedFile);
+    // await updatePhoto(formDate)
+    setLoading(false);
   };
 
   const handleSubmit = (event) => {
@@ -101,8 +109,8 @@ export default function Profile() {
                       transform: "translate(-50%,-50%)",
                       color: "transparent",
                       "&:hover": {
-                        color: "initial",
-                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        color: "white",
+                        backgroundColor: "rgba(0, 0, 0, 0.4)",
                       },
                     }}
                   >
@@ -142,16 +150,14 @@ export default function Profile() {
                   }}
                 />
                 <br />
-                <form className="text-center" onSubmit={handleSubmit}>
-                  <TextField
-                    id="image-upload"
-                    sx={{
-                      display: "none",
-                    }}
-                    type="file"
-                    onChange={handleFileChange}
-                  />
-                </form>
+                <TextField
+                  id="image-upload"
+                  sx={{
+                    display: "none",
+                  }}
+                  type="file"
+                  onChange={handleFileChange}
+                />
               </Box>
             </Grid>
 

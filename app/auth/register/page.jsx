@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, Fragment } from "react";
-import { signup } from "../../../lib/users";
+import { signup } from "../../../lib/auth";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 

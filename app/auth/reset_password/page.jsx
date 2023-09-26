@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
-import { getCode } from "@/lib/users";
+import { getCode } from "@/lib/auth";
 import Loading from "@/app/components/Loading";
 
 export default function ChangePassword() {

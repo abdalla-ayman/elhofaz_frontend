@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
-import { updatePassword } from "@/lib/users";
+import { updatePassword } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 //components

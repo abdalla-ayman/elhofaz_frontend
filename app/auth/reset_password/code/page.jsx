@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { confirmCode } from "@/lib/users";
+import { confirmCode } from "@/lib/auth";
 import Loading from "@/app/components/Loading";
 
 export default function GetCodeEmail() {
