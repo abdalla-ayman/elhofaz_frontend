@@ -7,7 +7,7 @@ import Link from "next/link";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
-import { Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -16,6 +16,9 @@ import IconButton from "@mui/material/IconButton";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Loading from "@/app/components/Loading";
+
+//animation library test
+import "animate.css";
 
 export default function Login() {
   let [username, setUsername] = useState("");
@@ -109,12 +112,13 @@ export default function Login() {
           />
         </FormControl>
 
-        <Typography>
+        <Typography sx={{ mb: 2 }}>
           نسيت كلمة المرور؟{" "}
           <Link
             href={"/auth/reset_password"}
             style={{
               textDecoration: "underline",
+              color: "#FB8B24",
             }}
           >
             اضغط هنا
@@ -129,15 +133,21 @@ export default function Login() {
           <Button variant="contained" type="submit" sx={{ m: 1 }}>
             تسجيل الدخول
           </Button>
-          <Link href={"/auth/register"}>
-            <Button
-              variant="contained"
-              type="submit"
-              sx={{ m: 1, bgcolor: "primary.light" }}
+
+          <br />
+          <Typography sx={{ textAlign: "center" }}>
+            <Divider sx={{ mb: 2 }}>او</Divider>
+            <Link
+              href={"/auth/register"}
+              style={{
+                textDecoration: "underline",
+                fontSize: "19px",
+                color: "#FB8B24",
+              }}
             >
-              ليس لديك حساب ؟
-            </Button>
-          </Link>
+              حساب جديد ؟
+            </Link>
+          </Typography>
         </div>
       </form>
       <Loading loading={loading} text={"جاري تسجيل الدخول"} />
