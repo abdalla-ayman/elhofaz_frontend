@@ -27,9 +27,14 @@ export default function ResetPasswordEmail() {
 
   const handleSubmit = async (e) => {
     try {
-      setLoading(true);
       e.preventDefault();
+      setLoading(true);
 
+      if (password !== nw_password) {
+        setLoading(false);
+        setError("كلمة المرور غير متطابقة");
+        return;
+      }
       //post to server
       let res = await updatePassword({ email, password });
 

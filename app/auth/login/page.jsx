@@ -17,7 +17,7 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
-import Box from '@mui/material/Box'
+import Box from "@mui/material/Box";
 
 // own compoents
 import Loading from "@/app/components/Loading";
@@ -145,7 +145,7 @@ export default function Login() {
             href={"/auth/reset_password"}
             style={{
               textDecoration: "underline",
-              color: "#FB8B24",
+              color: "#cba346",
             }}
           >
             اضغط هنا
@@ -169,7 +169,7 @@ export default function Login() {
               style={{
                 textDecoration: "underline",
                 fontSize: "19px",
-                color: "#FB8B24",
+                color: "#cba346",
               }}
             >
               حساب جديد ؟
