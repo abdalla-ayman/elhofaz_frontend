@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 
 //componentes
 import Box from "@mui/material/Box";
@@ -16,7 +15,6 @@ import IconButton from "@mui/material/IconButton";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 
 export default function layout({ children }) {
-  let { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 
   return (
