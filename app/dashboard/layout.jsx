@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 
 export default function layout({ children }) {
-  const [loading, setLoading] = useState(false);
+
 
   return (
     <Container
