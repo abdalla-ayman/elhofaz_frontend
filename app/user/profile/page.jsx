@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 import { updatePhoto, updateProfile, getProfileData } from "@/lib/profile";
+import UserEditModal from "@/app/user/profile/Model";
 
 //componentes
+import { Card, CardContent } from "@mui/material";
+
 import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { List, ListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -168,6 +170,10 @@ export default function Profile() {
             </Grid>
 
             <Grid item md={9} xs={12}>
+              <Box display="flex" justifyContent="flex-end">
+                <UserEditModal user={session.user} />
+              </Box>
+
               <Box
                 sx={{
                   mt: 3,
@@ -181,7 +187,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="اسم المستخدم"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.username}
                       fullWidth
                     />
@@ -189,7 +195,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="البريد الالكتروني"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.email}
                       fullWidth
                     />
@@ -197,7 +203,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="الجنسية"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.nationality}
                       fullWidth
                     />
@@ -205,7 +211,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="مكان الاقامة"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.residation}
                       fullWidth
                     />
@@ -213,7 +219,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="الهوية"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.identification || "--------"}
                       fullWidth
                     />
@@ -221,7 +227,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="العمر"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.age}
                       fullWidth
                     />
@@ -229,7 +235,7 @@ export default function Profile() {
                   <ListItem>
                     <TextField
                       label="النوع"
-                      variant="outlined"
+                      variant="filled"
                       value={session.user.gender == "male" ? "ذكر" : "انثى"}
                       fullWidth
                     />
