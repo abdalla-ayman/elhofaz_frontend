@@ -5,7 +5,7 @@ import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 //compnents
-import  Button  from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
 import Alert from "@mui/material/Alert";
@@ -38,7 +38,7 @@ export default function Register() {
     role: "user",
     track: "mid_level",
   });
-
+  let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
   let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
@@ -106,6 +106,13 @@ export default function Register() {
         setLoading(false);
         return false;
       }
+
+
+      if (!acceptedConditions) {
+        setError("يجب الموافقة على شروط البرنامج للاستمرار");
+        setLoading(false);
+        return false;
+      }
     }
 
     return true;
@@ -146,7 +153,14 @@ export default function Register() {
         التسجيل في مقارئ السفرة
       </Typography>
 
-      {activeStep == 0 && <Information state={state} setState={setState} />}
+      {activeStep == 0 && (
+        <Information
+          state={state}
+          setState={setState}
+          acceptedConditions={acceptedConditions}
+          setAcceptedConditions={setAcceptedConditions}
+        />
+      )}
       {activeStep == 1 && state.role == "user" && <Stage />}
       {activeStep == 2 && state.role == "user" && (
         <Track setState={setState} track={state.track} />

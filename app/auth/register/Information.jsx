@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 // api call country list
 import country_list from "/public/countries.json";
@@ -23,13 +24,19 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
+import Checkbox from "@mui/material/Checkbox";
 
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
   key: country.code,
 }));
 
-export default function Information({ state, setState }) {
+export default function Information({
+  state,
+  setState,
+  acceptedConditions,
+  setAcceptedConditions,
+}) {
   let [showPassword, setShowPassword] = useState(false);
 
   let [countries, setCountries] = useState(country_list);
@@ -44,7 +51,7 @@ export default function Information({ state, setState }) {
     }
 
     setState((prevState) => {
-      return { ...prevState, [input_name]: value };
+      return { ...prevState, [input_name]: value.trim() };
     });
   };
 
@@ -96,7 +103,6 @@ export default function Information({ state, setState }) {
           id="outlined-adornment-password"
           type={showPassword ? "text" : "password"}
           onChange={(e) => handleStateChange("password", e.target.value)}
-          
           // onChange={}
           endAdornment={
             <InputAdornment position="end">
@@ -113,11 +119,9 @@ export default function Information({ state, setState }) {
           label="كلمة المرور"
           required
         />
-          <FormHelperText
-       
-        id="component-helper-text"
-      >
-تتكون كلمة المرور من ٨ احرف او اكثر      </FormHelperText>
+        <FormHelperText id="component-helper-text">
+          تتكون كلمة المرور من ٨ احرف او اكثر{" "}
+        </FormHelperText>
       </FormControl>
       <TextField
         id="outlined-basic"
@@ -291,6 +295,29 @@ export default function Information({ state, setState }) {
           <FormControlLabel value="teacher" control={<Radio />} label="معلم" />
         </RadioGroup>
       </FormControl>
+      <FormControlLabel
+        sx={{ textAlign: "center", mb: 2 }}
+        label={
+          <Typography >
+             الموافقة على {" "}
+            <Link
+              style={{
+                textDecoration: "underline",
+                color: "#cba346"
+              }}
+              href={"/"}
+            >
+              شروط اليرنامج
+            </Link>
+          </Typography>
+        }
+        control={
+          <Checkbox
+            checked={acceptedConditions}
+            onChange={(e) => setAcceptedConditions(e.target.checked)}
+          />
+        }
+      />
     </Container>
   );
 }
