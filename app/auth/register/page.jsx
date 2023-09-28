@@ -5,19 +5,15 @@ import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 //compnents
-import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
+import  Button  from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
-import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Loading from "../../components/Loading";
-import Paper from "@mui/material/Paper";
-import BackgroundImage from "../../components/BackgroundImage";
 // steps
 import Information from "./Information";
 import Stage from "./Stage";
 import Track from "./Track";
-import zIndex from "@mui/material/styles/zIndex";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -83,6 +79,7 @@ export default function Register() {
   };
 
   const formControl = () => {
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (activeStep == 0) {
       for (const input_field in state) {
         if (state[input_field] == "") {
@@ -90,6 +87,24 @@ export default function Register() {
           setLoading(false);
           return false;
         }
+      }
+
+      if (state.username.length < 5) {
+        setError("يجب ان يتكون اسم المستخدم من ٥ احرف على الاقل");
+        setLoading(false);
+        return false;
+      }
+
+      if (state.password.length < 8) {
+        setError("يجب ان تتكون كلمة المرور من ٨ احرف على الاقل");
+        setLoading(false);
+        return false;
+      }
+
+      if (!state.email.match(mailFormat)) {
+        setError("صيغة البريد الالكتروني غير صحيحة");
+        setLoading(false);
+        return false;
       }
     }
 

@@ -18,6 +18,11 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Chip from "@mui/material/Chip";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
@@ -25,10 +30,18 @@ const countriesOptions = country_list.map((country) => ({
 }));
 
 export default function Information({ state, setState }) {
+  let [showPassword, setShowPassword] = useState(false);
+
   let [countries, setCountries] = useState(country_list);
 
-  let handleStateChange = (input_name, value) => {
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  let handleStateChange = (input_name, value, e) => {
     if (input_name == "phone" && value.length > 10) return;
+    if (input_name == "phone" && !/^[0-9]*$/.test(value)) {
+      e.preventDefault();
+      return;
+    }
 
     setState((prevState) => {
       return { ...prevState, [input_name]: value };
@@ -58,21 +71,54 @@ export default function Information({ state, setState }) {
         onChange={(e) => handleStateChange("username", e.target.value)}
         value={state.username}
         label="اسم المستخدم"
+        helperText="يتكون اسم المستخدك من ٥ احرف او اكثر"
         variant="outlined"
         type="text"
         className="my-5"
         sx={{ my: 1 }}
       />
 
-      <TextField
+      {/* <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("password", e.target.value)}
         value={state.password}
         label="كلمة المرور"
+        helperText="تتكون كلمة المرور من ٨ احرف او اكثر"
         variant="outlined"
         type="password"
         sx={{ my: 1 }}
-      />
+      /> */}
+      <FormControl variant="outlined" sx={{ mt: 2 }}>
+        <InputLabel htmlFor="outlined-adornment-password">
+          كلمة المرور
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? "text" : "password"}
+          onChange={(e) => handleStateChange("password", e.target.value)}
+          
+          // onChange={}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                // onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="كلمة المرور"
+          required
+        />
+          <FormHelperText
+       
+        id="component-helper-text"
+      >
+تتكون كلمة المرور من ٨ احرف او اكثر      </FormHelperText>
+      </FormControl>
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("name", e.target.value)}
@@ -136,7 +182,7 @@ export default function Information({ state, setState }) {
         />
         <TextField
           id="outlined-basic"
-          onChange={(e) => handleStateChange("phone", e.target.value)}
+          onChange={(e) => handleStateChange("phone", e.target.value, e)}
           label="رقم الهاتف"
           value={state.phone}
           variant="outlined"
