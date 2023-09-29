@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 import { updatePhoto, updateProfile } from "@/lib/profile";
+import Loading from "@/app/components/Loading";
 
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
@@ -22,6 +23,9 @@ import country_list from "/public/countries.json";
 
 const UserEditModal = ({ user }) => {
   let [countries, setCountries] = useState(country_list);
+  let [error, setError] = useState("");
+  let [success, setSuccess] = useState("");
+  let [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
   const [open, setOpen] = useState(false);
 
@@ -214,7 +218,7 @@ const UserEditModal = ({ user }) => {
                 onChange={handleChange}
                 name="identification"
                 label="الهوية"
-                value={userData.identification}
+                value={userData.identification || ""}
                 variant="outlined"
                 type="text"
                 sx={{
@@ -225,6 +229,18 @@ const UserEditModal = ({ user }) => {
               />
             </FormControl>
           </form>
+          <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
+
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
+          {success && (
+            <Alert severity="success" icon={false}>
+              {success}
+            </Alert>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
