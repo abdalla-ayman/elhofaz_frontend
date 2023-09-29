@@ -92,7 +92,7 @@ export default function Login() {
           <TextField
             id="outlined-basic"
             onChange={(e) => setUsername(e.target.value)}
-            label="اسم المستخدم / رقم الهاتف"
+            label="إسم المستخدم / رقم الهاتف"
             value={username}
             variant="outlined"
             type="text"
@@ -161,7 +161,7 @@ export default function Login() {
               color: "#cba346",
             }}
           >
-            اضغط هنا
+            إضغط هنا
           </Link>
         </Typography>
         <div>
@@ -176,7 +176,7 @@ export default function Login() {
 
           <br />
           <Box sx={{ textAlign: "center" }}>
-            <Divider sx={{ mb: 2 }}>او</Divider>
+            <Divider sx={{ mb: 2 }}>أو</Divider>
             <Link
               href={"/auth/register"}
               style={{

@@ -83,20 +83,20 @@ export default function Register() {
     if (activeStep == 0) {
       for (const input_field in state) {
         if (state[input_field] == "") {
-          setError("يجب ملء كل المعلومات الاساسية");
+          setError("يجب ملء كل المعلومات اﻷساسية");
           setLoading(false);
           return false;
         }
       }
 
       if (state.username.length < 5) {
-        setError("يجب ان يتكون اسم المستخدم من ٥ احرف على الاقل");
+        setError("يجب أن يتكون إسم المستخدم من ٥ أحرف على الأقل");
         setLoading(false);
         return false;
       }
 
       if (state.password.length < 8) {
-        setError("يجب ان تتكون كلمة المرور من ٨ احرف على الاقل");
+        setError("يجب ان تتكون كلمة المرور من ٨ أحرف على الأقل");
         setLoading(false);
         return false;
       }
@@ -106,7 +106,6 @@ export default function Register() {
         setLoading(false);
         return false;
       }
-
 
       if (!acceptedConditions) {
         setError("يجب الموافقة على شروط البرنامج للاستمرار");

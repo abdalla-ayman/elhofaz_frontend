@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Link from "next/link";
+
+import Conditions from "./Conditions";
 
 // api call country list
 import country_list from "/public/countries.json";
@@ -25,6 +26,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
 
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
@@ -38,7 +40,7 @@ export default function Information({
   setAcceptedConditions,
 }) {
   let [showPassword, setShowPassword] = useState(false);
-
+  let [showConditions, setShowConditions] = useState(true);
   let [countries, setCountries] = useState(country_list);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -71,14 +73,14 @@ export default function Information({
       maxWidth={"xs"}
     >
       <Typography variant="subtitle1" component="h3">
-        المعلومات الاساسية
+        المعلومات الأساسية
       </Typography>
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("username", e.target.value)}
         value={state.username}
-        label="اسم المستخدم"
-        helperText="يتكون اسم المستخدك من ٥ احرف او اكثر"
+        label="إسم المستخدم"
+        helperText="يتكون إسم المستخدك من ٥ أحرف أو أكثر"
         variant="outlined"
         type="text"
         className="my-5"
@@ -120,13 +122,13 @@ export default function Information({
           required
         />
         <FormHelperText id="component-helper-text">
-          تتكون كلمة المرور من ٨ احرف او اكثر{" "}
+          تتكون كلمة المرور من ٨ أحرف أو أكثر{" "}
         </FormHelperText>
       </FormControl>
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("name", e.target.value)}
-        label="الاسم الرباعي"
+        label="الإسم الرباعي"
         value={state.name}
         variant="outlined"
         type="text"
@@ -136,7 +138,7 @@ export default function Information({
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("email", e.target.value)}
-        label="البريد الالكتروني"
+        label="البريد الإلكتروني"
         value={state.email}
         variant="outlined"
         type="email"
@@ -214,7 +216,7 @@ export default function Information({
             onChange={(e) => handleStateChange("gender", e.target.value)}
           >
             <MenuItem value={"male"}>ذكر</MenuItem>
-            <MenuItem value={"female"}>انثى</MenuItem>
+            <MenuItem value={"female"}>أنثى</MenuItem>
           </Select>
         </FormControl>
         <TextField
@@ -278,7 +280,7 @@ export default function Information({
         }}
         options={countriesOptions}
         sx={{ my: 1 }}
-        renderInput={(params) => <TextField {...params} label="مكان الاقامة" />}
+        renderInput={(params) => <TextField {...params} label="مكان الإقامة" />}
       />
 
       <FormControl sx={{ my: 1 }}>
@@ -298,17 +300,17 @@ export default function Information({
       <FormControlLabel
         sx={{ textAlign: "center", mb: 2 }}
         label={
-          <Typography >
-             الموافقة على {" "}
-            <Link
-              style={{
+          <Typography>
+            الموافقة على
+            <Button
+              sx={{
                 textDecoration: "underline",
-                color: "#cba346"
+                color: "#cba346",
               }}
-              href={"/"}
+              onClick={() => setShowConditions(true)}
             >
               شروط اليرنامج
-            </Link>
+            </Button>
           </Typography>
         }
         control={
@@ -317,6 +319,12 @@ export default function Information({
             onChange={(e) => setAcceptedConditions(e.target.checked)}
           />
         }
+      />
+
+      <Conditions
+        setAcceptedConditions={setAcceptedConditions}
+        showConditions={showConditions}
+        setShowConditions={setShowConditions}
       />
     </Container>
   );
