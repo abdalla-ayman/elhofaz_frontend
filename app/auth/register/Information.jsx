@@ -40,7 +40,7 @@ export default function Information({
   setAcceptedConditions,
 }) {
   let [showPassword, setShowPassword] = useState(false);
-  let [showConditions, setShowConditions] = useState(true);
+  let [showConditions, setShowConditions] = useState(false);
   let [countries, setCountries] = useState(country_list);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
