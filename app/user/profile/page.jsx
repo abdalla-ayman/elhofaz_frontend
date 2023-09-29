@@ -168,9 +168,13 @@ export default function Profile() {
             </Grid>
 
             <Grid item md={9} xs={12}>
-              <Box display="flex" sx={{
-                mt:3
-              }} justifyContent="flex-start">
+              <Box
+                display="flex"
+                sx={{
+                  mt: 3,
+                }}
+                justifyContent="flex-start"
+              >
                 <UserEditModal user={session.user} />
               </Box>
 
