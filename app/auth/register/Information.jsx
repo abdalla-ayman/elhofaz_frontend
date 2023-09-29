@@ -80,7 +80,7 @@ export default function Information({
         onChange={(e) => handleStateChange("username", e.target.value)}
         value={state.username}
         label="إسم المستخدم"
-        helperText="يتكون إسم المستخدك من ٥ أحرف أو أكثر"
+        helperText="يتكون إسم المستخدم من ٥ أحرف أو أكثر"
         variant="outlined"
         type="text"
         className="my-5"
