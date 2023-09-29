@@ -11,17 +11,14 @@ import {
   FormHelperText,
 } from "@mui/material";
 
+import { updatePhoto, updateProfile } from "@/lib/profile";
+
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { Edit } from "@mui/icons-material";
 
 // api call country list
 import country_list from "/public/countries.json";
-
-const countriesOptions = country_list.map((country) => ({
-  label: country.name,
-  key: country.code,
-}));
 
 const UserEditModal = ({ user }) => {
   let [countries, setCountries] = useState(country_list);
@@ -31,12 +28,6 @@ const UserEditModal = ({ user }) => {
   useEffect(() => {
     setUserData(user);
   }, []);
-
-  let getCountry = (selector) => {
-    let country = countries.find((country) => country.name == state[selector]);
-
-    return country ? { label: country.name, key: country.code } : undefined;
-  };
 
   //handle change for user basic info
   const handleChange = (e) => {
@@ -52,16 +43,21 @@ const UserEditModal = ({ user }) => {
     setOpen(false);
   };
 
+  //handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault;
+
+    let res = await updateProfile(userData, userData.accessToken);
+
+    console.log(res);
+  };
+
   return (
     <div>
       <IconButton color="primary" aria-label="Delete" onClick={handleOpen}>
         <Edit />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        sx={{ width: 600, height: "600px" }}
-      >
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle> تعديل البيانات الاساسية </DialogTitle>
         <DialogContent>
           <form className="w-80 m-auto flex items-center flex-col" action={"#"}>
@@ -83,20 +79,6 @@ const UserEditModal = ({ user }) => {
             </FormControl>
 
             <FormControl variant="outlined">
-              {/* <TextField
-                id="outlined-basic"
-                onChange={handleChange}
-                name="phone"
-                label="رقم الهاتف"
-                value={userData.phone}
-                variant="outlined"
-                type="text"
-                sx={{
-                  my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
-                }}
-              /> */}
               <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                 <Autocomplete
                   id="country-select-demo"
@@ -155,6 +137,7 @@ const UserEditModal = ({ user }) => {
               >
                 الرقم في صورة 9xxxxxxxxx من دون صفر البداية
               </FormHelperText>
+              <br />
             </FormControl>
 
             <FormControl variant="outlined">
@@ -247,7 +230,7 @@ const UserEditModal = ({ user }) => {
           <Button onClick={handleClose} color="primary">
             الغاء
           </Button>
-          <Button onClick={handleClose} color="secondary">
+          <Button type="submit" onClick={handleSubmit} color="secondary">
             حفظ
           </Button>
         </DialogActions>

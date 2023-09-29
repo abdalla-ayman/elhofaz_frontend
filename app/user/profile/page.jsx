@@ -6,7 +6,6 @@ import { updatePhoto, updateProfile, getProfileData } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
 
 //componentes
-import { Card, CardContent } from "@mui/material";
 
 import Box from "@mui/material/Box";
 import { List, ListItem } from "@mui/material";
@@ -30,7 +29,6 @@ export default function Profile() {
     if (session)
       (async function () {
         const userdata = await getProfileData(session.accessToken);
-        console.log(userdata);
       })();
   }, [session]);
 
@@ -179,7 +177,7 @@ export default function Profile() {
                   mt: 3,
                   pt: 5,
                   padding: "20px",
-                  backgroundColor: "#DBE9EE",
+                  backgroundColor: "#E1DEE3",
                   borderRadius: "12px",
                 }}
               >
@@ -189,6 +187,7 @@ export default function Profile() {
                       label="اسم المستخدم"
                       variant="filled"
                       value={session.user.username}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -197,6 +196,7 @@ export default function Profile() {
                       label="البريد الالكتروني"
                       variant="filled"
                       value={session.user.email}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -205,6 +205,7 @@ export default function Profile() {
                       label="الجنسية"
                       variant="filled"
                       value={session.user.nationality}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -213,6 +214,7 @@ export default function Profile() {
                       label="مكان الاقامة"
                       variant="filled"
                       value={session.user.residation}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -221,6 +223,7 @@ export default function Profile() {
                       label="الهوية"
                       variant="filled"
                       value={session.user.identification || "--------"}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -229,6 +232,7 @@ export default function Profile() {
                       label="العمر"
                       variant="filled"
                       value={session.user.age}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
@@ -237,6 +241,7 @@ export default function Profile() {
                       label="النوع"
                       variant="filled"
                       value={session.user.gender == "male" ? "ذكر" : "انثى"}
+                      InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
