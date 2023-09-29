@@ -42,17 +42,17 @@ export default function Conditions({
       </IconButton>
       <DialogContent dividers>
         <Typography variant="" component="li" gutterBottom>
-          أولا لمجموعات مخصصة فقط للبرنامج والمتابعة اليومية وغير مسموح فيها أي
+          أولا المجموعات مخصصة فقط للبرنامج والمتابعة اليومية وغير مسموح فيها أي
           رسائل أخرى كالسياسة والرياضة وغيرها من الأخبار والرسائل اليومية وكل
           الأشياء التي لا تخص البرنامج بصلة.
         </Typography>
         <Typography gutterBottom component="li">
-          ثانياً لبرنامج يومياً وغير مسموح بالغياب إلا بعذر مقبول ويكون ذلك
+          ثانياً البرنامج يومياً وغير مسموح بالغياب إلا بعذر مقبول ويكون ذلك
           بالتواصل مع مشرف المجموعة في الخاص أو إدارة البرنامج وإذا تكرر غياب
           الطالب بعذر أو بغير عذر يتم الإعتذار مباشرة من الطالب.
         </Typography>
         <Typography gutterBottom component="li">
-          ثالثاً لعرض يكون مع المعلم المشرف على الحلقة أو من ينوب عنه ويكون ذلك
+          ثالثاً العرض يكون مع المعلم المشرف على الحلقة أو من ينوب عنه ويكون ذلك
           عبر الإتصال وغير مسموح بالتسجيلات الصوتية للعرض.
         </Typography>
         <Typography gutterBottom component="li">
@@ -60,7 +60,7 @@ export default function Conditions({
           غياب يُحاسب عليه الطالب
         </Typography>
         <Typography gutterBottom component="li">
-          خامساً تباع الخطة إلزامي وأمانة وعهد عند الطالب لازم يوفيه حسب آلية
+          خامساً إتباع الخطة إلزامي وأمانة وعهد عند الطالب لازم يوفيه حسب آلية
           البرنامج
         </Typography>
         <Typography gutterBottom component="li">
@@ -68,13 +68,10 @@ export default function Conditions({
           المرجوة من البرنامج
         </Typography>
         <Typography gutterBottom component="li">
-        سابعاً
-          الإلتزام والمواظبة والجدية شروط اساسية في البرنامج وإذا اتضح عدم جدية 
-          الطالب يتم الإعتذار منه مباشرة
+          سابعاً الإلتزام والمواظبة والجدية شروط اساسية في البرنامج وإذا اتضح
+          عدم جدية الطالب يتم الإعتذار منه مباشرة
         </Typography>
-        <Typography gutterBottom component="li">
-          ثامناً نتمنى لنا ولكم التوفيق والسداد{" "}
-        </Typography>
+       
 
         <Typography
           align="center"

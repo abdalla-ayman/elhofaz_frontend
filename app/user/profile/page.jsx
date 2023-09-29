@@ -168,13 +168,15 @@ export default function Profile() {
             </Grid>
 
             <Grid item md={9} xs={12}>
-              <Box display="flex" justifyContent="flex-end">
+              <Box display="flex" sx={{
+                mt:3
+              }} justifyContent="flex-start">
                 <UserEditModal user={session.user} />
               </Box>
 
               <Box
                 sx={{
-                  mt: 3,
+                  mt: 1,
                   pt: 5,
                   padding: "20px",
                   backgroundColor: "#E1DEE3",
