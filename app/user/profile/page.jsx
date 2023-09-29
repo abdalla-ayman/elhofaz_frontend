@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import { updatePhoto, updateProfile, getProfileData } from "@/lib/profile";
+import { getProfileData } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
 
 //componentes
