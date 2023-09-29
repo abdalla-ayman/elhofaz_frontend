@@ -19,7 +19,7 @@ export default function Stage() {
       maxWidth={"xs"}
     >
       <Typography variant="h6" component="h3" sx={{ my: 2 }}>
-        اختيار المرحلة
+        إختيار المرحلة
       </Typography>
       {/* <Container sx={{ my: 4 }}>
         <Typography>المرحلة الأولى هو ما تقدمه منظورنا إعادة</Typography>
@@ -44,7 +44,7 @@ export default function Stage() {
             value="3"
             disabled
             control={<Radio />}
-            label="مرحلة الاسناد"
+            label="مرحلة الإسناد"
           />
           <FormControlLabel
             value="4"
@@ -53,7 +53,10 @@ export default function Stage() {
             label="مرحلة القراءات"
           />
         </RadioGroup>
-        <FormLabel sx={{ mt: 4 }} id="demo-radio-buttons-group-label">
+        <FormLabel
+          sx={{ mt: 4, textAlign: "center" }}
+          id="demo-radio-buttons-group-label"
+        >
           يبدأ كل الطلاب الجدد من مرحلة الضبط
         </FormLabel>
       </FormControl>

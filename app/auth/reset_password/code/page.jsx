@@ -55,7 +55,7 @@ export default function GetCodeEmail() {
         action={"#"}
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl mb-4 text-center">ادخل الكود</h2>
+        <h2 className="text-2xl mb-4 text-center">أدخل الكود</h2>
         <TextField
           id="outlined-basic"
           onChange={(e) => setCode(e.target.value)}

@@ -61,11 +61,11 @@ export default function ResetPasswordEmail() {
         action={"#"}
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl mb-4 text-center">تغيير كلمة السر</h2>
+        <h2 className="text-2xl mb-4 text-center">تغيير كلمة المرور</h2>
         <TextField
           id="outlined-basic"
           onChange={(e) => setPassword(e.target.value)}
-          label="كلمة السر الجديدة"
+          label="كلمة المرور الجديدة"
           variant="outlined"
           type="password"
           className="my-5"
@@ -74,7 +74,7 @@ export default function ResetPasswordEmail() {
         <TextField
           id="outlined-basic"
           onChange={(e) => setNw_Password(e.target.value)}
-          label="تأكيد كلمة السر"
+          label="تأكيد كلمة المرور"
           variant="outlined"
           type="password"
           className="my-5"

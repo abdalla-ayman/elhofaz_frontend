@@ -23,9 +23,9 @@ export default function Track({ setState, track }) {
       maxWidth={"xs"}
     >
       <Typography variant="h6" component="h3" sx={{ my: 2 }}>
-        اختيار المسار
+        إختيار المسار
       </Typography>
-      <Typography>البرنامج مكون من ثلاث مسارات اساسية</Typography>
+      <Typography>البرنامج مكون من ثلاث مسارات أساسية</Typography>
 
       <Tabs
         value={tab}
@@ -126,7 +126,7 @@ export default function Track({ setState, track }) {
           <FormControlLabel
             value="beginner"
             control={<Radio />}
-            label="المسار التمهيدي"
+            label="المسار التأهيلي"
           />
           <FormControlLabel
             value="mid_level"

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Conditions from "./Conditions";
+
 // api call country list
 import country_list from "/public/countries.json";
 //components
@@ -18,20 +20,40 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Chip from "@mui/material/Chip";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
 
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
   key: country.code,
 }));
 
-export default function Information({ state, setState }) {
+export default function Information({
+  state,
+  setState,
+  acceptedConditions,
+  setAcceptedConditions,
+}) {
+  let [showPassword, setShowPassword] = useState(false);
+  let [showConditions, setShowConditions] = useState(false);
   let [countries, setCountries] = useState(country_list);
 
-  let handleStateChange = (input_name, value) => {
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  let handleStateChange = (input_name, value, e) => {
     if (input_name == "phone" && value.length > 10) return;
+    if (input_name == "phone" && !/^[0-9]*$/.test(value)) {
+      e.preventDefault();
+      return;
+    }
 
     setState((prevState) => {
-      return { ...prevState, [input_name]: value };
+      return { ...prevState, [input_name]: value.trim() };
     });
   };
 
@@ -51,32 +73,62 @@ export default function Information({ state, setState }) {
       maxWidth={"xs"}
     >
       <Typography variant="subtitle1" component="h3">
-        المعلومات الاساسية
+        المعلومات الأساسية
       </Typography>
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("username", e.target.value)}
         value={state.username}
-        label="اسم المستخدم"
+        label="إسم المستخدم"
+        helperText="يتكون إسم المستخدم من ٥ أحرف أو أكثر"
         variant="outlined"
         type="text"
         className="my-5"
         sx={{ my: 1 }}
       />
 
-      <TextField
+      {/* <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("password", e.target.value)}
         value={state.password}
         label="كلمة المرور"
+        helperText="تتكون كلمة المرور من ٨ احرف او اكثر"
         variant="outlined"
         type="password"
         sx={{ my: 1 }}
-      />
+      /> */}
+      <FormControl variant="outlined" sx={{ mt: 2 }}>
+        <InputLabel htmlFor="outlined-adornment-password">
+          كلمة المرور
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? "text" : "password"}
+          onChange={(e) => handleStateChange("password", e.target.value)}
+          // onChange={}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                // onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="كلمة المرور"
+          required
+        />
+        <FormHelperText id="component-helper-text">
+          تتكون كلمة المرور من ٨ أحرف أو أكثر{" "}
+        </FormHelperText>
+      </FormControl>
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("name", e.target.value)}
-        label="الاسم الرباعي"
+        label="الإسم الرباعي"
         value={state.name}
         variant="outlined"
         type="text"
@@ -86,7 +138,7 @@ export default function Information({ state, setState }) {
       <TextField
         id="outlined-basic"
         onChange={(e) => handleStateChange("email", e.target.value)}
-        label="البريد الالكتروني"
+        label="البريد الإلكتروني"
         value={state.email}
         variant="outlined"
         type="email"
@@ -136,7 +188,7 @@ export default function Information({ state, setState }) {
         />
         <TextField
           id="outlined-basic"
-          onChange={(e) => handleStateChange("phone", e.target.value)}
+          onChange={(e) => handleStateChange("phone", e.target.value, e)}
           label="رقم الهاتف"
           value={state.phone}
           variant="outlined"
@@ -164,7 +216,7 @@ export default function Information({ state, setState }) {
             onChange={(e) => handleStateChange("gender", e.target.value)}
           >
             <MenuItem value={"male"}>ذكر</MenuItem>
-            <MenuItem value={"female"}>انثى</MenuItem>
+            <MenuItem value={"female"}>أنثى</MenuItem>
           </Select>
         </FormControl>
         <TextField
@@ -228,7 +280,7 @@ export default function Information({ state, setState }) {
         }}
         options={countriesOptions}
         sx={{ my: 1 }}
-        renderInput={(params) => <TextField {...params} label="مكان الاقامة" />}
+        renderInput={(params) => <TextField {...params} label="مكان الإقامة" />}
       />
 
       <FormControl sx={{ my: 1 }}>
@@ -245,6 +297,35 @@ export default function Information({ state, setState }) {
           <FormControlLabel value="teacher" control={<Radio />} label="معلم" />
         </RadioGroup>
       </FormControl>
+      <FormControlLabel
+        sx={{ textAlign: "center", mb: 2 }}
+        label={
+          <Typography>
+            الموافقة على
+            <Button
+              sx={{
+                textDecoration: "underline",
+                color: "#cba346",
+              }}
+              onClick={() => setShowConditions(true)}
+            >
+              شروط اليرنامج
+            </Button>
+          </Typography>
+        }
+        control={
+          <Checkbox
+            checked={acceptedConditions}
+            onChange={(e) => setAcceptedConditions(e.target.checked)}
+          />
+        }
+      />
+
+      <Conditions
+        setAcceptedConditions={setAcceptedConditions}
+        showConditions={showConditions}
+        setShowConditions={setShowConditions}
+      />
     </Container>
   );
 }

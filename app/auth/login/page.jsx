@@ -15,6 +15,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
@@ -90,7 +92,7 @@ export default function Login() {
           <TextField
             id="outlined-basic"
             onChange={(e) => setUsername(e.target.value)}
-            label="اسم المستخدم / رقم الهاتف"
+            label="إسم المستخدم / رقم الهاتف"
             value={username}
             variant="outlined"
             type="text"
@@ -101,6 +103,17 @@ export default function Login() {
             }}
             required
           />
+
+          {/* <FormHelperText
+            sx={{
+              textAlign: "start",
+              mx: 0,
+              mt:0
+            }}
+            id="component-helper-text"
+          >
+            الرقم في صورة ٩xxxxxxxxx{" "}
+          </FormHelperText> */}
         </FormControl>
 
         <FormControl variant="outlined" sx={{ mt: 2 }}>
@@ -148,7 +161,7 @@ export default function Login() {
               color: "#cba346",
             }}
           >
-            اضغط هنا
+            إضغط هنا
           </Link>
         </Typography>
         <div>
@@ -163,7 +176,7 @@ export default function Login() {
 
           <br />
           <Box sx={{ textAlign: "center" }}>
-            <Divider sx={{ mb: 2 }}>او</Divider>
+            <Divider sx={{ mb: 2 }}>أو</Divider>
             <Link
               href={"/auth/register"}
               style={{

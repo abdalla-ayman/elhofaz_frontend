@@ -5,19 +5,15 @@ import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 //compnents
-import { Box, Stepper, Step, StepLabel, Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
-import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Loading from "../../components/Loading";
-import Paper from "@mui/material/Paper";
-import BackgroundImage from "../../components/BackgroundImage";
 // steps
 import Information from "./Information";
 import Stage from "./Stage";
 import Track from "./Track";
-import zIndex from "@mui/material/styles/zIndex";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -42,7 +38,7 @@ export default function Register() {
     role: "user",
     track: "mid_level",
   });
-
+  let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
   let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
@@ -83,13 +79,38 @@ export default function Register() {
   };
 
   const formControl = () => {
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (activeStep == 0) {
       for (const input_field in state) {
         if (state[input_field] == "") {
-          setError("يجب ملء كل المعلومات الاساسية");
+          setError("يجب ملء كل المعلومات اﻷساسية");
           setLoading(false);
           return false;
         }
+      }
+
+      if (state.username.length < 5) {
+        setError("يجب أن يتكون إسم المستخدم من ٥ أحرف على الأقل");
+        setLoading(false);
+        return false;
+      }
+
+      if (state.password.length < 8) {
+        setError("يجب ان تتكون كلمة المرور من ٨ أحرف على الأقل");
+        setLoading(false);
+        return false;
+      }
+
+      if (!state.email.match(mailFormat)) {
+        setError("صيغة البريد الالكتروني غير صحيحة");
+        setLoading(false);
+        return false;
+      }
+
+      if (!acceptedConditions) {
+        setError("يجب الموافقة على شروط البرنامج للاستمرار");
+        setLoading(false);
+        return false;
       }
     }
 
@@ -131,7 +152,14 @@ export default function Register() {
         التسجيل في مقارئ السفرة
       </Typography>
 
-      {activeStep == 0 && <Information state={state} setState={setState} />}
+      {activeStep == 0 && (
+        <Information
+          state={state}
+          setState={setState}
+          acceptedConditions={acceptedConditions}
+          setAcceptedConditions={setAcceptedConditions}
+        />
+      )}
       {activeStep == 1 && state.role == "user" && <Stage />}
       {activeStep == 2 && state.role == "user" && (
         <Track setState={setState} track={state.track} />

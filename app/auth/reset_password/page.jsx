@@ -54,11 +54,11 @@ export default function ChangePassword() {
         action={"#"}
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl mb-4 text-center">تأكيد البريد الالكتروني</h2>
+        <h2 className="text-2xl mb-4 text-center">تأكيد البريد الإلكتروني</h2>
         <TextField
           id="outlined-basic"
           onChange={(e) => setEmail(e.target.value)}
-          label="ادخل البريد الالكتروني"
+          label="أدخل البريد الإلكتروني"
           variant="outlined"
           type="text"
           className="my-5"
@@ -76,10 +76,10 @@ export default function ChangePassword() {
         )}
 
         <Button variant="contained" type="submit" sx={{ my: 1, mx: "auto" }}>
-          تأكيد البريد الالكتروني
+          تأكيد البريد الإلكتروني
         </Button>
       </form>
-      <Loading loading={loading} text={"جاري تأكيد البريد الالكتروني"} />
+      <Loading loading={loading} text={"جاري تأكيد البريد الإلكتروني"} />
     </>
   );
 }
