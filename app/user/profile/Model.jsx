@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { withStyles } from "@material-ui/core/styles";
+
 import { updatePhoto, updateProfile } from "@/lib/profile";
+
+// dialog: {
+//   [theme.breakpoints.down('sm')]: {
+//       "& .MuiDialog-container .MuiDialog-paper": {
+//           margin: "24px 0px",
+//           borderRadius: 0
+//       },
+//   }
+// }
 
 // componetns
 import {
@@ -13,7 +24,7 @@ import {
   FormHelperText,
   Alert,
   Container,
-  Chip
+  Chip,
 } from "@mui/material";
 
 import Loading from "@/app/components/Loading";
@@ -28,6 +39,18 @@ const countriesOptions = country_list.map((country) => ({
   label: country.name,
   key: country.code,
 }));
+
+const styles = (theme) => ({
+  dialog: {
+    [theme.breakpoints.down("xs")]: {
+      "& .MuiDialog-container .MuiDialog-paper": {
+        margin: "0px 0px",
+        maxHeight: "100%",
+        borderRadius: 0,
+      },
+    },
+  },
+});
 
 const UserEditModal = ({ user }) => {
   let [countries, setCountries] = useState(country_list);
@@ -68,8 +91,13 @@ const UserEditModal = ({ user }) => {
       e.preventDefault;
       setLoading(true);
       let res = await updateProfile(userData, userData.accessToken);
-
       console.log(res);
+      if (res.code == 200) {
+        setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
+        handleChange();
+      } else {
+        setError(res.message);
+      }
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -323,4 +351,4 @@ const UserEditModal = ({ user }) => {
   );
 };
 
-export default UserEditModal;
+export default withStyles(styles)(UserEditModal);

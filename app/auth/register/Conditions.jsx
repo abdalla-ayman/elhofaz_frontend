@@ -42,8 +42,8 @@ export default function Conditions({
       </IconButton>
       <DialogContent dividers>
         <Typography variant="" component="li" gutterBottom>
-          أولا: المجموعات مخصصة فقط للبرنامج والمتابعة اليومية وغير مسموح فيها أي
-          رسائل أخرى كالسياسة والرياضة وغيرها من الأخبار والرسائل اليومية وكل
+          أولا: المجموعات مخصصة فقط للبرنامج والمتابعة اليومية وغير مسموح فيها
+          أي رسائل أخرى كالسياسة والرياضة وغيرها من الأخبار والرسائل اليومية وكل
           الأشياء التي لا تخص البرنامج بصلة.
         </Typography>
         <Typography gutterBottom component="li">
@@ -52,12 +52,12 @@ export default function Conditions({
           الطالب بعذر أو بغير عذر يتم الإعتذار مباشرة من الطالب.
         </Typography>
         <Typography gutterBottom component="li">
-          ثالثاً: العرض يكون مع المعلم المشرف على الحلقة أو من ينوب عنه ويكون ذلك
-          عبر الإتصال وغير مسموح بالتسجيلات الصوتية للعرض.
+          ثالثاً: العرض يكون مع المعلم المشرف على الحلقة أو من ينوب عنه ويكون
+          ذلك عبر الإتصال وغير مسموح بالتسجيلات الصوتية للعرض.
         </Typography>
         <Typography gutterBottom component="li">
-          رابعاً: التقارير ترسل يومياً وعدم إرسال التقارير أو الانتظام فيها يعتبر
-          غياب يُحاسب عليه الطالب
+          رابعاً: التقارير ترسل يومياً وعدم إرسال التقارير أو الانتظام فيها
+          يعتبر غياب يُحاسب عليه الطالب
         </Typography>
         <Typography gutterBottom component="li">
           خامساً: إتباع الخطة إلزامي وأمانة وعهد عند الطالب لازم يوفيه حسب آلية
@@ -70,20 +70,6 @@ export default function Conditions({
         <Typography gutterBottom component="li">
           سابعاً: الإلتزام والمواظبة والجدية شروط اساسية في البرنامج وإذا اتضح
           عدم جدية الطالب يتم الإعتذار منه مباشرة
-        </Typography>
-       
-
-        <Typography
-          align="center"
-          color={"#6C757D"}
-          gutterBottom
-          variant="subtitle2"
-          sx={{
-            mt: 2,
-          }}
-        >
-          شروط البرنامج من يوافق عليها يضغط على موافق ويستمر معنا في البرنامج
-          ومن لم يوافق عليها وفقه الله تعالى ويسر أمره ونعتذر منه
         </Typography>
       </DialogContent>
       <DialogActions>

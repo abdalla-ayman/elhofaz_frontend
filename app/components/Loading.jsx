@@ -32,7 +32,7 @@ export default function Loading({ loading, text }) {
           p: 2,
         }}
       >
-        <Typography component={"span"} variant="body2">
+        <Typography component={"span"} align="center" variant="body2">
           {text}
         </Typography>
         <CircularProgress color="inherit" sx={{ mx: 1 }} size={25} />
