@@ -15,8 +15,7 @@ import {
 import { updatePhoto, updateProfile } from "@/lib/profile";
 import Loading from "@/app/components/Loading";
 
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
+import {FormControl, TextField} from "@mui/material";
 import { Edit } from "@mui/icons-material";
 
 // api call country list
