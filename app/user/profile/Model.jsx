@@ -130,7 +130,7 @@ const UserEditModal = ({ user }) => {
       };
 
       let res = await updateProfile(data, user.accessToken);
-      console.log(data, res);
+
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
         handleChange();
