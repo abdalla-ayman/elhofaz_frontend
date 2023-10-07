@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import { getProfileData } from "@/lib/profile";
+import { getProfileData, updatePhoto } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
 
 //componentes
@@ -18,26 +18,33 @@ import Chip from "@mui/material/Chip";
 import IconButton from "@mui/material/IconButton";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 import Item from "./item";
+import Loading from "@/app/components/Loading";
 
 export default function Profile() {
   let { data: session } = useSession();
   const [user, setUser] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingmsg, setLoadingmsg] = useState(
+    "جاري تحميل معلومات الملف الشخصي"
+  );
 
   useEffect(() => {
     if (session)
       (async function () {
         const userdata = await getProfileData(session.accessToken);
+        if (userdata.code == 200) setUser(userdata.data.user);
+        setLoading(false);
       })();
   }, [session]);
 
   const handleFileChange = async (event) => {
+    setLoadingmsg("الرجاء الإنتظار")
     setLoading(true);
     setSelectedFile(event.target.files[0]);
     let formDate = new FormData();
     formDate.append("image", selectedFile);
-    // await updatePhoto(formDate)
+    await updatePhoto(formDate);
     setLoading(false);
   };
 
@@ -57,6 +64,12 @@ export default function Profile() {
     user: "طالب",
     admin: "اداري",
   };
+  let stages = {
+    dabt: "مرحلة الضبط",
+    taahhud: "مرحلة التعاهد",
+    isnad: "مرحلة الإسناد",
+    qiraat: "مرحلة القراءات",
+  };
 
   return (
     <Container
@@ -72,7 +85,7 @@ export default function Profile() {
       <Typography variant="h5" sx={{ mt: 5, textAlign: "center" }}>
         الملف الشخصي
       </Typography>
-      {session && (
+      {user && (
         <Box
           sx={{
             mt: 4,
@@ -98,7 +111,7 @@ export default function Profile() {
                       width: 200,
                       height: 200,
                     }}
-                    src={session.user?.image}
+                    src={user?.image}
                   />
                   <IconButton
                     aria-label="delete"
@@ -129,7 +142,7 @@ export default function Profile() {
                   }}
                   variant="h6"
                 >
-                  {session.user?.name}
+                  {user?.name}
                 </Typography>
                 <Typography
                   color={"gray"}
@@ -137,19 +150,15 @@ export default function Profile() {
                     mt: 1,
                   }}
                 >
-                  #{session.user?.id.toString().padStart(6, "0")}
+                  #{user?.id.toString().padStart(6, "0")}
                 </Typography>
                 <Chip
                   label={
-                    session.user.status == "pending"
-                      ? "الطلب قيد المعالجة"
-                      : "مفعل"
+                    user.status == "pending" ? "الطلب قيد المعالجة" : "مفعل"
                   }
                   sx={{
                     bgcolor:
-                      session.user.status == "pending"
-                        ? "warning.light"
-                        : "info.light",
+                      user.status == "pending" ? "warning.light" : "info.light",
 
                     mt: 2,
                     mx: "auto",
@@ -168,13 +177,19 @@ export default function Profile() {
             </Grid>
 
             <Grid item md={9} xs={12}>
-              <Box display="flex" justifyContent="flex-end">
-                <UserEditModal user={session.user} />
+              <Box
+                display="flex"
+                sx={{
+                  mt: 3,
+                }}
+                justifyContent="flex-start"
+              >
+                <UserEditModal user={user} />
               </Box>
 
               <Box
                 sx={{
-                  mt: 3,
+                  mt: 1,
                   pt: 5,
                   padding: "20px",
                   backgroundColor: "#E1DEE3",
@@ -186,7 +201,7 @@ export default function Profile() {
                     <TextField
                       label="اسم المستخدم"
                       variant="filled"
-                      value={session.user.username}
+                      value={user.username}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -195,7 +210,7 @@ export default function Profile() {
                     <TextField
                       label="البريد الالكتروني"
                       variant="filled"
-                      value={session.user.email}
+                      value={user.email}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -204,7 +219,7 @@ export default function Profile() {
                     <TextField
                       label="الجنسية"
                       variant="filled"
-                      value={session.user.nationality}
+                      value={user.nationality}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -213,7 +228,7 @@ export default function Profile() {
                     <TextField
                       label="مكان الاقامة"
                       variant="filled"
-                      value={session.user.residation}
+                      value={user.residation}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -222,7 +237,7 @@ export default function Profile() {
                     <TextField
                       label="الهوية"
                       variant="filled"
-                      value={session.user.identification || "--------"}
+                      value={user.identification || "--------"}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -231,7 +246,7 @@ export default function Profile() {
                     <TextField
                       label="العمر"
                       variant="filled"
-                      value={session.user.age}
+                      value={user.age}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -240,20 +255,23 @@ export default function Profile() {
                     <TextField
                       label="النوع"
                       variant="filled"
-                      value={session.user.gender == "male" ? "ذكر" : "انثى"}
+                      value={user.gender == "male" ? "ذكر" : "انثى"}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
                   </ListItem>
                   <br />
 
-                  {session.user.role == "user" && (
-                    <Item label={"المسار"} value={tracks[session.user.track]} />
+                  {user.role == "user" && (
+                    <Item label={"المسار"} value={tracks[user.track]} />
+                  )}
+                  {user.role == "user" && (
+                    <Item label={"المرحلة"} value={stages[user.stage]} />
                   )}
 
                   <Item
                     label={"نوع الحساب"}
-                    value={"حساب " + roles[session.user.role]}
+                    value={"حساب " + roles[user.role]}
                   />
                 </List>
               </Box>
@@ -261,6 +279,7 @@ export default function Profile() {
           </Grid>
         </Box>
       )}
+      <Loading loading={loading} text={loadingmsg} />
     </Container>
   );
 }

@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { withStyles } from "@material-ui/core/styles";
+
+import { updatePhoto, updateProfile } from "@/lib/profile";
+
+// dialog: {
+//   [theme.breakpoints.down('sm')]: {
+//       "& .MuiDialog-container .MuiDialog-paper": {
+//           margin: "24px 0px",
+//           borderRadius: 0
+//       },
+//   }
+// }
+
+// componetns
 import {
   Button,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  IconButton,
   Box,
   Autocomplete,
   FormHelperText,
   Alert,
+  Container,
+  Chip,
 } from "@mui/material";
 
-import { updatePhoto, updateProfile } from "@/lib/profile";
 import Loading from "@/app/components/Loading";
 
 import { FormControl, TextField } from "@mui/material";
@@ -20,23 +34,46 @@ import { Edit } from "@mui/icons-material";
 
 // api call country list
 import country_list from "/public/countries.json";
+const countriesOptions = country_list.map((country) => ({
+  label: country.name,
+  key: country.code,
+}));
+
+const styles = (theme) => ({
+  dialog: {
+    [theme.breakpoints.down("xs")]: {
+      "& .MuiDialog-container .MuiDialog-paper": {
+        margin: "0px 0px",
+        maxHeight: "100%",
+        borderRadius: 0,
+      },
+    },
+  },
+});
 
 const UserEditModal = ({ user }) => {
   let [countries, setCountries] = useState(country_list);
   let [error, setError] = useState("");
   let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(user);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setUserData(user);
-  }, []);
+  let getCountry = (selector) => {
+    let country = countries.find(
+      (country) => country.name == userData[selector]
+    );
+
+    return country ? { label: country.name, key: country.code } : undefined;
+  };
 
   //handle change for user basic info
   const handleChange = (e) => {
     const new_value = e.target.value;
     setUserData({ ...userData, [e.target.name]: new_value });
+  };
+  let handleAutoCompleteChange = (name, value) => {
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleOpen = () => {
@@ -49,23 +86,47 @@ const UserEditModal = ({ user }) => {
 
   //handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault;
-
-    let res = await updateProfile(userData, userData.accessToken);
-
-    console.log(res);
+    try {
+      e.preventDefault;
+      setLoading(true);
+      let res = await updateProfile(userData, userData.accessToken);
+      console.log(res);
+      if (res.code == 200) {
+        setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
+        handleChange();
+      } else {
+        setError(res.message);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      <IconButton color="primary" aria-label="Delete" onClick={handleOpen}>
-        <Edit />
-      </IconButton>
+      <Button
+        color="primary"
+        startIcon={<Edit />}
+        variant="contained"
+        sx={{
+          textDecoration: "underline",
+        }}
+        aria-label="Delete"
+        onClick={handleOpen}
+        size="small">
+        تعديل
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> تعديل البيانات الاساسية </DialogTitle>
-        <DialogContent>
-          <form className="w-80 m-auto flex items-center flex-col" action={"#"}>
-            <FormControl variant="outlined">
+        <DialogContent dividers>
+          <form action={"#"}>
+            <Container
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+              maxWidth={"xs"}>
               <TextField
                 id="outlined-basic"
                 onChange={handleChange}
@@ -76,73 +137,65 @@ const UserEditModal = ({ user }) => {
                 type="text"
                 sx={{
                   my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
                 }}
               />
-            </FormControl>
 
-            <FormControl variant="outlined">
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Autocomplete
-                  id="country-select-demo"
-                  options={countries}
-                  autoHighlight
-                  getOptionLabel={(option) => option.dialCode}
-                  name="phone_code"
-                  onChange={handleChange}
-                  value={countries.find(
-                    (country) => country.dialCode == userData.phone_code
-                  )}
-                  sx={{ marginRight: 1, width: "60%" }}
-                  renderOption={(props, option) => (
-                    <Box
-                      component="li"
-                      sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                      {...props}
-                      key={option.code}>
-                      {/* <img
-                  loading="lazy"
-                  width="20"
-                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                  srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                  alt=""
-                /> */}
-                      {option.name} ({option.code}) {option.dialCode}
-                    </Box>
-                  )}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="مفتاح البلد"
-                      inputProps={{
-                        ...params.inputProps,
-                        autoComplete: "new-password", // disable autocomplete and autofill
-                      }}
-                    />
-                  )}
-                />
-                <TextField
-                  id="outlined-basic"
-                  onChange={handleChange}
-                  label="رقم الهاتف"
-                  value={userData.phone}
-                  variant="outlined"
-                  type="tel"
-                  sx={{ width: "100%" }}
-                />
-              </Box>
-              <FormHelperText
-                sx={{
-                  textAlign: "center",
-                }}
-                id="component-helper-text">
-                الرقم في صورة 9xxxxxxxxx من دون صفر البداية
-              </FormHelperText>
-              <br />
-            </FormControl>
+              <FormControl variant="outlined">
+                <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+                  <Autocomplete
+                    id="country-select-demo"
+                    options={countries}
+                    autoHighlight
+                    getOptionLabel={(option) => option.dialCode}
+                    onChange={(e, value) => {
+                      if (value)
+                        handleAutoCompleteChange("phone_code", value.label);
+                      else handleAutoCompleteChange("phone_code", "");
+                    }}
+                    value={countries.find(
+                      (country) => country.dialCode == userData.phone_code
+                    )}
+                    sx={{ marginRight: 1, width: "60%" }}
+                    renderOption={(props, option) => (
+                      <Box
+                        component="li"
+                        sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                        {...props}
+                        key={option.code}>
+                        {option.name} ({option.code}) {option.dialCode}
+                      </Box>
+                    )}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="مفتاح البلد"
+                        inputProps={{
+                          ...params.inputProps,
+                          autoComplete: "new-password", // disable autocomplete and autofill
+                        }}
+                      />
+                    )}
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleChange}
+                    label="رقم الهاتف"
+                    value={userData.phone}
+                    variant="outlined"
+                    type="tel"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
+                <FormHelperText
+                  sx={{
+                    textAlign: "center",
+                  }}
+                  id="component-helper-text">
+                  الرقم في صورة 9xxxxxxxxx من دون صفر البداية
+                </FormHelperText>
+                <br />
+              </FormControl>
 
-            <FormControl variant="outlined">
               <TextField
                 id="outlined-basic"
                 onChange={handleChange}
@@ -153,13 +206,11 @@ const UserEditModal = ({ user }) => {
                 type="text"
                 sx={{
                   my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
+                  // width: "calc(100% + 36px)",
+                  // transform: "translateX(-18px)",
                 }}
               />
-            </FormControl>
 
-            <FormControl variant="outlined">
               <TextField
                 id="outlined-basic"
                 onChange={handleChange}
@@ -170,47 +221,81 @@ const UserEditModal = ({ user }) => {
                 type="text"
                 sx={{
                   my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
                 }}
               />
-            </FormControl>
 
-            <FormControl variant="outlined">
-              <TextField
-                id="outlined-basic"
-                onChange={handleChange}
-                name="nationality"
-                label="الجنسية"
-                value={userData.nationality}
-                variant="outlined"
-                type="text"
-                sx={{
-                  my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                value={getCountry("nationality")}
+                onChange={(e, value) => {
+                  if (value)
+                    handleAutoCompleteChange("nationality", value.label);
+                  else handleAutoCompleteChange("nationality", "");
                 }}
-              />
-            </FormControl>
-
-            <FormControl variant="outlined">
-              <TextField
-                id="outlined-basic"
-                onChange={handleChange}
-                name="residation"
-                label="مكان الاقامة"
-                value={userData.residation}
-                variant="outlined"
-                type="text"
-                sx={{
-                  my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
+                renderOption={(props, option) => {
+                  return (
+                    <li {...props} key={option.key}>
+                      {option.label}
+                    </li>
+                  );
                 }}
+                renderTags={(tagValue, getTagProps) => {
+                  return tagValue.map((option, index) => (
+                    <Chip
+                      {...getTagProps({ index })}
+                      key={option.key}
+                      label={option}
+                    />
+                  ));
+                }}
+                // to fix some bugs https://stackoverflow.com/questions/75818761/material-ui-autocomplete-warning-a-props-object-containing-a-key-prop-is-be
+                options={countriesOptions}
+                isOptionEqualToValue={(option, value) =>
+                  option.key == value.key
+                }
+                sx={{ my: 1 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="الجنسية" />
+                )}
               />
-            </FormControl>
 
-            <FormControl variant="outlined">
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                value={getCountry("residation")}
+                onChange={(e, value) => {
+                  if (value)
+                    handleAutoCompleteChange("residation", value.label);
+                  else handleAutoCompleteChange("residation", "");
+                }}
+                renderOption={(props, option) => {
+                  return (
+                    <li {...props} key={option.key}>
+                      {option.label}
+                    </li>
+                  );
+                }}
+                renderTags={(tagValue, getTagProps) => {
+                  return tagValue.map((option, index) => (
+                    <Chip
+                      {...getTagProps({ index })}
+                      key={option.key}
+                      label={option}
+                    />
+                  ));
+                }}
+                // to fix some bugs https://stackoverflow.com/questions/75818761/material-ui-autocomplete-warning-a-props-object-containing-a-key-prop-is-be
+                options={countriesOptions}
+                isOptionEqualToValue={(option, value) =>
+                  option.key == value.key
+                }
+                sx={{ my: 1 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="مكان الالقامة" />
+                )}
+              />
+
               <TextField
                 id="outlined-basic"
                 onChange={handleChange}
@@ -221,11 +306,9 @@ const UserEditModal = ({ user }) => {
                 type="text"
                 sx={{
                   my: 1,
-                  width: "calc(100% + 36px)",
-                  transform: "translateX(-18px)",
                 }}
               />
-            </FormControl>
+            </Container>
           </form>
           <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
 
@@ -240,12 +323,20 @@ const UserEditModal = ({ user }) => {
             </Alert>
           )}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            الغاء
-          </Button>
-          <Button type="submit" onClick={handleSubmit} color="secondary">
+        <DialogActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}>
+          <Button
+            type="submit"
+            variant="contained"
+            onClick={handleSubmit}
+            color="primary">
             حفظ
+          </Button>
+          <Button onClick={handleClose} variant="contained" color="error">
+            إلغاء
           </Button>
         </DialogActions>
       </Dialog>
@@ -253,4 +344,4 @@ const UserEditModal = ({ user }) => {
   );
 };
 
-export default UserEditModal;
+export default withStyles(styles)(UserEditModal);
