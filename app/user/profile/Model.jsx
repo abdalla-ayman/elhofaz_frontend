@@ -15,7 +15,7 @@ import {
 import { updatePhoto, updateProfile } from "@/lib/profile";
 import Loading from "@/app/components/Loading";
 
-import {FormControl, TextField} from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 
 // api call country list
@@ -53,7 +53,7 @@ const UserEditModal = ({ user }) => {
 
     let res = await updateProfile(userData, userData.accessToken);
 
-    console.log(res);
+    console.log(userData, res);
   };
 
   return (
@@ -100,8 +100,7 @@ const UserEditModal = ({ user }) => {
                       component="li"
                       sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
                       {...props}
-                      key={option.code}
-                    >
+                      key={option.code}>
                       {/* <img
                   loading="lazy"
                   width="20"
@@ -137,8 +136,7 @@ const UserEditModal = ({ user }) => {
                 sx={{
                   textAlign: "center",
                 }}
-                id="component-helper-text"
-              >
+                id="component-helper-text">
                 الرقم في صورة 9xxxxxxxxx من دون صفر البداية
               </FormHelperText>
               <br />

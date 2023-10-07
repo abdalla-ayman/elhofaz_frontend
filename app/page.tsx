@@ -14,7 +14,7 @@ export default function Home() {
       <Box
         sx={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg.jpg)",
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg4.jpeg)",
           backgroundAttachment: "fixed",
           height: "100vh",
           backgroundSize: "cover",
@@ -23,14 +23,18 @@ export default function Home() {
         }}>
         <Container>
           <Typography
-            variant="h3"
+            variant="h4"
             sx={{
               color: "white",
               fontWeight: "bold",
               paddingTop: "40vh",
               textAlign: "center",
             }}>
-            Welcome to the Home page!
+            مرحبا بكم في مقارئ الحفاظ
+          </Typography>
+
+          <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
+            لتعليم القران الكريم و علومه
           </Typography>
           <Box
             sx={{
@@ -42,13 +46,13 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ marginRight: "1rem" }}>
-              Button 1
+              ابدأ
             </Button>
           </Box>
         </Container>
       </Box>
       {/* Card Section */}
-
+      {/* 
       <Container
         sx={{
           marginTop: "100px",
@@ -105,7 +109,7 @@ export default function Home() {
           backgroundPosition: "center -140px",
           position: "relative",
           marginBottom: "150px",
-        }}></Box>
+        }}></Box> */}
     </div>
   );
 }
