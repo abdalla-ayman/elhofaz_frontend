@@ -56,13 +56,41 @@ const UserEditModal = ({ user }) => {
   let [error, setError] = useState("");
   let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState(user);
+
+  //setting default data fromthe page
+  useEffect(() => {
+    setUsername(user.username);
+    setPhone(user.phone);
+    setPhone_code(user.phone_code);
+    setEmail(user.email);
+    setName(user.name);
+    setResidation(user.residation);
+    setIdentification(user.identification);
+    setTrack(user.track);
+    setRole(user.role);
+    setGender(user.gender);
+    setAge(user.age);
+    setNationality(user.nationality);
+  }, []);
+  //user data state
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phone_code, setPhone_code] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [age, setAge] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [residation, setResidation] = useState("");
+  const [identification, setIdentification] = useState("");
+  const [gender, setGender] = useState("");
+  const [track, setTrack] = useState("");
+  const [role, setRole] = useState("");
+
   const [open, setOpen] = useState(false);
 
   let getCountry = (selector) => {
-    let country = countries.find(
-      (country) => country.name == userData[selector]
-    );
+    let country = countries.find((country) => country.name == user[selector]);
 
     return country ? { label: country.name, key: country.code } : undefined;
   };
@@ -71,9 +99,6 @@ const UserEditModal = ({ user }) => {
   const handleChange = (e) => {
     const new_value = e.target.value;
     setUserData({ ...userData, [e.target.name]: new_value });
-  };
-  let handleAutoCompleteChange = (name, value) => {
-    setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleOpen = () => {
@@ -89,8 +114,23 @@ const UserEditModal = ({ user }) => {
     try {
       e.preventDefault;
       setLoading(true);
-      let res = await updateProfile(userData, userData.accessToken);
-      console.log(res);
+      let data = {
+        username,
+        phone,
+        phone_code,
+        email,
+        name,
+        age,
+        nationality,
+        residation,
+        identification,
+        gender,
+        track,
+        role,
+      };
+
+      let res = await updateProfile(data, user.accessToken);
+      console.log(data, res);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
         handleChange();
@@ -129,17 +169,28 @@ const UserEditModal = ({ user }) => {
               maxWidth={"xs"}>
               <TextField
                 id="outlined-basic"
-                onChange={handleChange}
+                onChange={(e) => setUsername(e.target.value)}
                 name="username"
                 label="اسم المستخدم "
-                value={userData.username}
+                value={username}
                 variant="outlined"
                 type="text"
                 sx={{
                   my: 1,
                 }}
               />
-
+              <TextField
+                id="outlined-basic"
+                onChange={(e) => setName(e.target.value)}
+                name="username"
+                label="الاسم"
+                value={name}
+                variant="outlined"
+                type="text"
+                sx={{
+                  my: 1,
+                }}
+              />
               <FormControl variant="outlined">
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                   <Autocomplete
@@ -148,12 +199,11 @@ const UserEditModal = ({ user }) => {
                     autoHighlight
                     getOptionLabel={(option) => option.dialCode}
                     onChange={(e, value) => {
-                      if (value)
-                        handleAutoCompleteChange("phone_code", value.label);
-                      else handleAutoCompleteChange("phone_code", "");
+                      if (value) setPhone_code(value.label);
+                      else setPhone_code("");
                     }}
                     value={countries.find(
-                      (country) => country.dialCode == userData.phone_code
+                      (country) => country.dialCode == phone_code
                     )}
                     sx={{ marginRight: 1, width: "60%" }}
                     renderOption={(props, option) => (
@@ -178,9 +228,9 @@ const UserEditModal = ({ user }) => {
                   />
                   <TextField
                     id="outlined-basic"
-                    onChange={handleChange}
+                    onChange={(e) => setPhone(e.target.value)}
                     label="رقم الهاتف"
-                    value={userData.phone}
+                    value={phone}
                     variant="outlined"
                     type="tel"
                     sx={{ width: "100%" }}
@@ -198,10 +248,10 @@ const UserEditModal = ({ user }) => {
 
               <TextField
                 id="outlined-basic"
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 label="الايميل"
-                value={userData.email}
+                value={email}
                 variant="outlined"
                 type="text"
                 sx={{
@@ -213,10 +263,10 @@ const UserEditModal = ({ user }) => {
 
               <TextField
                 id="outlined-basic"
-                onChange={handleChange}
+                onChange={(e) => setAge(e.target.value)}
                 name="age"
                 label="العمر"
-                value={userData.age}
+                value={age}
                 variant="outlined"
                 type="text"
                 sx={{
@@ -229,9 +279,8 @@ const UserEditModal = ({ user }) => {
                 id="combo-box-demo"
                 value={getCountry("nationality")}
                 onChange={(e, value) => {
-                  if (value)
-                    handleAutoCompleteChange("nationality", value.label);
-                  else handleAutoCompleteChange("nationality", "");
+                  if (value) setNationality(value.label);
+                  else setNationality("");
                 }}
                 renderOption={(props, option) => {
                   return (
@@ -265,9 +314,8 @@ const UserEditModal = ({ user }) => {
                 id="combo-box-demo"
                 value={getCountry("residation")}
                 onChange={(e, value) => {
-                  if (value)
-                    handleAutoCompleteChange("residation", value.label);
-                  else handleAutoCompleteChange("residation", "");
+                  if (value) setResidation(value.label);
+                  else setResidation("");
                 }}
                 renderOption={(props, option) => {
                   return (
@@ -298,10 +346,10 @@ const UserEditModal = ({ user }) => {
 
               <TextField
                 id="outlined-basic"
-                onChange={handleChange}
+                onChange={(e) => setIdentification(e.target.value)}
                 name="identification"
                 label="الهوية"
-                value={userData.identification || ""}
+                value={identification || ""}
                 variant="outlined"
                 type="text"
                 sx={{
