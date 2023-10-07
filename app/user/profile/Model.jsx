@@ -53,7 +53,7 @@ const UserEditModal = ({ user }) => {
 
     let res = await updateProfile(userData, userData.accessToken);
 
-    console.log(userData, res);
+    console.log(res);
   };
 
   return (
