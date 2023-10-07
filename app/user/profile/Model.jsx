@@ -37,7 +37,7 @@ const countriesOptions = country_list.map((country) => ({
   key: country.code,
 }));
 
-const UserEditModal = ({ user }) => {
+const UserEditModal = ({ user, token }) => {
   let [countries, setCountries] = useState(country_list);
   let [error, setError] = useState("");
   let [success, setSuccess] = useState("");
@@ -55,9 +55,7 @@ const UserEditModal = ({ user }) => {
     setTrack(user.track);
     setRole(user.role);
     setGender(user.gender);
-    setAge(user.age);
     setNationality(user.nationality);
-    console.log(user);
   }, []);
   //user data state
   const [username, setUsername] = useState("");
@@ -66,7 +64,7 @@ const UserEditModal = ({ user }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
+  const [birth_date, setBirth_date] = useState("");
   const [nationality, setNationality] = useState("");
   const [residation, setResidation] = useState("");
   const [identification, setIdentification] = useState("");
@@ -102,7 +100,7 @@ const UserEditModal = ({ user }) => {
         phone_code,
         email,
         name,
-        age,
+        birth_date,
         nationality,
         residation,
         identification,
@@ -111,7 +109,7 @@ const UserEditModal = ({ user }) => {
         role,
       };
 
-      let res = await updateProfile(data, user.accessToken);
+      let res = await updateProfile(data, token);
       console.log(data, res);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
@@ -241,7 +239,20 @@ const UserEditModal = ({ user }) => {
                   // transform: "translateX(-18px)",
                 }}
               />
-
+              <TextField
+                id="date"
+                label="تاريخ الميلاد"
+                type="date"
+                value={birth_date}
+                onChange={(e) => setBirth_date(e.target.value)}
+                sx={{
+                  my: 1,
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              {/* 
               <TextField
                 id="outlined-basic"
                 onChange={(e) => setAge(e.target.value)}
@@ -253,7 +264,7 @@ const UserEditModal = ({ user }) => {
                 sx={{
                   my: 1,
                 }}
-              />
+              /> */}
 
               <Autocomplete
                 disablePortal
