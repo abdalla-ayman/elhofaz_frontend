@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
-
 import { updatePhoto, updateProfile } from "@/lib/profile";
 
 // dialog: {
@@ -38,18 +36,6 @@ const countriesOptions = country_list.map((country) => ({
   label: country.name,
   key: country.code,
 }));
-
-const styles = (theme) => ({
-  dialog: {
-    [theme.breakpoints.down("xs")]: {
-      "& .MuiDialog-container .MuiDialog-paper": {
-        margin: "0px 0px",
-        maxHeight: "100%",
-        borderRadius: 0,
-      },
-    },
-  },
-});
 
 const UserEditModal = ({ user }) => {
   let [countries, setCountries] = useState(country_list);
@@ -95,12 +81,6 @@ const UserEditModal = ({ user }) => {
     return country ? { label: country.name, key: country.code } : undefined;
   };
 
-  //handle change for user basic info
-  const handleChange = (e) => {
-    const new_value = e.target.value;
-    setUserData({ ...userData, [e.target.name]: new_value });
-  };
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -114,6 +94,7 @@ const UserEditModal = ({ user }) => {
     try {
       e.preventDefault;
       setLoading(true);
+      //prepare data
       let data = {
         username,
         phone,
@@ -130,7 +111,7 @@ const UserEditModal = ({ user }) => {
       };
 
       let res = await updateProfile(data, user.accessToken);
-
+      console.log(data, res);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
         handleChange();
@@ -200,7 +181,6 @@ const UserEditModal = ({ user }) => {
                     getOptionLabel={(option) => option.dialCode}
                     onChange={(e, value) => {
                       if (value) setPhone_code(value.label);
-                      else setPhone_code("");
                     }}
                     value={countries.find(
                       (country) => country.dialCode == phone_code
@@ -280,7 +260,6 @@ const UserEditModal = ({ user }) => {
                 value={getCountry("nationality")}
                 onChange={(e, value) => {
                   if (value) setNationality(value.label);
-                  else setNationality("");
                 }}
                 renderOption={(props, option) => {
                   return (
@@ -315,7 +294,6 @@ const UserEditModal = ({ user }) => {
                 value={getCountry("residation")}
                 onChange={(e, value) => {
                   if (value) setResidation(value.label);
-                  else setResidation("");
                 }}
                 renderOption={(props, option) => {
                   return (
@@ -392,4 +370,4 @@ const UserEditModal = ({ user }) => {
   );
 };
 
-export default withStyles(styles)(UserEditModal);
+export default UserEditModal;
