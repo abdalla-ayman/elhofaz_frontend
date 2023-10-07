@@ -57,6 +57,7 @@ const UserEditModal = ({ user }) => {
     setGender(user.gender);
     setAge(user.age);
     setNationality(user.nationality);
+    console.log(user);
   }, []);
   //user data state
   const [username, setUsername] = useState("");
