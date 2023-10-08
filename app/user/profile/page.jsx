@@ -42,10 +42,21 @@ export default function Profile() {
     setLoadingmsg("الرجاء الإنتظار");
     setLoading(true);
     setSelectedFile(event.target.files[0]);
-    let formDate = new FormData();
-    formDate.append("image", selectedFile);
-    await updatePhoto(formDate);
+    let data = new FormData();
+    data.append("image", selectedFile);
+
+    if (!data.has("image")) {
+      console.error("No field 'image' in formData");
+      return;
+    }
+    if (!data.get("image")) {
+      console.error("Field 'image' is empty");
+      return;
+    }
+
+    let res = await updatePhoto(data, session.accessToken);
     setLoading(false);
+    console.log(res);
   };
 
   const handleSubmit = (event) => {

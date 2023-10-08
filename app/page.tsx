@@ -1,12 +1,12 @@
 "use client";
-import {
-  Box,
-  Container,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-} from "@mui/material";
+import { Box, Container, Typography, Grid, Button } from "@mui/material";
+
+import HomeCard from "@/app/components/card";
+//icons
+import Book from "@mui/icons-material/Book";
+import Setting from "@mui/icons-material/Settings";
+import InfoIcon from "@mui/icons-material/Attribution";
+import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
 
 export default function Home() {
   return (
@@ -18,7 +18,6 @@ export default function Home() {
           backgroundAttachment: "fixed",
           height: "100vh",
           backgroundSize: "cover",
-
           backgroundPosition: "center -140px",
         }}>
         <Container>
@@ -52,52 +51,50 @@ export default function Home() {
         </Container>
       </Box>
       {/* Card Section */}
-      {/* 
+
       <Container
         sx={{
           marginTop: "100px",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
+          marginBottom: "100px",
         }}>
-        <Card sx={{ width: "30%" }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              Card 1
-            </Typography>
-            <Typography variant="body2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ width: "30%" }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              Card 2
-            </Typography>
-            <Typography variant="body2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ width: "30%" }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              Card 3
-            </Typography>
-            <Typography variant="body2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </CardContent>
-        </Card>
+        <Typography
+          variant="h3"
+          sx={{ textAlign: "center", marginBottom: "30px" }}>
+          مراحل البرنامج
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item md={3} sm={4} xs={12}>
+            <HomeCard
+              title={"مرحلة الضبط"}
+              text={"يتم فيها حفظ وضبط المصحف لاول مرة"}
+              Icon={Setting}
+            />
+          </Grid>
+          <Grid item md={3} sm={4} xs={12}>
+            <HomeCard
+              title={"مرحلة التعهد"}
+              text={"مرحلة تعهد الكتاب الكريم بعد اتمام الحفظ . بالمراجعة"}
+              Icon={CheckCircleIcon}
+            />
+          </Grid>
+          <Grid item md={3} sm={4} xs={12}>
+            <HomeCard
+              title={"مرحلة الاسناد "}
+              text={"مرحلة التعرف على الاسنادات المختلفة للمصحف الشريف"}
+              Icon={InfoIcon}
+            />
+          </Grid>
+          <Grid item md={3} sm={4} xs={12}>
+            <HomeCard
+              title={"مرحلة القراءات "}
+              text={"مرحلة تعلم القراءات المختلفة للمصحف الشريف"}
+              Icon={Book}
+            />
+          </Grid>
+        </Grid>
       </Container>
 
+      {/* 
       <Box
         sx={{
           marginTop: "120px",
