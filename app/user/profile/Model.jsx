@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { updatePhoto, updateProfile } from "@/lib/profile";
+import BasicDatePicker from "../../components/BasicDatePicker";
 
 // dialog: {
 //   [theme.breakpoints.down('sm')]: {
@@ -243,7 +244,7 @@ const UserEditModal = ({ user, token }) => {
                   // transform: "translateX(-18px)",
                 }}
               />
-              <TextField
+              {/* <TextField
                 id="date"
                 label="تاريخ الميلاد"
                 type="date"
@@ -255,6 +256,11 @@ const UserEditModal = ({ user, token }) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+              /> */}
+              <BasicDatePicker
+                label={"تاريخ الميلاد"}
+                date={birth_date}
+                setState={(val) => setBirth_date(val)}
               />
               {/* 
               <TextField

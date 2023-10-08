@@ -27,6 +27,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
+import BasicDatePicker from "@/app/components/BasicDatePicker";
 
 const countriesOptions = country_list.map((country) => ({
   label: country.name,
@@ -204,8 +205,7 @@ export default function Information({
         الرقم في صورة 9xxxxxxxxx من دون صفر البداية
       </FormHelperText>
 
-      <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
-        <FormControl sx={{ marginRight: 1, width: "100%" }}>
+        <FormControl sx={{ width: "100%" ,my: 1 }}>
           <InputLabel id="demo-simple-select-label">النوع</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -218,16 +218,20 @@ export default function Information({
             <MenuItem value={"female"}>أنثى</MenuItem>
           </Select>
         </FormControl>
-        <TextField
+        {/* <TextField
           id="outlined-basic"
           onChange={(e) => handleStateChange("age", e.target.value)}
-          label="العمر"
+          label="تاريخ الميلاد"
           value={state.age}
           variant="outlined"
-          type="number"
-          sx={{ my: 1, width: "100%" }}
-        />
-      </Box>
+          type="date"
+        
+        /> */}
+      <BasicDatePicker
+        label={"تاريخ الميلاد"}
+        date={state.birth_date}
+        setState={(val) => setState(prev => ({...prev, birth_date: val}))}
+      />
 
       <Autocomplete
         disablePortal

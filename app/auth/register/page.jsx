@@ -30,13 +30,14 @@ export default function Register() {
     name: "",
     email: "",
     gender: "male",
-    age: "",
+    birth_date: "",
     nationality: "",
     residation: "",
     phone_code: "",
     phone: "",
     role: "user",
     track: "mid_level",
+
   });
   let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");
