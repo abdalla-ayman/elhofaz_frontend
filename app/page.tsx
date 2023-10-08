@@ -14,7 +14,7 @@ export default function Home() {
       <Box
         sx={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg4.jpeg)",
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
           backgroundAttachment: "fixed",
           height: "100vh",
           backgroundSize: "cover",
@@ -30,7 +30,7 @@ export default function Home() {
               paddingTop: "40vh",
               textAlign: "center",
             }}>
-            مرحبا بكم في مقارئ الحفاظ
+            مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
           <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
@@ -46,7 +46,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ marginRight: "1rem" }}>
-              ابدأ
+              ابدأ الان
             </Button>
           </Box>
         </Container>
