@@ -205,20 +205,20 @@ export default function Information({
         الرقم في صورة 9xxxxxxxxx من دون صفر البداية
       </FormHelperText>
 
-        <FormControl sx={{ width: "100%" ,my: 1 }}>
-          <InputLabel id="demo-simple-select-label">النوع</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={state.gender}
-            label="النوع "
-            onChange={(e) => handleStateChange("gender", e.target.value)}
-          >
-            <MenuItem value={"male"}>ذكر</MenuItem>
-            <MenuItem value={"female"}>أنثى</MenuItem>
-          </Select>
-        </FormControl>
-        {/* <TextField
+      <FormControl sx={{ width: "100%", my: 1 }}>
+        <InputLabel id="demo-simple-select-label">النوع</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={state.gender}
+          label="النوع "
+          onChange={(e) => handleStateChange("gender", e.target.value)}
+        >
+          <MenuItem value={"male"}>ذكر</MenuItem>
+          <MenuItem value={"female"}>أنثى</MenuItem>
+        </Select>
+      </FormControl>
+      {/* <TextField
           id="outlined-basic"
           onChange={(e) => handleStateChange("age", e.target.value)}
           label="تاريخ الميلاد"
@@ -230,7 +230,8 @@ export default function Information({
       <BasicDatePicker
         label={"تاريخ الميلاد"}
         date={state.birth_date}
-        setState={(val) => setState(prev => ({...prev, birth_date: val}))}
+        
+        setState={(val) => setState((prev) => ({ ...prev, birth_date: val }))}
       />
 
       <Autocomplete

@@ -37,7 +37,6 @@ export default function Register() {
     phone: "",
     role: "user",
     track: "mid_level",
-
   });
   let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");

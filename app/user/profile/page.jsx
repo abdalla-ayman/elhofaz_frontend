@@ -44,7 +44,7 @@ export default function Profile() {
     setSelectedFile(event.target.files[0]);
     let formDate = new FormData();
     formDate.append("image", selectedFile);
-    await updatePhoto(formDate);
+    await updatePhoto(formDate, session.accessToken);
     setLoading(false);
   };
 
@@ -80,7 +80,8 @@ export default function Profile() {
         minHeight: "100vh",
         py: 5,
         paddingTop: 12,
-      }}>
+      }}
+    >
       <Typography variant="h5" sx={{ mt: 5, textAlign: "center" }}>
         الملف الشخصي
       </Typography>
@@ -88,7 +89,8 @@ export default function Profile() {
         <Box
           sx={{
             mt: 4,
-          }}>
+          }}
+        >
           <Grid container>
             <Grid item md={3} xs={12}>
               <Box
@@ -97,11 +99,13 @@ export default function Profile() {
                   flexDirection: "column",
                   alignItems: "center",
                   marginRight: "20px",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     position: "relative",
-                  }}>
+                  }}
+                >
                   <Avatar
                     sx={{
                       width: 200,
@@ -127,7 +131,8 @@ export default function Profile() {
                         color: "white",
                         backgroundColor: "rgba(0, 0, 0, 0.4)",
                       },
-                    }}>
+                    }}
+                  >
                     <CloudUploadTwoToneIcon />
                   </IconButton>
                 </Box>
@@ -135,14 +140,16 @@ export default function Profile() {
                   sx={{
                     mt: 2,
                   }}
-                  variant="h6">
+                  variant="h6"
+                >
                   {user?.name}
                 </Typography>
                 <Typography
                   color={"gray"}
                   sx={{
                     mt: 1,
-                  }}>
+                  }}
+                >
                   #{user?.id.toString().padStart(6, "0")}
                 </Typography>
                 <Chip
@@ -175,8 +182,9 @@ export default function Profile() {
                 sx={{
                   mt: 3,
                 }}
-                justifyContent="flex-start">
-                <UserEditModal user={user} token={session.accessToken} />
+                justifyContent="flex-start"
+              >
+                <UserEditModal user={user} />
               </Box>
 
               <Box
@@ -186,7 +194,8 @@ export default function Profile() {
                   padding: "20px",
                   backgroundColor: "#E1DEE3",
                   borderRadius: "12px",
-                }}>
+                }}
+              >
                 <List>
                   <ListItem>
                     <TextField
