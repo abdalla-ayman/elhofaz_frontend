@@ -42,19 +42,9 @@ export default function Profile() {
     setLoadingmsg("الرجاء الإنتظار");
     setLoading(true);
     setSelectedFile(event.target.files[0]);
-    let data = new FormData();
-    data.append("image", selectedFile);
-
-    if (!data.has("image")) {
-      console.error("No field 'image' in formData");
-      return;
-    }
-    if (!data.get("image")) {
-      console.error("Field 'image' is empty");
-      return;
-    }
-
-    let res = await updatePhoto(data, session.accessToken);
+    let formDate = new FormData();
+    formDate.append("image", selectedFile);
+    await updatePhoto(formDate, session.accessToken);
     setLoading(false);
     console.log(res);
   };
@@ -187,7 +177,7 @@ export default function Profile() {
                   mt: 3,
                 }}
                 justifyContent="flex-start">
-                <UserEditModal user={user} token={session.accessToken} />
+                <UserEditModal user={user} />
               </Box>
 
               <Box

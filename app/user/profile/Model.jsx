@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { updatePhoto, updateProfile } from "@/lib/profile";
+import BasicDatePicker from "../../components/BasicDatePicker";
 
 // dialog: {
 //   [theme.breakpoints.down('sm')]: {
@@ -56,6 +57,7 @@ const UserEditModal = ({ user, token }) => {
     setRole(user.role);
     setGender(user.gender);
     setNationality(user.nationality);
+    setBirth_date(user.birth_date);
   }, []);
   //user data state
   const [username, setUsername] = useState("");
@@ -110,10 +112,9 @@ const UserEditModal = ({ user, token }) => {
       };
 
       let res = await updateProfile(data, token);
-      console.log(data, res);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
-        handleChange();
+        handleClose();
       } else {
         setError(res.message);
       }
@@ -134,7 +135,8 @@ const UserEditModal = ({ user, token }) => {
         }}
         aria-label="Delete"
         onClick={handleOpen}
-        size="small">
+        size="small"
+      >
         تعديل
       </Button>
       <Dialog open={open} onClose={handleClose}>
@@ -146,7 +148,8 @@ const UserEditModal = ({ user, token }) => {
                 display: "flex",
                 flexDirection: "column",
               }}
-              maxWidth={"xs"}>
+              maxWidth={"xs"}
+            >
               <TextField
                 id="outlined-basic"
                 onChange={(e) => setUsername(e.target.value)}
@@ -181,7 +184,7 @@ const UserEditModal = ({ user, token }) => {
                     onChange={(e, value) => {
                       if (value) setPhone_code(value.label);
                     }}
-                    value={countries.find(
+                    defaultValue={countries.find(
                       (country) => country.dialCode == phone_code
                     )}
                     sx={{ marginRight: 1, width: "60%" }}
@@ -190,7 +193,8 @@ const UserEditModal = ({ user, token }) => {
                         component="li"
                         sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
                         {...props}
-                        key={option.code}>
+                        key={option.code}
+                      >
                         {option.name} ({option.code}) {option.dialCode}
                       </Box>
                     )}
@@ -219,7 +223,8 @@ const UserEditModal = ({ user, token }) => {
                   sx={{
                     textAlign: "center",
                   }}
-                  id="component-helper-text">
+                  id="component-helper-text"
+                >
                   الرقم في صورة 9xxxxxxxxx من دون صفر البداية
                 </FormHelperText>
                 <br />
@@ -239,11 +244,11 @@ const UserEditModal = ({ user, token }) => {
                   // transform: "translateX(-18px)",
                 }}
               />
-              <TextField
+              {/* <TextField
                 id="date"
                 label="تاريخ الميلاد"
                 type="date"
-                value={birth_date}
+                defaultValue={birth_date}
                 onChange={(e) => setBirth_date(e.target.value)}
                 sx={{
                   my: 1,
@@ -251,6 +256,11 @@ const UserEditModal = ({ user, token }) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+              /> */}
+              <BasicDatePicker
+                label={"تاريخ الميلاد"}
+                date={birth_date}
+                setState={(val) => setBirth_date(val)}
               />
               {/* 
               <TextField
@@ -269,7 +279,7 @@ const UserEditModal = ({ user, token }) => {
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
-                value={getCountry("nationality")}
+                defaultValue={getCountry("nationality")}
                 onChange={(e, value) => {
                   if (value) setNationality(value.label);
                 }}
@@ -303,7 +313,7 @@ const UserEditModal = ({ user, token }) => {
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
-                value={getCountry("residation")}
+                defaultValue={getCountry("residation")}
                 onChange={(e, value) => {
                   if (value) setResidation(value.label);
                 }}
@@ -365,12 +375,14 @@ const UserEditModal = ({ user, token }) => {
           sx={{
             display: "flex",
             justifyContent: "center",
-          }}>
+          }}
+        >
           <Button
             type="submit"
             variant="contained"
             onClick={handleSubmit}
-            color="primary">
+            color="primary"
+          >
             حفظ
           </Button>
           <Button onClick={handleClose} variant="contained" color="error">

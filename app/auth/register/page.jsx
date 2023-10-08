@@ -30,7 +30,7 @@ export default function Register() {
     name: "",
     email: "",
     gender: "male",
-    age: "",
+    birth_date: "",
     nationality: "",
     residation: "",
     phone_code: "",
