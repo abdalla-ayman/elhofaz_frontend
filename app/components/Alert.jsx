@@ -12,11 +12,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({ severity, message }) {
+export default function AlertDialogSlide({ severity, message, close }) {
   const [open, setOpen] = React.useState(true);
 
-
   const handleClose = () => {
+    if (close) close();
     setOpen(false);
   };
 
@@ -28,19 +28,31 @@ export default function AlertDialogSlide({ severity, message }) {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        fullWidth
+        maxWidth="xs"
       >
-        <DialogContent>
+        <DialogTitle align="center"> مقارئ السفرة </DialogTitle>
+        <DialogContent dividers>
           <DialogContentText id="alert-dialog-slide-description">
-            <Alert severity={severity} icon={false}>
+            <Alert
+            
+              severity={severity}
+              variant="outlined"
+              icon={false}
+            >
               {message}
             </Alert>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button sx={{
-            mx:"auto"
-          }} onClick={handleClose}>حسنا</Button>
+          <Button
+          variant="contained"
+            sx={{
+              mx: "auto",
+            }}
+            onClick={handleClose}
+          >
+            حسنا
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

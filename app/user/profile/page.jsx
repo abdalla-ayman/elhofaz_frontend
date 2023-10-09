@@ -19,23 +19,25 @@ import IconButton from "@mui/material/IconButton";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 import Item from "./item";
 import Loading from "@/app/components/Loading";
+import Alert from "@/app/components/Alert";
 
 export default function Profile() {
   let { data: session } = useSession();
   const [user, setUser] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loadingmsg, setLoadingmsg] = useState(
     "جاري تحميل معلومات الملف الشخصي"
   );
 
+  let fetchUser = async () => {
+    const userdata = await getProfileData(session.accessToken);
+    if (userdata.code == 200) setUser(userdata.data.user);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    if (session)
-      (async function () {
-        const userdata = await getProfileData(session.accessToken);
-        if (userdata.code == 200) setUser(userdata.data.user);
-        setLoading(false);
-      })();
+    if (session) fetchUser();
   }, [session]);
 
   const handleFileChange = async (event) => {
@@ -49,7 +51,7 @@ export default function Profile() {
       setLoading(false);
       console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setLoading(false);
     }
   };
@@ -190,7 +192,7 @@ export default function Profile() {
                 }}
                 justifyContent="flex-start"
               >
-                <UserEditModal user={user} />
+                <UserEditModal user={user} fetchUser={fetchUser} />
               </Box>
 
               <Box
