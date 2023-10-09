@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updatePhoto, updateProfile } from "@/lib/profile";
+import { updateProfile, revalidateProfile } from "@/lib/profile";
 import BasicDatePicker from "../../components/BasicDatePicker";
 
 // dialog: {
@@ -21,12 +21,12 @@ import {
   Box,
   Autocomplete,
   FormHelperText,
-  Alert,
   Container,
   Chip,
 } from "@mui/material";
 
 import Loading from "@/app/components/Loading";
+import Alert from "@/app/components/Alert";
 
 import { FormControl, TextField } from "@mui/material";
 import { Edit } from "@mui/icons-material";
@@ -114,6 +114,7 @@ const UserEditModal = ({ user, token }) => {
       let res = await updateProfile(data, token);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
+        await revalidateProfile();
         handleClose();
       } else {
         setError(res.message);
@@ -360,16 +361,8 @@ const UserEditModal = ({ user, token }) => {
           </form>
           <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
 
-          {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )}
-          {success && (
-            <Alert severity="success" icon={false}>
-              {success}
-            </Alert>
-          )}
+          {error && <Alert severity="error" message={error} />}
+          {success && <Alert message={success} severity="success" />}
         </DialogContent>
         <DialogActions
           sx={{
