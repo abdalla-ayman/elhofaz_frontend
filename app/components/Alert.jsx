@@ -12,12 +12,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function AlertDialogSlide({ severity, message }) {
   const [open, setOpen] = React.useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -41,7 +38,9 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>حسنا</Button>
+          <Button sx={{
+            mx:"auto"
+          }} onClick={handleClose}>حسنا</Button>
         </DialogActions>
       </Dialog>
     </div>
