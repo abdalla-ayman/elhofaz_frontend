@@ -283,7 +283,7 @@ const UserEditModal = ({ user, fetchUser, token }) => {
           <Loading loading={loading} text={"الرجاء الإنتظار قليلا"} />
 
           {error && (
-            <Alert close={handleClose} severity="error" message={error} />
+            <Alert  severity="error" message={error} />
           )}
           {success && (
             <Alert close={handleClose} message={success} severity="success" />
