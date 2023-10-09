@@ -7,15 +7,14 @@ import dayjs from "dayjs";
 
 export default function BasicDatePicker({ label, date, setState }) {
   return (
-    <LocalizationProvider  dateAdapter={AdapterDayjs}>
-      <DemoContainer sx={{ mb: 1}}  components={["DatePicker"]}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer sx={{ mb: 1 }} components={["DatePicker"]}>
         <DatePicker
-       
           label={label}
           defaultValue={dayjs(date)}
           onChange={(value) => {
             // console.log(dayjs(value).format('YYYY-MM-DD'))
-            setState(value.format('YYYY-MM-DD'));
+            setState(value.format("YYYY-MM-DD"));
           }}
         />
       </DemoContainer>
