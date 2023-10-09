@@ -16,6 +16,7 @@ export default function BasicDatePicker({ label, date, setState }) {
             // console.log(dayjs(value).format('YYYY-MM-DD'))
             setState(value.format("YYYY-MM-DD"));
           }}
+          slotProps={{ textField: { fullWidth: true } }}
         />
       </DemoContainer>
     </LocalizationProvider>

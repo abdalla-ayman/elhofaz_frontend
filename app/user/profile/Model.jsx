@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updatePhoto, updateProfile } from "@/lib/profile";
+import { updateProfile, revalidateProfile } from "@/lib/profile";
 import BasicDatePicker from "../../components/BasicDatePicker";
 
 // dialog: {
@@ -21,12 +21,12 @@ import {
   Box,
   Autocomplete,
   FormHelperText,
-  Alert,
   Container,
   Chip,
 } from "@mui/material";
 
 import Loading from "@/app/components/Loading";
+import Alert from "@/app/components/Alert";
 
 import { FormControl, TextField } from "@mui/material";
 import { Edit } from "@mui/icons-material";
@@ -38,28 +38,13 @@ const countriesOptions = country_list.map((country) => ({
   key: country.code,
 }));
 
-const UserEditModal = ({ user, token }) => {
+const UserEditModal = ({ user, fetchUser, token }) => {
   let [countries, setCountries] = useState(country_list);
   let [error, setError] = useState("");
   let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
 
-  //setting default data fromthe page
-  useEffect(() => {
-    setUsername(user.username);
-    setPhone(user.phone);
-    setPhone_code(user.phone_code);
-    setEmail(user.email);
-    setName(user.name);
-    setResidation(user.residation);
-    setIdentification(user.identification);
-    setTrack(user.track);
-    setRole(user.role);
-    setGender(user.gender);
-    setNationality(user.nationality);
-    setBirth_date(user.birth_date);
-  }, []);
-  //user data state
+  //
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [phone_code, setPhone_code] = useState("");
@@ -75,6 +60,19 @@ const UserEditModal = ({ user, token }) => {
   const [role, setRole] = useState("");
 
   const [open, setOpen] = useState(false);
+
+  //setting default data fromthe page
+  useEffect(() => {
+    setError("");
+    setSuccess("");
+    setUsername(user.username);
+    setPhone(user.phone);
+    setPhone_code(user.phone_code);
+    setEmail(user.email);
+    setResidation(user.residation);
+    setIdentification(user.identification);
+  }, [open]);
+  //user data state
 
   let getCountry = (selector) => {
     let country = countries.find((country) => country.name == user[selector]);
@@ -94,6 +92,8 @@ const UserEditModal = ({ user, token }) => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault;
+      setError("");
+      setSuccess("");
       setLoading(true);
       //prepare data
       let data = {
@@ -101,21 +101,17 @@ const UserEditModal = ({ user, token }) => {
         phone,
         phone_code,
         email,
-        name,
-        birth_date,
-        nationality,
         residation,
         identification,
-        gender,
-        track,
-        role,
       };
 
       let res = await updateProfile(data, token);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
-        handleClose();
+        await revalidateProfile();
+        fetchUser();
       } else {
+        await revalidateProfile();
         setError(res.message);
       }
       setLoading(false);
@@ -154,7 +150,7 @@ const UserEditModal = ({ user, token }) => {
                 id="outlined-basic"
                 onChange={(e) => setUsername(e.target.value)}
                 name="username"
-                label="اسم المستخدم "
+                label="إسم المستخدم "
                 value={username}
                 variant="outlined"
                 type="text"
@@ -162,18 +158,7 @@ const UserEditModal = ({ user, token }) => {
                   my: 1,
                 }}
               />
-              <TextField
-                id="outlined-basic"
-                onChange={(e) => setName(e.target.value)}
-                name="username"
-                label="الاسم"
-                value={name}
-                variant="outlined"
-                type="text"
-                sx={{
-                  my: 1,
-                }}
-              />
+
               <FormControl variant="outlined">
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                   <Autocomplete
@@ -234,7 +219,7 @@ const UserEditModal = ({ user, token }) => {
                 id="outlined-basic"
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
-                label="الايميل"
+                label="الإيميل"
                 value={email}
                 variant="outlined"
                 type="text"
@@ -244,71 +229,8 @@ const UserEditModal = ({ user, token }) => {
                   // transform: "translateX(-18px)",
                 }}
               />
-              {/* <TextField
-                id="date"
-                label="تاريخ الميلاد"
-                type="date"
-                defaultValue={birth_date}
-                onChange={(e) => setBirth_date(e.target.value)}
-                sx={{
-                  my: 1,
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              /> */}
-              <BasicDatePicker
-                label={"تاريخ الميلاد"}
-                date={birth_date}
-                setState={(val) => setBirth_date(val)}
-              />
-              {/* 
-              <TextField
-                id="outlined-basic"
-                onChange={(e) => setAge(e.target.value)}
-                name="age"
-                label="العمر"
-                value={age}
-                variant="outlined"
-                type="text"
-                sx={{
-                  my: 1,
-                }}
-              /> */}
-
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                defaultValue={getCountry("nationality")}
-                onChange={(e, value) => {
-                  if (value) setNationality(value.label);
-                }}
-                renderOption={(props, option) => {
-                  return (
-                    <li {...props} key={option.key}>
-                      {option.label}
-                    </li>
-                  );
-                }}
-                renderTags={(tagValue, getTagProps) => {
-                  return tagValue.map((option, index) => (
-                    <Chip
-                      {...getTagProps({ index })}
-                      key={option.key}
-                      label={option}
-                    />
-                  ));
-                }}
-                // to fix some bugs https://stackoverflow.com/questions/75818761/material-ui-autocomplete-warning-a-props-object-containing-a-key-prop-is-be
-                options={countriesOptions}
-                isOptionEqualToValue={(option, value) =>
-                  option.key == value.key
-                }
-                sx={{ my: 1 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="الجنسية" />
-                )}
-              />
+           
+         
 
               <Autocomplete
                 disablePortal
@@ -340,7 +262,7 @@ const UserEditModal = ({ user, token }) => {
                 }
                 sx={{ my: 1 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="مكان الالقامة" />
+                  <TextField {...params} label="مكان الإقامة" />
                 )}
               />
 
@@ -358,17 +280,13 @@ const UserEditModal = ({ user, token }) => {
               />
             </Container>
           </form>
-          <Loading loading={loading} text={"الرجاء الانتظار قليلا"} />
+          <Loading loading={loading} text={"الرجاء الإنتظار قليلا"} />
 
           {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
+            <Alert  severity="error" message={error} />
           )}
           {success && (
-            <Alert severity="success" icon={false}>
-              {success}
-            </Alert>
+            <Alert close={handleClose} message={success} severity="success" />
           )}
         </DialogContent>
         <DialogActions
