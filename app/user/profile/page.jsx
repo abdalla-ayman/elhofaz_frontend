@@ -192,7 +192,7 @@ export default function Profile() {
                 }}
                 justifyContent="flex-start"
               >
-                <UserEditModal user={user} fetchUser={fetchUser} />
+                <UserEditModal user={user} fetchUser={fetchUser} token={session.accessToken} />
               </Box>
 
               <Box

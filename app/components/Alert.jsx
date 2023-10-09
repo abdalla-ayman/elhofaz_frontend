@@ -29,23 +29,19 @@ export default function AlertDialogSlide({ severity, message, close }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
         maxWidth="xs"
+        fullWidth
       >
         <DialogTitle align="center"> مقارئ السفرة </DialogTitle>
         <DialogContent dividers>
           <DialogContentText id="alert-dialog-slide-description">
-            <Alert
-            
-              severity={severity}
-              variant="outlined"
-              icon={false}
-            >
+            <Alert severity={severity} variant="outlined" icon={false}>
               {message}
             </Alert>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
-          variant="contained"
+            variant="contained"
             sx={{
               mx: "auto",
             }}
