@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updateProfile, revalidateProfile } from "@/lib/profile";
+import { updateProfile } from "@/lib/profile";
 import BasicDatePicker from "../../components/BasicDatePicker";
 
 // dialog: {
@@ -108,10 +108,8 @@ const UserEditModal = ({ user, fetchUser, token }) => {
       let res = await updateProfile(data, token);
       if (res.code == 200) {
         setSuccess("تم تعديل بيانات الملف الشخصي بنجاح");
-        await revalidateProfile();
         fetchUser();
       } else {
-        await revalidateProfile();
         setError(res.message);
       }
       setLoading(false);
@@ -229,8 +227,6 @@ const UserEditModal = ({ user, fetchUser, token }) => {
                   // transform: "translateX(-18px)",
                 }}
               />
-           
-         
 
               <Autocomplete
                 disablePortal
@@ -282,9 +278,7 @@ const UserEditModal = ({ user, fetchUser, token }) => {
           </form>
           <Loading loading={loading} text={"الرجاء الإنتظار قليلا"} />
 
-          {error && (
-            <Alert  severity="error" message={error} />
-          )}
+          {error && <Alert severity="error" message={error} />}
           {success && (
             <Alert close={handleClose} message={success} severity="success" />
           )}
