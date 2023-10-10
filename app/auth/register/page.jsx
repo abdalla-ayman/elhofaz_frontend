@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, Fragment } from "react";
-import { signup } from "../../../lib/auth";
+import { signup, register_status } from "../../../lib/auth";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -9,11 +9,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
 import Alert from "@mui/material/Alert";
+import { Container } from "@mui/material";
 import Loading from "../../components/Loading";
 // steps
 import Information from "./Information";
 import Stage from "./Stage";
 import Track from "./Track";
+import Close from "./Close";
 
 const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
 
@@ -42,12 +44,29 @@ export default function Register() {
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
   let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
+
+  // registrtsion close things
+  let [registerOpen, setRegisterOpen] = useState(false);
+  let [start_date, setStartDate] = useState("");
+  let [end_date, setEndDate] = useState("");
+
   let { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (session) router.push("/");
   }, [session, router]);
+
+  useEffect(() => {
+    (async function () {
+      let res = await register_status();
+      if (res.code == 200) {
+        setStartDate(res.data.start_date);
+        setEndDate(res.data.end_date);
+        setRegisterOpen(res.data.reservation_open);
+      }
+    })();
+  }, []);
 
   // stepper state and functions
   const [activeStep, setActiveStep] = useState(0);
@@ -152,53 +171,71 @@ export default function Register() {
         التسجيل في مقارئ السفرة
       </Typography>
 
-      {activeStep == 0 && (
-        <Information
-          state={state}
-          setState={setState}
-          acceptedConditions={acceptedConditions}
-          setAcceptedConditions={setAcceptedConditions}
-        />
-      )}
-      {activeStep == 1 && state.role == "user" && <Stage />}
-      {activeStep == 2 && state.role == "user" && (
-        <Track setState={setState} track={state.track} />
+      {registerOpen && (
+        <>
+          {activeStep == 0 && (
+            <Information
+              state={state}
+              setState={setState}
+              acceptedConditions={acceptedConditions}
+              setAcceptedConditions={setAcceptedConditions}
+            />
+          )}
+          {activeStep == 1 && state.role == "user" && <Stage />}
+          {activeStep == 2 && state.role == "user" && (
+            <Track setState={setState} track={state.track} />
+          )}
+          {error && (
+            <Alert severity="error" icon={false}>
+              {error}
+            </Alert>
+          )}
+          <Typography
+            align="center"
+            sx={{
+              my: 1
+            }}
+            variant="subtitle2"
+          >
+            سيتم اغلاق التسجل في {end_date}
+          </Typography>
+          <MobileStepper
+            variant="progress"
+            steps={state.role === "user" ? 3 : 1}
+            position="static"
+            activeStep={activeStep}
+            sx={{ maxWidth: 400, flexGrow: 1 }}
+            nextButton={
+              steps == 1 || activeStep == 2 ? (
+                <Button size="large" disabled={false} onClick={handleSubmit}>
+                  التسجيل
+                </Button>
+              ) : (
+                <Button
+                  size="large"
+                  onClick={handleNext}
+                  disabled={activeStep === 2}
+                >
+                  التالي
+                </Button>
+              )
+            }
+            backButton={
+              <Button
+                size="large"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+              >
+                السابق
+              </Button>
+            }
+          />
+
+          <Loading loading={loading} text={loadingMsg} />
+        </>
       )}
 
-      {error && (
-        <Alert severity="error" icon={false}>
-          {error}
-        </Alert>
-      )}
-
-      <MobileStepper
-        variant="progress"
-        steps={state.role === "user" ? 3 : 1}
-        position="static"
-        activeStep={activeStep}
-        sx={{ maxWidth: 400, flexGrow: 1 }}
-        nextButton={
-          steps == 1 || activeStep == 2 ? (
-            <Button size="large" disabled={false} onClick={handleSubmit}>
-              التسجيل
-            </Button>
-          ) : (
-            <Button
-              size="large"
-              onClick={handleNext}
-              disabled={activeStep === 2}
-            >
-              التالي
-            </Button>
-          )
-        }
-        backButton={
-          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
-            السابق
-          </Button>
-        }
-      />
-      <Loading loading={loading} text={loadingMsg} />
+      {!registerOpen && <Close startDate={start_date} />}
     </Fragment>
   );
 }
