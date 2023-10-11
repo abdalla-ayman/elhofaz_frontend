@@ -66,7 +66,6 @@ export default function Profile() {
     }
   };
 
-
   let tracks = {
     beginner: "المسار التأهيلي",
     mid_level: "الحافظين الجدد",
