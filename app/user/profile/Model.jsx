@@ -49,15 +49,8 @@ const UserEditModal = ({ user, fetchUser, token }) => {
   const [phone, setPhone] = useState("");
   const [phone_code, setPhone_code] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [birth_date, setBirth_date] = useState("");
-  const [nationality, setNationality] = useState("");
   const [residation, setResidation] = useState("");
   const [identification, setIdentification] = useState("");
-  const [gender, setGender] = useState("");
-  const [track, setTrack] = useState("");
-  const [role, setRole] = useState("");
 
   const [open, setOpen] = useState(false);
 
@@ -88,6 +81,31 @@ const UserEditModal = ({ user, fetchUser, token }) => {
     setOpen(false);
   };
 
+  const formControl = () => {
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!/^[a-zA-Z0-9_]*$/.test(username)) {
+      setError(
+        "يجب أن يتكون إسم المستخدام من الأحرف والأرقام الانجليزية بالإضافة ل _ فقط"
+      );
+      setLoading(false);
+      return false;
+    }
+
+    if (!email.match(mailFormat)) {
+      setError("صيغة البريد الالكتروني غير صحيحة");
+      setLoading(false);
+      return false;
+    }
+
+    if (!/^[a-zA-Z0-9_]*$/.test(identification)) {
+      setLoading(false);
+      setError("يجب أن لا تحتوي الهوية على الأحرف العربية ");
+      return false;
+    }
+
+    return true;
+  };
   //handle form submission
   const handleSubmit = async (e) => {
     try {
@@ -95,12 +113,8 @@ const UserEditModal = ({ user, fetchUser, token }) => {
       setError("");
       setSuccess("");
       setLoading(true);
+      if (!formControl()) return;
 
-      if (/[\u0660-\u0669]/.test(identification)) {
-        setLoading(false);
-        setError("يجب ان لا تحتوي الهوية على احرف عربية");
-        return;
-      }
       //prepare data
       let data = {
         username,
@@ -200,7 +214,15 @@ const UserEditModal = ({ user, fetchUser, token }) => {
                   />
                   <TextField
                     id="outlined-basic"
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                      if (
+                        !/^[0-9]*$/.test(e.target.value) &&
+                        e.target.value.length > 10
+                      ) {
+                        e.preventDefault();
+                        return;
+                      } else setPhone(e.target.value);
+                    }}
                     label="رقم الهاتف"
                     value={phone}
                     variant="outlined"
@@ -283,8 +305,13 @@ const UserEditModal = ({ user, fetchUser, token }) => {
             </Container>
           </form>
           <Loading loading={loading} text={"الرجاء الإنتظار قليلا"} />
-
-          {error && <Alert severity="error" message={error} />}
+          {error && (
+            <Alert
+              severity="error"
+              close={() => setError("")}
+              message={error}
+            />
+          )}
           {success && (
             <Alert close={handleClose} message={success} severity="success" />
           )}

@@ -183,9 +183,6 @@ export default function Profile() {
                     display: "none",
                   }}
                   type="file"
-                  inputProps={{
-                    accept="image/*"
-                  }}
                   
                   onChange={handleFileChange}
                 />

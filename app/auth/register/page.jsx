@@ -109,11 +109,27 @@ export default function Register() {
         }
       }
 
-      // if (/[\u0660-\u0669]/.test(state.username)) {
-      //   setError("يجب الا يحتوي إسم المستخدم على احرف عربية");
-      //   setLoading(false);
-      //   return false;
-      // }
+      if (!/^[ ء-ي]+$/.test(state.name)) {
+        setError("يجب أن يتكون الإسم الرباعي من الاحرف العربية فقط");
+        setLoading(false);
+        return false;
+      }
+
+      if (!/^[a-zA-Z0-9_]*$/.test(state.username)) {
+        setError(
+          "يجب أن يتكون إسم المستخدام من الأحرف والأرقام الانجليزية بالإضافة ل _ فقط"
+        );
+        setLoading(false);
+        return false;
+      }
+
+      if (!/^[a-zA-Z0-9_]*$/.test(state.password)) {
+        setError(
+          "يجب أن تتكون كلمة المرور من الأحرف والأرقام الانجليزية بالإضافة ل _ فقط"
+        );
+        setLoading(false);
+        return false;
+      }
 
       if (state.username.length < 5) {
         setError("يجب أن يتكون إسم المستخدم من ٥ أحرف على الأقل");
