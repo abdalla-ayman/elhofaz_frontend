@@ -26,6 +26,9 @@ export default function Profile() {
   const [user, setUser] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
   const [loadingmsg, setLoadingmsg] = useState(
     "جاري تحميل معلومات الملف الشخصي"
   );
@@ -42,25 +45,27 @@ export default function Profile() {
 
   const handleFileChange = async (event) => {
     try {
+      setSuccess("");
+      setError("");
       setLoadingmsg("الرجاء الإنتظار");
       setLoading(true);
       setSelectedFile(event.target.files[0]);
       let formDate = new FormData();
       formDate.append("image", selectedFile);
-      await updatePhoto(formDate, session.accessToken);
+      let result = await updatePhoto(formDate, session.accessToken);
+      if (result.code == 200) {
+        await fetchUser();
+        setSuccess("تم تعديل الصورة بنجاح");
+      } else {
+        setError(result.message);
+      }
       setLoading(false);
-      console.log(res);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform file upload logic here
-    console.log(selectedFile);
-  };
 
   let tracks = {
     beginner: "المسار التأهيلي",
@@ -192,7 +197,11 @@ export default function Profile() {
                 }}
                 justifyContent="flex-start"
               >
-                <UserEditModal user={user} fetchUser={fetchUser} token={session.accessToken} />
+                <UserEditModal
+                  user={user}
+                  fetchUser={fetchUser}
+                  token={session.accessToken}
+                />
               </Box>
 
               <Box
@@ -287,6 +296,8 @@ export default function Profile() {
           </Grid>
         </Box>
       )}
+      {error && <Alert severity="error" message={error} />}
+      {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={loadingmsg} />
     </Container>
   );
