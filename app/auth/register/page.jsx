@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
-import Alert from "@mui/material/Alert";
+import Alert from "../../components/Alert";
 import { Container } from "@mui/material";
 import Loading from "../../components/Loading";
 // steps
@@ -66,6 +66,7 @@ export default function Register() {
         setRegisterOpen(res.data.reservation_open);
       }
     })();
+    router.prefetch("/");
   }, []);
 
   // stepper state and functions
@@ -151,7 +152,7 @@ export default function Register() {
           password: state.password,
           redirect: false,
         });
-        router.push("/");
+        router.replace("/");
       } else {
         setActiveStep(0);
 
@@ -185,11 +186,13 @@ export default function Register() {
           {activeStep == 2 && state.role == "user" && (
             <Track setState={setState} track={state.track} />
           )}
-          {error && (
+          {/* {error && (
             <Alert severity="error" icon={false}>
               {error}
             </Alert>
-          )}
+          )} */}
+          {error && <Alert severity="error" message={error} />}
+
           <Typography
             align="center"
             sx={{

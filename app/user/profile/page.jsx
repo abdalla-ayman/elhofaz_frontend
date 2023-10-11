@@ -74,7 +74,7 @@ export default function Profile() {
   let roles = {
     teacher: "معلم",
     user: "طالب",
-    admin: "اداري",
+    admin: "Yداري",
   };
   let stages = {
     dabt: "مرحلة الضبط",
@@ -215,7 +215,7 @@ export default function Profile() {
                 <List>
                   <ListItem>
                     <TextField
-                      label="اسم المستخدم"
+                      label="إسم المستخدم"
                       variant="filled"
                       value={user.username}
                       InputProps={{ readOnly: true }}
@@ -224,9 +224,18 @@ export default function Profile() {
                   </ListItem>
                   <ListItem>
                     <TextField
-                      label="البريد الالكتروني"
+                      label="البريد الإلكتروني"
                       variant="filled"
                       value={user.email}
+                      InputProps={{ readOnly: true }}
+                      fullWidth
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <TextField
+                      label="رقم الهاتف"
+                      variant="filled"
+                      value={`${user.phone_code}${user.phone} `}
                       InputProps={{ readOnly: true }}
                       fullWidth
                     />
@@ -242,7 +251,7 @@ export default function Profile() {
                   </ListItem>
                   <ListItem>
                     <TextField
-                      label="مكان الاقامة"
+                      label="مكان الإقامة"
                       variant="filled"
                       value={user.residation}
                       InputProps={{ readOnly: true }}

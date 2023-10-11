@@ -230,6 +230,7 @@ export default function Information({
       <BasicDatePicker
         label={"تاريخ الميلاد"}
         date={state.birth_date}
+    
         
         setState={(val) => setState((prev) => ({ ...prev, birth_date: val }))}
       />

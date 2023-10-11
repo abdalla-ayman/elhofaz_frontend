@@ -6,7 +6,6 @@ import Link from "next/link";
 //components
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
 import { Divider, Typography } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -15,7 +14,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
 
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
@@ -23,6 +21,7 @@ import Box from "@mui/material/Box";
 
 // own compoents
 import Loading from "@/app/components/Loading";
+import Alert from "@/app/components/Alert";
 
 //animation library test
 import "animate.css";
@@ -31,6 +30,7 @@ export default function Login() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [error, setError] = useState("");
+  let [success, setSuccess] = useState("");
   let [loading, setLoading] = useState(false);
   let [showPassword, setShowPassword] = useState(false);
   let [rememberMe, setRememberMe] = useState(true);
@@ -42,7 +42,7 @@ export default function Login() {
   }, [session, router]);
 
   useEffect(() => {
-    setError(false);
+    setError("");
   }, [username, password]);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ export default function Login() {
       document.getElementById("outlined-adornment-password").focus();
       setUsername(localStorage.getItem("username"));
     }
+    router.prefetch("/");
   }, []);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -57,6 +58,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setError("");
       setLoading(true);
       if (rememberMe) {
         localStorage.setItem("username", username);
@@ -70,7 +72,9 @@ export default function Login() {
 
       if (error) {
         setError(error);
-      } else router.push("/");
+      } else {
+        router.replace("/");
+      }
 
       setLoading(false);
     } catch (error) {
@@ -165,11 +169,9 @@ export default function Login() {
           </Link>
         </Typography>
         <div>
-          {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )}
+          {error && <Alert severity="error" message={error} />}
+          {success && <Alert severity="success" message={success} />}
+
           <Button variant="contained" type="submit" sx={{ m: 1 }}>
             تسجيل الدخول
           </Button>
