@@ -1,5 +1,15 @@
 "use client";
-import { Box, Container, Typography, Grid, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 
 import HomeCard from "@/app/components/card";
 //icons
@@ -58,55 +68,101 @@ export default function Home() {
           marginBottom: "100px",
         }}>
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{ textAlign: "center", marginBottom: "30px" }}>
           مراحل البرنامج
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item md={3} sm={4} xs={12}>
+
+        <Grid className="grid" container spacing={3}>
+          <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة الضبط"}
-              text={"يتم فيها حفظ وضبط المصحف لاول مرة"}
+              text={"و هي اساس الحفظ و الاتقان"}
               Icon={Setting}
             />
           </Grid>
-          <Grid item md={3} sm={4} xs={12}>
+          <Grid item md={3} sm={4} xs={6}>
             <HomeCard
-              title={"مرحلة التعهد"}
-              text={"مرحلة تعهد الكتاب الكريم بعد اتمام الحفظ . بالمراجعة"}
+              title={"مرحلة التعاهد"}
+              text={"يختم الطالب فيها القران كل اسبوع"}
               Icon={CheckCircleIcon}
             />
           </Grid>
-          <Grid item md={3} sm={4} xs={12}>
+          <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة الاسناد "}
-              text={"مرحلة التعرف على الاسنادات المختلفة للمصحف الشريف"}
+              text={"للقراءة بسند متصل الى النبي صلى الله عليه و سلم"}
               Icon={InfoIcon}
             />
           </Grid>
-          <Grid item md={3} sm={4} xs={12}>
+          <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة القراءات "}
-              text={"مرحلة تعلم القراءات المختلفة للمصحف الشريف"}
+              text={"لمن برغب بمواصلة جمع القراءات السبع"}
               Icon={Book}
             />
           </Grid>
         </Grid>
       </Container>
 
-      {/* 
-      <Box
+      {/* <Box
         sx={{
           marginTop: "120px",
           height: "470px",
           background:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%), url(/bg.jpg)",
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%), url(/bg2.jpeg)",
           backgroundSize: "cover",
           backgroundAttachment: "fixed",
           backgroundPosition: "center -140px",
           position: "relative",
           marginBottom: "150px",
-        }}></Box> */}
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <List>
+          <ListItem
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              margin: "10px",
+            }}>
+            <ListItemIcon>
+              <CheckCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Item 1" />
+          </ListItem>
+          <ListItem
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              margin: "10px",
+            }}>
+            <ListItemIcon>
+              <CheckCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Item 2" />
+          </ListItem>
+          <ListItem
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              margin: "10px",
+            }}>
+            <ListItemIcon>
+              <CheckCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Item 3" />
+          </ListItem>
+          <ListItem
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              margin: "10px",
+            }}>
+            <ListItemIcon>
+              <CheckCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Item 4" />
+          </ListItem>
+        </List>
+      </Box> */}
     </div>
   );
 }
