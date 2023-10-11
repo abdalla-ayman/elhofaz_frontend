@@ -46,7 +46,7 @@ export default function Register() {
   let [loadingMsg, setLoadingMsg] = useState("جاري التسجيل");
 
   // registrtsion close things
-  let [registerOpen, setRegisterOpen] = useState(false);
+  let [registerOpen, setRegisterOpen] = useState(true);
   let [start_date, setStartDate] = useState("");
   let [end_date, setEndDate] = useState("");
 
@@ -193,7 +193,7 @@ export default function Register() {
           <Typography
             align="center"
             sx={{
-              my: 1
+              my: 1,
             }}
             variant="subtitle2"
           >
