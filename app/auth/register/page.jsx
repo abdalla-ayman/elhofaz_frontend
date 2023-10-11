@@ -109,6 +109,12 @@ export default function Register() {
         }
       }
 
+      // if (/[\u0660-\u0669]/.test(state.username)) {
+      //   setError("يجب الا يحتوي إسم المستخدم على احرف عربية");
+      //   setLoading(false);
+      //   return false;
+      // }
+
       if (state.username.length < 5) {
         setError("يجب أن يتكون إسم المستخدم من ٥ أحرف على الأقل");
         setLoading(false);

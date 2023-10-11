@@ -95,6 +95,12 @@ const UserEditModal = ({ user, fetchUser, token }) => {
       setError("");
       setSuccess("");
       setLoading(true);
+
+      if (/[\u0660-\u0669]/.test(identification)) {
+        setLoading(false);
+        setError("يجب ان لا تحتوي الهوية على احرف عربية");
+        return;
+      }
       //prepare data
       let data = {
         username,

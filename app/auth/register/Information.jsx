@@ -52,6 +52,9 @@ export default function Information({
       e.preventDefault();
       return;
     }
+
+    
+
     setState((prevState) => {
       return { ...prevState, [input_name]: value.trim() };
     });
@@ -230,8 +233,6 @@ export default function Information({
       <BasicDatePicker
         label={"تاريخ الميلاد"}
         date={state.birth_date}
-    
-        
         setState={(val) => setState((prev) => ({ ...prev, birth_date: val }))}
       />
 
