@@ -9,14 +9,15 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { confirmCode } from "@/lib/auth";
 import Loading from "@/app/components/Loading";
+import ResetPasswordEmail from "../new_password/page";
 
 export default function GetCodeEmail() {
   let [code, setCode] = useState("");
   let [error, setError] = useState("");
   let [success, setSuccess] = useState("");
+  let [added, setAdded] = useState(false);
   let [loading, setLoading] = useState(false);
   let { data: session } = useSession();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
 
@@ -37,7 +38,7 @@ export default function GetCodeEmail() {
         setLoading(false);
         setError("");
         setSuccess("تم تأكيد الكود بنجاح");
-        router.push(`/auth/reset_password/new_password?email=${email}`);
+        setAdded(true);
       } else {
         setLoading(false);
         setError(res.message);
@@ -50,37 +51,41 @@ export default function GetCodeEmail() {
 
   return (
     <>
-      <form
-        className="w-80 m-auto flex items-center flex-col"
-        action={"#"}
-        onSubmit={handleSubmit}
-      >
-        <h2 className="text-2xl mb-4 text-center">أدخل الكود</h2>
-        <TextField
-          id="outlined-basic"
-          onChange={(e) => setCode(e.target.value)}
-          label="ادخل الكود"
-          variant="outlined"
-          type="text"
-          className="my-5"
-          sx={{ my: 1 }}
-        />
-        {error && (
-          <Alert severity="error" icon={false}>
-            {error}
-          </Alert>
-        )}
-        {success && (
-          <Alert severity="success" icon={false}>
-            {success}
-          </Alert>
-        )}
-
-        <Button variant="contained" type="submit" sx={{ my: 1 }}>
-          تأكيد الكود
-        </Button>
-        </form>
-      <Loading loading={loading} text={"جاري التأكيد"} />
+      {added === false ? (
+        <>
+          <form
+            className="w-80 m-auto flex items-center flex-col"
+            action={"#"}
+            onSubmit={handleSubmit}>
+            <h2 className="text-2xl mb-4 text-center">أدخل الكود</h2>
+            <TextField
+              id="outlined-basic"
+              onChange={(e) => setCode(e.target.value)}
+              label="ادخل الكود"
+              variant="outlined"
+              type="text"
+              className="my-5"
+              sx={{ my: 1 }}
+            />{" "}
+            {error && (
+              <Alert severity="error" icon={false}>
+                {error}
+              </Alert>
+            )}
+            {success && (
+              <Alert severity="success" icon={false}>
+                {success}
+              </Alert>
+            )}
+            <Button variant="contained" type="submit" sx={{ my: 1 }}>
+              تأكيد الكود
+            </Button>
+          </form>
+          <Loading loading={loading} text={"جاري التأكيد"} />
+        </>
+      ) : (
+        <ResetPasswordEmail />
+      )}
     </>
   );
 }
