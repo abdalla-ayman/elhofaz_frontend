@@ -53,8 +53,6 @@ export default function Information({
       return;
     }
 
-    
-
     setState((prevState) => {
       return { ...prevState, [input_name]: value.trim() };
     });

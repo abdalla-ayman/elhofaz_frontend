@@ -43,6 +43,9 @@ export default function Profile() {
     if (session) fetchUser();
   }, [session]);
 
+
+
+  
   const handleFileChange = async (event) => {
     try {
       setSuccess("");
@@ -183,7 +186,6 @@ export default function Profile() {
                     display: "none",
                   }}
                   type="file"
-                  
                   onChange={handleFileChange}
                 />
               </Box>
