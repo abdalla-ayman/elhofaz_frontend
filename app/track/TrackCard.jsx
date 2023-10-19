@@ -17,7 +17,9 @@ export default function TrackCard({ title, p1, p2, p3, bg }) {
         position: "relative",
         ":hover": {
           "#buttons": {
-            display: "initial",
+            display: "flex",
+            justifyContent:"center",
+            alignItems:"center",
           },
         },
       }}
@@ -56,6 +58,8 @@ export default function TrackCard({ title, p1, p2, p3, bg }) {
           backgroundColor: bg,
           zIndex: 10,
           display: "none",
+         
+
         }}
       >
         <Button
