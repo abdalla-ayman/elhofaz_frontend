@@ -9,21 +9,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MobileStepper from "@mui/material/MobileStepper";
 import Alert from "../../components/Alert";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Loading from "../../components/Loading";
 // steps
 import Information from "./Information";
-import Stage from "./Stage";
-import Track from "./Track";
 import Close from "./Close";
-
-const steps = ["اختيار المسار", "المرحلة", "المعلومات الاساسية"];
-
-let track_options = [
-  { label: "التأهيلي", value: "المسار التأهيلي" },
-  { label: "الحافظين الجدد", value: "الحافظين" },
-  { label: "الخاتمين", value: "الخاتمين" },
-];
 
 export default function Register() {
   let [state, setState] = useState({
@@ -38,7 +28,6 @@ export default function Register() {
     phone_code: "",
     phone: "",
     role: "user",
-    track: "mid_level",
   });
   let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");
@@ -74,39 +63,17 @@ export default function Register() {
   let [steps, setSteps] = useState(3);
 
   useEffect(() => {
-    if (state.role == "user") setSteps(3);
-    else {
-      setSteps(1);
-      setActiveStep(0);
-    }
-  }, [state.role]);
-
-  useEffect(() => {
     setError("");
   }, [state]);
 
-  const handleNext = () => {
-    if (!formControl()) return;
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   const formControl = () => {
     let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (activeStep == 0) {
-      for (const input_field in state) {
-        if (state[input_field] == "") {
-          setError("يجب ملء كل المعلومات اﻷساسية");
-          setLoading(false);
-          return false;
-        }
+
+    for (const input_field in state) {
+      if (state[input_field] == "") {
+        setError("يجب ملء كل المعلومات اﻷساسية");
+        setLoading(false);
+        return false;
       }
 
       if (!/^[ ء-ي]+$/.test(state.name)) {
@@ -194,20 +161,15 @@ export default function Register() {
         التسجيل في مقارئ السفرة
       </Typography>
 
-      {registerOpen && (
+      {!registerOpen && (
         <>
-          {activeStep == 0 && (
-            <Information
-              state={state}
-              setState={setState}
-              acceptedConditions={acceptedConditions}
-              setAcceptedConditions={setAcceptedConditions}
-            />
-          )}
-          {activeStep == 1 && state.role == "user" && <Stage />}
-          {activeStep == 2 && state.role == "user" && (
-            <Track setState={setState} track={state.track} />
-          )}
+          <Information
+            state={state}
+            setState={setState}
+            acceptedConditions={acceptedConditions}
+            setAcceptedConditions={setAcceptedConditions}
+          />
+
           {/* {error && (
             <Alert severity="error" icon={false}>
               {error}
@@ -215,6 +177,27 @@ export default function Register() {
           )} */}
           {error && <Alert severity="error" message={error} />}
 
+         
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{
+                mx: "auto",
+              }}
+              size="medium"
+              variant="outlined"
+              disabled={false}
+              onClick={handleSubmit}
+            >
+              التسجيل
+            </Button>
+          </Box>
           <Typography
             align="center"
             sx={{
@@ -224,43 +207,12 @@ export default function Register() {
           >
             سيتم اغلاق التسجل في {end_date}
           </Typography>
-          <MobileStepper
-            variant="progress"
-            steps={state.role === "user" ? 3 : 1}
-            position="static"
-            activeStep={activeStep}
-            sx={{ maxWidth: 400, flexGrow: 1 }}
-            nextButton={
-              steps == 1 || activeStep == 2 ? (
-                <Button size="large" disabled={false} onClick={handleSubmit}>
-                  التسجيل
-                </Button>
-              ) : (
-                <Button
-                  size="large"
-                  onClick={handleNext}
-                  disabled={activeStep === 2}
-                >
-                  التالي
-                </Button>
-              )
-            }
-            backButton={
-              <Button
-                size="large"
-                onClick={handleBack}
-                disabled={activeStep === 0}
-              >
-                السابق
-              </Button>
-            }
-          />
 
           <Loading loading={loading} text={loadingMsg} />
         </>
       )}
 
-      {!registerOpen && <Close startDate={start_date} />}
+      {registerOpen && <Close startDate={start_date} />}
     </Fragment>
   );
 }

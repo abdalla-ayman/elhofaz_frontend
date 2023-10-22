@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { getProfileData, updatePhoto } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
@@ -8,7 +9,7 @@ import UserEditModal from "@/app/user/profile/Model";
 //componentes
 
 import Box from "@mui/material/Box";
-import { List, ListItem } from "@mui/material";
+import { Button, List, ListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -43,9 +44,6 @@ export default function Profile() {
     if (session) fetchUser();
   }, [session]);
 
-
-
-  
   const handleFileChange = async (event) => {
     try {
       setSuccess("");
@@ -106,6 +104,33 @@ export default function Profile() {
             mt: 4,
           }}
         >
+          {!user.track && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                my: 2,
+                border: "1px solid red",
+                p: 2,
+                borderRadius: 3,
+              }}
+            >
+              <Typography> يجب </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                sx={{
+                  mx: 1,
+                }}
+              >
+                <Link href={"/user/track"}> إختيار المسار </Link>
+              </Button>
+              <Typography> لإكمال التسجيل </Typography>
+            </Box>
+          )}
+
           <Grid container>
             <Grid item md={3} xs={12}>
               <Box

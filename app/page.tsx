@@ -10,7 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-
+import Link from "next/link";
 import HomeCard from "@/app/components/card";
 //icons
 import Book from "@mui/icons-material/Book";
@@ -29,7 +29,8 @@ export default function Home() {
           height: "100vh",
           backgroundSize: "cover",
           backgroundPosition: "center -140px",
-        }}>
+        }}
+      >
         <Container>
           <Typography
             variant="h4"
@@ -38,7 +39,8 @@ export default function Home() {
               fontWeight: "bold",
               paddingTop: "40vh",
               textAlign: "center",
-            }}>
+            }}
+          >
             مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
@@ -50,11 +52,13 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               marginTop: "2rem",
-            }}>
+            }}
+          >
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginRight: "1rem" }}>
+              sx={{ marginRight: "1rem" }}
+            >
               ابدأ الان
             </Button>
           </Box>
@@ -66,10 +70,12 @@ export default function Home() {
         sx={{
           marginTop: "100px",
           marginBottom: "100px",
-        }}>
+        }}
+      >
         <Typography
           variant="h4"
-          sx={{ textAlign: "center", marginBottom: "30px" }}>
+          sx={{ textAlign: "center", marginBottom: "30px" }}
+        >
           مراحل البرنامج
         </Typography>
 
