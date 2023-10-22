@@ -177,8 +177,6 @@ export default function Register() {
           )} */}
           {error && <Alert severity="error" message={error} />}
 
-         
-
           <Box
             sx={{
               display: "flex",

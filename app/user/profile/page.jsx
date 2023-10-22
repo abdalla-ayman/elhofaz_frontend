@@ -52,7 +52,7 @@ export default function Profile() {
       setLoading(true);
       setSelectedFile(event.target.files[0]);
       let formDate = new FormData();
-      formDate.append("image", selectedFile);
+      formDate.append("image", event.target.files[0]);
       let result = await updatePhoto(formDate, session.accessToken);
       if (result.code == 200) {
         await fetchUser();
