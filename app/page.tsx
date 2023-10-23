@@ -59,7 +59,7 @@ export default function Home() {
               color="primary"
               sx={{ marginRight: "1rem" }}
             >
-              ابدأ الان
+              إبدأ الان
             </Button>
           </Box>
         </Container>
@@ -83,20 +83,20 @@ export default function Home() {
           <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة الضبط"}
-              text={"و هي اساس الحفظ و الاتقان"}
+              text={"و هي أساس الحفظ و الاتقان"}
               Icon={Setting}
             />
           </Grid>
           <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة التعاهد"}
-              text={"يختم الطالب فيها القران كل اسبوع"}
+              text={"يختم الطالب فيها القرآن كل أسبوع"}
               Icon={CheckCircleIcon}
             />
           </Grid>
           <Grid item md={3} sm={4} xs={6}>
             <HomeCard
-              title={"مرحلة الاسناد "}
+              title={"مرحلة الإسناد "}
               text={"للقراءة بسند متصل الى النبي صلى الله عليه و سلم"}
               Icon={InfoIcon}
             />
@@ -104,7 +104,7 @@ export default function Home() {
           <Grid item md={3} sm={4} xs={6}>
             <HomeCard
               title={"مرحلة القراءات "}
-              text={"لمن برغب بمواصلة جمع القراءات السبع"}
+              text={"لمن يرغب بمواصلة جمع القراءات السبع"}
               Icon={Book}
             />
           </Grid>
