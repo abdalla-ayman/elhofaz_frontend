@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { getProfileData, updatePhoto } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 //componentes
 
@@ -175,6 +176,24 @@ export default function Profile() {
                   >
                     <CloudUploadTwoToneIcon />
                   </IconButton>
+                  <IconButton
+                    aria-label="delete"
+                    color="error"
+                    onClick={() => {
+                      document.getElementById("image-upload").click();
+                    }}
+                    sx={{
+                      position: "absolute",
+                      top: "0%",
+                      left: "0%",
+                      width: 20,
+                      height: 20,
+                      // transform: "translate(-50%,-50%)",
+                      // color: "transparent",
+                    }}
+                  >
+                    <CancelOutlinedIcon />
+                  </IconButton>
                 </Box>
                 <Typography
                   sx={{
@@ -211,6 +230,7 @@ export default function Profile() {
                     display: "none",
                   }}
                   type="file"
+                  f
                   onChange={handleFileChange}
                 />
               </Box>
