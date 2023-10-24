@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import { getProfileData, updatePhoto } from "@/lib/profile";
+import { getProfileData, updatePhoto, deletePhoto } from "@/lib/profile";
 import UserEditModal from "@/app/user/profile/Model";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
@@ -68,10 +68,32 @@ export default function Profile() {
     }
   };
 
+  const handleFileDelete = async (event) => {
+    try {
+      setSuccess("");
+      setError("");
+      setLoadingmsg("الرجاء الإنتظار");
+      setLoading(true);
+      let formDate = new FormData();
+      formDate.append("image", "");
+      let result = await deletePhoto(formDate, session.accessToken);
+      if (result.code == 200) {
+        await fetchUser();
+        setSuccess("تم حذف الصورة بنجاح");
+      } else {
+        setError(result.message);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   let tracks = {
     beginner: "المسار التأهيلي",
     mid_level: "الحافظين الجدد",
-    hight_level: "الخاتمين ",
+    high_level: "الخاتمين ",
   };
   let roles = {
     teacher: "معلم",
@@ -179,9 +201,7 @@ export default function Profile() {
                   <IconButton
                     aria-label="delete"
                     color="error"
-                    onClick={() => {
-                      document.getElementById("image-upload").click();
-                    }}
+                    onClick={handleFileDelete}
                     sx={{
                       position: "absolute",
                       top: "0%",

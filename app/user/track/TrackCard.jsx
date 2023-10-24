@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 
-export default function TrackCard({ title, p1, p2, p3, bg }) {
+export default function TrackCard({ title, p1, p2, p3, bg, changeTrack }) {
   return (
     <Card
       sx={{
@@ -18,8 +18,8 @@ export default function TrackCard({ title, p1, p2, p3, bg }) {
         ":hover": {
           "#buttons": {
             display: "flex",
-            justifyContent:"center",
-            alignItems:"center",
+            justifyContent: "center",
+            alignItems: "center",
           },
         },
       }}
@@ -58,8 +58,6 @@ export default function TrackCard({ title, p1, p2, p3, bg }) {
           backgroundColor: bg,
           zIndex: 10,
           display: "none",
-         
-
         }}
       >
         <Button
@@ -69,6 +67,7 @@ export default function TrackCard({ title, p1, p2, p3, bg }) {
             mx: "auto",
           }}
           size="large"
+          onClick={changeTrack}
         >
           إختيار المسار
         </Button>
