@@ -1,18 +1,48 @@
-import Home from "@mui/icons-material/HomeMax";
 import React from "react";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
 export default function HomeCard({ title, text, Icon }) {
   return (
-    <div className="#">
-      <div className="card">
-        <div className="icon">
-          <div className="svg">
-            <Icon />
-          </div>
-        </div>
-        <p className="title">{title}</p>
-        <p className="text">{text}</p>
-      </div>
-    </div>
+    <Card
+      variant="outlined"
+      sx={{
+        height: 200,
+        width: 200,
+        p: 2,
+        m: 2,
+        backgroundColor:"#DFE2E2"
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Icon
+          sx={{
+            mb: 1,
+          }}
+        />
+        <Typography align="center" variant="h6" className="title">
+          {title}
+        </Typography>
+      </Box>
+      <Typography
+        sx={{
+          my: 2,
+        }}
+        align="center"
+        variant="body1"
+        className="text"
+      >
+        {text}
+      </Typography>
+    </Card>
   );
 }

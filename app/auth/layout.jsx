@@ -33,7 +33,7 @@ export default function layout({ children }) {
           {children}
         </Paper>
       </Container>
-      <BackgroundImage> </BackgroundImage>
+      <BackgroundImage alt={"login-bg"} src={"/bg.jpg"} position={"fixed"} />
     </Fragment>
   );
 }

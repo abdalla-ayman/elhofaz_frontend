@@ -2,11 +2,11 @@ import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 
-function BackgroundImage() {
+function BackgroundImage({src, alt, position}) {
   return (
     <Box
       sx={{
-        position: "fixed",
+        position: position,
         width: "100vw",
         height: "100vh",
         top: 0,
@@ -15,8 +15,8 @@ function BackgroundImage() {
       }}
     >
       <Image
-        src={"/bg.jpg"}
-        alt="mosuqe"
+        src={src}
+        alt={alt}
         fill={true}
         // placeholder="blur"
         style={{

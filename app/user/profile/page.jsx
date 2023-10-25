@@ -88,7 +88,7 @@ export default function Profile() {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      setShowDeletePhotoModel(false)
+      setShowDeletePhotoModel(false);
     }
   };
 

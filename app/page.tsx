@@ -17,20 +17,22 @@ import Book from "@mui/icons-material/Book";
 import Setting from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Attribution";
 import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
+import BackgroundImage from "@/app/components/BackgroundImage";
 
 export default function Home() {
   return (
     <div className="">
       <Box
         sx={{
-          backgroundImage:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
-          backgroundAttachment: "fixed",
-          height: "100vh",
-          backgroundSize: "cover",
-          backgroundPosition: "center -140px",
+        //   backgroundImage:
+        //     "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
+        //   backgroundAttachment: "fixed",
+          height: "100vh"
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center -140px",
         }}
       >
+        <BackgroundImage alt={"bg"} src={"/bg1.jpeg"} position={"absolute"} />
         <Container>
           <Typography
             variant="h4"
@@ -45,7 +47,7 @@ export default function Home() {
           </Typography>
 
           <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
-            لتعليم القران الكريم و علومه
+            لتعليم القرآن الكريم و علومه
           </Typography>
           <Box
             sx={{
@@ -59,7 +61,7 @@ export default function Home() {
               color="primary"
               sx={{ marginRight: "1rem" }}
             >
-              إبدأ الان
+              إبدأ الأن
             </Button>
           </Box>
         </Container>
@@ -68,8 +70,9 @@ export default function Home() {
 
       <Container
         sx={{
-          marginTop: "100px",
-          marginBottom: "100px",
+          paddingBottom: "100px",
+          paddingTop: "100px",
+          backgroundColor: "#EFF1F1",
         }}
       >
         <Typography
@@ -79,36 +82,35 @@ export default function Home() {
           مراحل البرنامج
         </Typography>
 
-        <Grid className="grid" container spacing={3}>
-          <Grid item md={3} sm={4} xs={6}>
-            <HomeCard
-              title={"مرحلة الضبط"}
-              text={"و هي أساس الحفظ و الاتقان"}
-              Icon={Setting}
-            />
-          </Grid>
-          <Grid item md={3} sm={4} xs={6}>
-            <HomeCard
-              title={"مرحلة التعاهد"}
-              text={"يختم الطالب فيها القرآن كل أسبوع"}
-              Icon={CheckCircleIcon}
-            />
-          </Grid>
-          <Grid item md={3} sm={4} xs={6}>
-            <HomeCard
-              title={"مرحلة الإسناد "}
-              text={"للقراءة بسند متصل الى النبي صلى الله عليه و سلم"}
-              Icon={InfoIcon}
-            />
-          </Grid>
-          <Grid item md={3} sm={4} xs={6}>
-            <HomeCard
-              title={"مرحلة القراءات "}
-              text={"لمن يرغب بمواصلة جمع القراءات السبع"}
-              Icon={Book}
-            />
-          </Grid>
-        </Grid>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <HomeCard
+            title={"مرحلة الضبط"}
+            text={"و هي أساس الحفظ و الإتقان"}
+            Icon={Setting}
+          />
+          <HomeCard
+            title={"مرحلة التعاهد"}
+            text={"يختم الطالب فيها القرآن كل أسبوع"}
+            Icon={CheckCircleIcon}
+          />
+          <HomeCard
+            title={"مرحلة الإسناد "}
+            text={"للقراءة بسند متصل إلى النبي صلى الله عليه و سلم"}
+            Icon={InfoIcon}
+          />
+          <HomeCard
+            title={"مرحلة القراءات "}
+            text={"لمن يرغب بمواصلة جمع القراءات السبع"}
+            Icon={Book}
+          />
+        </Box>
       </Container>
 
       {/* <Box
