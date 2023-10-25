@@ -224,6 +224,7 @@ export default function Profile() {
                     mt: 2,
                   }}
                   variant="h6"
+                  align="center"
                 >
                   {user?.name}
                 </Typography>
