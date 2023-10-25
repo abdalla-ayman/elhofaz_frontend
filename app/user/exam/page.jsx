@@ -52,10 +52,7 @@ export default function Track() {
           flexWrap: "wrap",
           justifyContent: "center",
         }}
-      >
-
-
-      </Box>
+      ></Box>
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={"جاري التحميل"} />

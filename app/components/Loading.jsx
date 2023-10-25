@@ -21,6 +21,9 @@ export default function Loading({ loading, text }) {
       keepMounted
       // onClose={handleClose}
       aria-describedby="alert-dialog-slide-description"
+      sx={{
+        zIndex:1000
+      }}
     >
       <DialogContentText
         sx={{

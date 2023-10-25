@@ -30,6 +30,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [showDeletePhotoModel, setShowDeletePhotoModel] = useState(false);
 
   const [loadingmsg, setLoadingmsg] = useState(
     "جاري تحميل معلومات الملف الشخصي"
@@ -87,6 +88,7 @@ export default function Profile() {
     } catch (error) {
       console.log(error);
       setLoading(false);
+      setShowDeletePhotoModel(false)
     }
   };
 
@@ -198,22 +200,24 @@ export default function Profile() {
                   >
                     <CloudUploadTwoToneIcon />
                   </IconButton>
-                  <IconButton
-                    aria-label="delete"
-                    color="error"
-                    onClick={handleFileDelete}
-                    sx={{
-                      position: "absolute",
-                      top: "0%",
-                      left: "0%",
-                      width: 20,
-                      height: 20,
-                      // transform: "translate(-50%,-50%)",
-                      // color: "transparent",
-                    }}
-                  >
-                    <CancelOutlinedIcon />
-                  </IconButton>
+                  {user.image && (
+                    <IconButton
+                      aria-label="delete"
+                      color="error"
+                      onClick={() => setShowDeletePhotoModel(true)}
+                      sx={{
+                        position: "absolute",
+                        top: "0%",
+                        left: "0%",
+                        width: 20,
+                        height: 20,
+                        // transform: "translate(-50%,-50%)",
+                        // color: "transparent",
+                      }}
+                    >
+                      <CancelOutlinedIcon />
+                    </IconButton>
+                  )}
                 </Box>
                 <Typography
                   sx={{
@@ -371,6 +375,16 @@ export default function Profile() {
             </Grid>
           </Grid>
         </Box>
+      )}
+
+      {showDeletePhotoModel && (
+        <Alert
+          severity={"error"}
+          message={"هل تريد حذف صورة الملف الشخصي ؟"}
+          deletePhotoModal={true}
+          deletePhoto={handleFileDelete}
+          close={() => setShowDeletePhotoModel(false)}
+        />
       )}
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}

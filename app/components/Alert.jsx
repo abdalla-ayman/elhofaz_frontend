@@ -7,17 +7,28 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import Alert from "@mui/material/Alert";
+import { Box } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({ severity, message, close }) {
+export default function AlertDialogSlide({
+  severity,
+  message,
+  close,
+  deletePhotoModal,
+  deletePhoto,
+}) {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
     if (close) close();
     setOpen(false);
+  };
+  const handleDelete = async () => {
+    setOpen(false);
+    await deletePhoto();
   };
 
   return (
@@ -40,15 +51,41 @@ export default function AlertDialogSlide({ severity, message, close }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="contained"
-            sx={{
-              mx: "auto",
-            }}
-            onClick={handleClose}
-          >
-            حسنا
-          </Button>
+          {!deletePhotoModal && (
+            <Button
+              variant="contained"
+              sx={{
+                mx: "auto",
+              }}
+              onClick={handleClose}
+            >
+              حسنا
+            </Button>
+          )}
+          {deletePhotoModal && (
+            <Box
+              sx={{
+                // display: "felx",
+                // justifyContent: "center",
+                mx:"auto"
+              }}
+            >
+              <Button
+                variant="contained"
+                color="error"
+                sx={{
+                  mx: 1,
+                  // display:"block"
+                }}
+                onClick={handleDelete}
+              >
+                حذف الصورة
+              </Button>
+              <Button variant="contained" sx={{}} onClick={handleClose}>
+                إالغاء
+              </Button>
+            </Box>
+          )}
         </DialogActions>
       </Dialog>
     </div>
