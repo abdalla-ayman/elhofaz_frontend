@@ -58,14 +58,21 @@ export default function Track() {
         }}
       >
         {data.map((item) => (
-          <div key={item.id}>
+          <Box
+            sx={{
+              my: 4,
+              py: 3,
+              borderTop: ".5px solid #333",
+            }}
+            key={item.id}
+          >
             <Typography> قم بتسجيل قرائتك للمقطع أدناه</Typography>
             <div
               dangerouslySetInnerHTML={{
                 __html: item.question,
               }}
             />
-          </div>
+          </Box>
         ))}
       </Box>
       {error && <Alert severity="error" message={error} />}
