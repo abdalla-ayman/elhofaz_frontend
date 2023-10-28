@@ -16,6 +16,9 @@ import TrackCard from "./TrackCard";
 export default function Track() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  let [track, setTrack] = useState("");
+
   const [error, setError] = useState("");
   let { data: session } = useSession();
   const router = useRouter();
@@ -27,11 +30,15 @@ export default function Track() {
   //     }
   // }, [session, router]);
 
-  const _changeTrack = async (track) => {
+  const _changeTrack = async () => {
     try {
       setSuccess("");
       setError("");
       setLoading(true);
+      if (track == "mid_level") {
+        router.replace("/user/exam");
+        return;
+      }
       let result = await changeTrack({ track }, session.accessToken);
       if (result.code == 200) {
         setSuccess("تم اختيار المسار بنجاح ");
@@ -44,6 +51,11 @@ export default function Track() {
       console.log(error);
       setLoading(false);
     }
+  };
+
+  const handleTrackChange = (_track) => {
+    setTrack(_track);
+    setShowConfirmationModal(true);
   };
 
   return (
@@ -83,7 +95,7 @@ export default function Track() {
           }
           p3={"     📀 يسمح لهم بمقدار يومي من الحفظ (نصف وجه، وجه، وجهين)"}
           bg={"#C6DDF0"}
-          changeTrack={() => router.replace("/user/exam")}
+          changeTrack={() => handleTrackChange("mid_level")}
         />
         <TrackCard
           title={"المسار التأهيلي"}
@@ -93,7 +105,7 @@ export default function Track() {
           p2={"📀 يتم قبول الطلاب مباشرة في هذا المسار"}
           p3={"📀 تتراوح مدته من ثلاثة إلى أربعة أشهر"}
           bg={"#F7F7F9"}
-          changeTrack={() => _changeTrack("beginner")}
+          changeTrack={() => handleTrackChange("beginner")}
         />
         <TrackCard
           title={"مسار الخاتم"}
@@ -105,9 +117,19 @@ export default function Track() {
             "📀 يسمح لهم بمقدار يومي من الحفظ (وجه، وجهين، ثلاثة أوجه، أربعة أوجه)"
           }
           bg={"#DEDBD2"}
-          changeTrack={() => _changeTrack("high_level")}
+          changeTrack={() => handleTrackChange("high_level")}
         />
       </Box>
+      {showConfirmationModal && (
+        <Alert
+          severity="error"
+          message="هل انت متأكد انك تريد المتابعة ؟ لن يمكنك تغيير المسار بعد اختياره!"
+          confirmationModal={true}
+          confirmationAction={_changeTrack}
+          confirmationButton="إختيار المسار"
+          close={() => setShowConfirmationModal(false)}
+        />
+      )}
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={"جاري التحميل"} />

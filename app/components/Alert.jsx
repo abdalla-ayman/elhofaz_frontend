@@ -17,8 +17,9 @@ export default function AlertDialogSlide({
   severity,
   message,
   close,
-  deletePhotoModal,
-  deletePhoto,
+  confirmationModal,
+  confirmationAction,
+  confirmationButton,
 }) {
   const [open, setOpen] = React.useState(true);
 
@@ -26,9 +27,9 @@ export default function AlertDialogSlide({
     if (close) close();
     setOpen(false);
   };
-  const handleDelete = async () => {
+  const handleConfirm = async () => {
     setOpen(false);
-    await deletePhoto();
+    await confirmationAction();
   };
 
   return (
@@ -51,7 +52,7 @@ export default function AlertDialogSlide({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {!deletePhotoModal && (
+          {!confirmationModal && (
             <Button
               variant="contained"
               sx={{
@@ -62,12 +63,12 @@ export default function AlertDialogSlide({
               حسنا
             </Button>
           )}
-          {deletePhotoModal && (
+          {confirmationModal && (
             <Box
               sx={{
                 // display: "felx",
                 // justifyContent: "center",
-                mx:"auto"
+                mx: "auto",
               }}
             >
               <Button
@@ -77,9 +78,9 @@ export default function AlertDialogSlide({
                   mx: 1,
                   // display:"block"
                 }}
-                onClick={handleDelete}
+                onClick={handleConfirm}
               >
-                حذف الصورة
+                {confirmationButton || "تأكيد"}
               </Button>
               <Button variant="contained" sx={{}} onClick={handleClose}>
                 إالغاء

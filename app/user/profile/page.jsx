@@ -382,8 +382,9 @@ export default function Profile() {
         <Alert
           severity={"error"}
           message={"هل تريد حذف صورة الملف الشخصي ؟"}
-          deletePhotoModal={true}
-          deletePhoto={handleFileDelete}
+          confirmationModal={true}
+          confirmationAction={handleFileDelete}
+          confirmationButton="حذف الصورة"
           close={() => setShowDeletePhotoModel(false)}
         />
       )}

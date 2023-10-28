@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { getExam } from "@/lib/exam";
 
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -10,18 +11,21 @@ import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 
 export default function Track() {
+  let [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   let { data: session } = useSession();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (session)
-  //     if (session.user.track) {
-  //       router.replace("/user/profile");
-  //     }
-  // }, [session, router]);
+  useEffect(() => {
+    if (session)
+      (async function () {
+        let res = await getExam(session.accessToken);
+        setData(res.data);
+        console.log(res.data);
+      })();
+  }, [session, router]);
 
   return (
     <Container
@@ -52,7 +56,18 @@ export default function Track() {
           flexWrap: "wrap",
           justifyContent: "center",
         }}
-      ></Box>
+      >
+        {data.map((item) => (
+          <div key={item.id}>
+            <Typography> قم بتسجيل قرائتك للمقطع أدناه</Typography>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: item.question,
+              }}
+            />
+          </div>
+        ))}
+      </Box>
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={"جاري التحميل"} />

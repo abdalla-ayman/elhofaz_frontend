@@ -2,7 +2,7 @@ import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 
-function BackgroundImage({src, alt, position}) {
+function BackgroundImage({ src, alt, position }) {
   return (
     <Box
       sx={{
