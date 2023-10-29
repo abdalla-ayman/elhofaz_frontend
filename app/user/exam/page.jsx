@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
+import { AudioRecorder } from "react-audio-voice-recorder";
+import { Button } from "@mui/material";
 
 export default function Track() {
   let [data, setData] = useState([]);
@@ -26,6 +28,21 @@ export default function Track() {
         console.log(res.data);
       })();
   }, [session, router]);
+
+  const addAudioElement = (blob, id) => {
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.controls = true;
+    // document.body.appendChild(audio);
+    let newData = data.map((item) => {
+      if (id == item.id) {
+        item.url = url;
+      }
+      return item;
+    });
+    setData(newData);
+  };
 
   return (
     <Container
@@ -60,24 +77,65 @@ export default function Track() {
         {data.map((item) => (
           <Box
             sx={{
-              my: 4,
-              py: 3,
+              my: 2,
+              py: 1,
               borderTop: ".5px solid #333",
             }}
             key={item.id}
           >
-            <Typography> قم بتسجيل قرائتك للمقطع أدناه</Typography>
+            <Typography sx={{ mb: 2 }}>
+              {" "}
+              قم بتسجيل قرائتك للمقطع أدناه:
+            </Typography>
             <div
               dangerouslySetInnerHTML={{
                 __html: item.question,
               }}
             />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: 2,
+              }}
+            >
+              <AudioRecorder
+                onRecordingComplete={(blob) => addAudioElement(blob, item.id)}
+                audioTrackConstraints={{
+                  noiseSuppression: true,
+                  echoCancellation: true,
+                }}
+                downloadOnSavePress={true}
+                downloadFileExtension="webm"
+              />
+              {item.url && (
+                <audio
+                  style={{
+                    marginTop: "10px",
+                  }}
+                  src={item.url}
+                  controls={true}
+                />
+              )}
+            </Box>
           </Box>
         ))}
       </Box>
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={"جاري التحميل"} />
+
+      <Box sx={{}}>
+        <Button
+       
+          size="large"
+          variant="contained"
+        >
+          تسليم الإختبار
+        </Button>
+      </Box>
     </Container>
   );
 }
