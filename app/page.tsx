@@ -18,6 +18,8 @@ import Setting from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Attribution";
 import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
 import BackgroundImage from "@/app/components/BackgroundImage";
+import Sections from '@/app/components/Sections'
+import { StackedLineChart } from "@mui/icons-material";
 
 export default function Home() {
   return (
@@ -66,6 +68,8 @@ export default function Home() {
           </Box>
         </Container>
       </Box>
+
+      <Sections />
       {/* Card Section */}
 
       <Container
@@ -75,13 +79,18 @@ export default function Home() {
           backgroundColor: "#EFF1F1",
         }}
       >
+              <Box display="flex" alignItems="center" justifyContent="center"
+      >
+        <StackedLineChart color="primary" sx={{marginBottom: '30px'}} />
         <Typography
+         
           variant="h4"
-          sx={{ textAlign: "center", marginBottom: "30px" }}
+          sx={{ textAlign: "center", marginBottom: "30px", marginLeft: '1px' }}
         >
+          
           مراحل البرنامج
         </Typography>
-
+        </Box>
         <Box
           sx={{
             display: "flex",

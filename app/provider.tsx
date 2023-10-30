@@ -8,6 +8,7 @@ import { prefixer } from "stylis";
 
 // compinent= navbar
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 //adding rtl direction to mui
 // link https://mui.com/material-ui/guides/right-to-left/
@@ -37,6 +38,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <SessionProvider>
           <Navbar />
           {children}
+          <Footer />
         </SessionProvider>
       </ThemeProvider>
     </CacheProvider>
