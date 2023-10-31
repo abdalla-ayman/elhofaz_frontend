@@ -21,12 +21,15 @@ export default function Footer() {
     textAlign="left"
   >
     <Container>
-      <Container></Container>
+      
       <Box py={2}>
+      <Container>
         <Typography variant="h4">برنامج السفرة</Typography>
         <Typography variant="body6" sx={{fontSize: '17px'}}>
 هو فرع من فروع برنامج مقارئ الحفاظ يهتم بتعليم القرآن الكريم وعلومه ويعتمد على منهج مجرب تدريسه يقوم على آلية معينة للحفظ  
-</Typography>
+      </Typography>
+      </Container>
+      <Container>
         <Typography variant='h6' mt={2}>مواقع التواصل الاجتماعي</Typography>
         <Box sx={{display: 'flex', alignItems: 'center'}}>
           
@@ -44,6 +47,7 @@ export default function Footer() {
           </IconButton>
           
         </Box>
+        </Container>
       </Box>
       {/* <Box py={2}>
         <Typography variant="h6">Quick Links</Typography>
