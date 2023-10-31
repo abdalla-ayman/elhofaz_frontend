@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Paper,
 } from "@mui/material";
 import Link from "next/link";
 import HomeCard from "@/app/components/card";
@@ -18,6 +19,8 @@ import Setting from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Attribution";
 import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
 import BackgroundImage from "@/app/components/BackgroundImage";
+import Sections from '@/app/components/Sections'
+import { StackedLineChart, Timeline } from "@mui/icons-material";
 
 export default function Home() {
   return (
@@ -66,52 +69,70 @@ export default function Home() {
           </Box>
         </Container>
       </Box>
+
+      <Sections />
       {/* Card Section */}
 
+      <Box sx={{ backgroundColor: '#EFF1F1' }}>
       <Container
         sx={{
           paddingBottom: "100px",
-          paddingTop: "100px",
-          backgroundColor: "#EFF1F1",
+          paddingTop: "20px",
+          // backgroundColor: "#EFF1F1",
         }}
       >
+              <Box display="flex" alignItems="center" justifyContent="center" marginBottom= "30px"
+      >
+        <Timeline color="primary" fontSize="large" sx={{}} />
         <Typography
+         
           variant="h4"
-          sx={{ textAlign: "center", marginBottom: "30px" }}
+          sx={{ textAlign: "center",  marginLeft: 1 }}
         >
+          
           مراحل البرنامج
         </Typography>
-
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <HomeCard
-            title={"مرحلة الضبط"}
-            text={"و هي أساس الحفظ و الإتقان"}
-            Icon={Setting}
-          />
-          <HomeCard
-            title={"مرحلة التعاهد"}
-            text={"يختم الطالب فيها القرآن كل أسبوع"}
-            Icon={CheckCircleIcon}
-          />
-          <HomeCard
-            title={"مرحلة الإسناد "}
-            text={"للقراءة بسند متصل إلى النبي صلى الله عليه و سلم"}
-            Icon={InfoIcon}
-          />
-          <HomeCard
-            title={"مرحلة القراءات "}
-            text={"لمن يرغب بمواصلة جمع القراءات السبع"}
-            Icon={Book}
-          />
         </Box>
+        <Paper>
+        <Container sx={{
+                padding: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                borderRight: '1px solid #e0e0e0'
+              }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <HomeCard
+              title={"مرحلة الضبط"}
+              text={"و هي أساس الحفظ و الإتقان"}
+              Icon={Setting}
+            />
+            <HomeCard
+              title={"مرحلة التعاهد"}
+              text={"يختم الطالب فيها القرآن كل أسبوع"}
+              Icon={CheckCircleIcon}
+            />
+            <HomeCard
+              title={"مرحلة الإسناد "}
+              text={"للقراءة بسند متصل إلى النبي صلى الله عليه و سلم"}
+              Icon={InfoIcon}
+            />
+            <HomeCard
+              title={"مرحلة القراءات "}
+              text={"لمن يرغب بمواصلة جمع القراءات السبع"}
+              Icon={Book}
+            />
+          </Box>
+          </Container>
+        </Paper>
       </Container>
+      </Box>
 
       {/* <Box
         sx={{

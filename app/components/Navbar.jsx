@@ -142,6 +142,9 @@ function DrawerAppBar(props) {
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {session && (
               <>
+                <Link href={"/"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>الرئيسية</Button>
+                </Link>
                 <Link href={"/user/profile"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
                 </Link>

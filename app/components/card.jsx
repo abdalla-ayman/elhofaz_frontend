@@ -13,7 +13,11 @@ export default function HomeCard({ title, text, Icon }) {
         width: 200,
         p: 2,
         m: 2,
-        backgroundColor:"#DFE2E2"
+        backgroundColor:"#DFE2E2",
+        cursor: 'pointer',
+        "&:hover": {
+          backgroundColor: '#9a9c9c'
+        }
       }}
     >
       <Box
