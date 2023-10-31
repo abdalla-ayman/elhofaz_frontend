@@ -53,6 +53,7 @@ export default function Profile() {
       setLoadingmsg("الرجاء الإنتظار");
       setLoading(true);
       setSelectedFile(event.target.files[0]);
+      console.log(event.target.files[0]);
       let formDate = new FormData();
       formDate.append("image", event.target.files[0]);
       let result = await updatePhoto(formDate, session.accessToken);
@@ -129,7 +130,7 @@ export default function Profile() {
             mt: 4,
           }}
         >
-          {!user.track && (
+          {!user.track && !user.status && (
             <Box
               sx={{
                 display: "flex",
@@ -153,6 +154,26 @@ export default function Profile() {
                 <Link href={"/user/track"}> إختيار المسار </Link>
               </Button>
               <Typography> لإكمال التسجيل </Typography>
+            </Box>
+          )}
+
+          {!user.track && user.status && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                my: 2,
+                border: "1px solid #A4A4A4",
+                p: 2,
+                borderRadius: 3,
+              }}
+            >
+              <Typography>
+                {" "}
+                يتم مراحعة طلبك من قبل الإدارة . . . , سيتم التواصل معك في أقرب وقت
+              </Typography>
             </Box>
           )}
 

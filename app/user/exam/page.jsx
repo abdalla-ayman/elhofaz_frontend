@@ -43,9 +43,13 @@ export default function Exam() {
     });
 
     let fileDontExist = true;
+
     let newFiles = audioFiles.map((file) => {
       if (id == file.id) {
-        file.file = new File([blob], "id");
+        file.file = new File([blob], id, {
+          lastModified: new Date().getTime(),
+          type: blob.type,
+        });
         fileDontExist = false;
       }
       return file;
@@ -56,7 +60,10 @@ export default function Exam() {
         ...audioFiles,
         {
           id,
-          file: new File([blob], "id"),
+          file: new File([blob], id, {
+            lastModified: new Date().getTime(),
+            type: blob.type,
+          }),
         },
       ]);
     } else {
@@ -80,13 +87,17 @@ export default function Exam() {
 
       let form = new FormData();
       for (let _file of audioFiles) {
-        form.append("records[]", _file);
+        form.append("records[]", _file.file);
       }
 
-      console.log(form)
       let res = await submitExam(form, session.accessToken);
-
-      console.log(res);
+      if (res.code == 200) {
+        setSuccess(
+          "تم تسليم الإختبار بنجاح, سيتم التواصل معك وتحويلك للمسار المناسب فور مراجعة تلاوتك"
+        );
+      } else {
+        setError(res.message);
+      }
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -114,8 +125,7 @@ export default function Exam() {
           my: 4,
         }}
       >
-        يجب على كل من يتقدم للإختبار لمسار الحافظين الجدد القيام بالإختبار
-        التمهيدي
+        يجب على كل من يتقدم لمسار الحافظين الجدد القيام بالإختبار التمهيدي
       </Typography>
       <Box
         sx={{
@@ -124,7 +134,7 @@ export default function Exam() {
           justifyContent: "center",
         }}
       >
-        {data && (
+        {data.length !== 0 && (
           <>
             {data.map((item) => (
               <Box
@@ -194,7 +204,13 @@ export default function Exam() {
         )}
       </Box>
       {error && <Alert severity="error" message={error} />}
-      {success && <Alert message={success} severity="success" />}
+      {success && (
+        <Alert
+          message={success}
+          close={() => router.replace("/user/profile")}
+          severity="success"
+        />
+      )}
       <Loading loading={loading} text={"جاري التحميل"} />
     </Container>
   );
