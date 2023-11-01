@@ -39,7 +39,7 @@ export default function Home() {
         <Container>
           <Typography
             variant="h4"
-            fontSize={32}
+            fontSize={26}
             sx={{
               color: "white",
               fontWeight: "bold",
@@ -50,7 +50,7 @@ export default function Home() {
             مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
-          <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
+          <Typography variant="h6"  sx={{ color: "white", textAlign: "center" }}>
             لتعليم القرآن الكريم و علومه
           </Typography>
           <Box
