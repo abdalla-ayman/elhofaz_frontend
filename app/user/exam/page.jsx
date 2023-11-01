@@ -153,8 +153,10 @@ export default function Exam() {
                     justifyContent: "center",
                     alignItems: "center",
                     textAlign: "center",
-                    borderRadius: "20px",
+                    borderRadius: "10px",
                     fontFamily: "serif",
+                    lineHeight:'27px',
+                    letterSpacing:'1px'
                   }}
                   dangerouslySetInnerHTML={{
                     __html: item.question,
