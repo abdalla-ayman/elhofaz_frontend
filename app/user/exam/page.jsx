@@ -79,11 +79,7 @@ export default function Exam() {
       setError("");
       setLoading(true);
 
-      if (data.length !== audioFiles.length) {
-        setLoading(false);
-        setError("يجب تسجيل كل مقاطع الأيات التي امامك!");
-        return;
-      }
+     
 
       let form = new FormData();
       for (let _file of audioFiles) {
