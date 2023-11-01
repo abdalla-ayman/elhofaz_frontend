@@ -64,7 +64,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ marginRight: "1rem" }}
-            >
+             >
               إبدأ الأن
             </Button>
           </Box>
