@@ -79,8 +79,6 @@ export default function Exam() {
       setError("");
       setLoading(true);
 
-     
-
       let form = new FormData();
       for (let _file of audioFiles) {
         form.append("records[]", _file.file);
@@ -146,6 +144,18 @@ export default function Exam() {
                   قم بتسجيل قرائتك للمقطع أدناه:
                 </Typography>
                 <div
+                  style={{
+                    backgroundColor: "#dfe2e2",
+                    padding: "10px",
+                    paddingTop: "20px",
+                    paddingBottom: "20px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    borderRadius: "20px",
+                    fontFamily: "serif",
+                  }}
                   dangerouslySetInnerHTML={{
                     __html: item.question,
                   }}
