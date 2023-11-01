@@ -39,6 +39,7 @@ export default function Home() {
         <Container>
           <Typography
             variant="h4"
+            fontSize={32}
             sx={{
               color: "white",
               fontWeight: "bold",
@@ -62,7 +63,7 @@ export default function Home() {
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginRight: "1rem" }}
+              sx={{ marginRight: "1rem", width: '15vw' }}
             >
               إبدأ الأن
             </Button>
@@ -85,8 +86,8 @@ export default function Home() {
       >
         <Timeline color="primary" fontSize="large" sx={{}} />
         <Typography
-         
           variant="h4"
+          fontSize={30}
           sx={{ textAlign: "center",  marginLeft: 1 }}
         >
           

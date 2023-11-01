@@ -24,8 +24,8 @@ export default function Footer() {
       
       <Box py={2}>
       <Container>
-        <Typography variant="h4">برنامج السفرة</Typography>
-        <Typography variant="body6" sx={{fontSize: '17px'}}>
+        <Typography variant="h6">برنامج السفرة</Typography>
+        <Typography variant="body6" sx={{fontSize: '14px'}}>
 هو فرع من فروع برنامج مقارئ الحفاظ يهتم بتعليم القرآن الكريم وعلومه ويعتمد على منهج مجرب تدريسه يقوم على آلية معينة للحفظ  
       </Typography>
       </Container>
