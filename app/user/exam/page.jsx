@@ -79,12 +79,6 @@ export default function Exam() {
       setError("");
       setLoading(true);
 
-      if (data.length !== audioFiles.length) {
-        setLoading(false);
-        setError("يجب تسجيل كل مقاطع الأيات التي امامك!");
-        return;
-      }
-
       let form = new FormData();
       for (let _file of audioFiles) {
         form.append("records[]", _file.file);
@@ -150,6 +144,20 @@ export default function Exam() {
                   قم بتسجيل قرائتك للمقطع أدناه:
                 </Typography>
                 <div
+                  style={{
+                    backgroundColor: "#D1B783",
+                    padding: "10px",
+                    paddingTop: "20px",
+                    paddingBottom: "20px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    borderRadius: "10px",
+                    fontFamily: "serif",
+                    lineHeight:'27px',
+                    letterSpacing:'1px'
+                  }}
                   dangerouslySetInnerHTML={{
                     __html: item.question,
                   }}

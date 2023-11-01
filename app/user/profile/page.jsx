@@ -130,7 +130,7 @@ export default function Profile() {
             mt: 4,
           }}
         >
-          {!user.track && (
+          {!user.track && user.role == "user" && !user.has_test && (
             <Box
               sx={{
                 display: "flex",
@@ -157,7 +157,7 @@ export default function Profile() {
             </Box>
           )}
 
-          {/* {!user.track && user.status && (
+          {user.role == "user" && user.has_test &&  (
             <Box
               sx={{
                 display: "flex",
@@ -175,7 +175,7 @@ export default function Profile() {
                 يتم مراحعة طلبك من قبل الإدارة . . . , سيتم التواصل معك في أقرب وقت
               </Typography>
             </Box>
-          )} */}
+          )}
 
           <Grid container>
             <Grid item md={3} xs={12}>
