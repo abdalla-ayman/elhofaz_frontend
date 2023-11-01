@@ -145,7 +145,7 @@ export default function Exam() {
                 </Typography>
                 <div
                   style={{
-                    backgroundColor: "#dfe2e2",
+                    backgroundColor: "#D1B783",
                     padding: "10px",
                     paddingTop: "20px",
                     paddingBottom: "20px",
