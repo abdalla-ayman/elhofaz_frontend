@@ -63,7 +63,7 @@ export default function Home() {
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginRight: "1rem", width: '15vw' }}
+              sx={{ marginRight: "1rem" }}
             >
               إبدأ الأن
             </Button>
