@@ -25,7 +25,7 @@ const Section = ({ icon, title, content, backgroundcolor, textcolor }) => (
       <Box mb={'30px'} display="flex" alignItems="center" justifyContent="center" flexDirection= 'row' >
         {icon}
         
-        <Typography variant="h4" sx={{ marginLeft: 1 }}>{title}</Typography>
+        <Typography variant="h4" fontSize={30} sx={{ marginLeft: 1}}>{title}</Typography>
       </Box>
       <Paper>
         <Container sx={{
@@ -57,7 +57,7 @@ const Track = ({title, content}) => (
                     padding: '8px',
                     marginY: '8px',
                     fontWeight: 'bold',
-                    fontSize: '20px',
+                    fontSize: '18px',
                     letterSpacing: '1px'
                 }}>
                     {title}
@@ -119,7 +119,7 @@ export default function Sections() {
       }}>
         <Box mb={'30px'} sx={{display:'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
             <AssignmentInd fontSize='large' color='primary' />
-            <Typography variant="h4" component="h2" marginLeft={2}  >
+            <Typography variant="h4"  marginLeft={2} fontSize={30} >
             مسارات البرنامج
             </Typography>
         </Box>

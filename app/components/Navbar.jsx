@@ -119,10 +119,10 @@ function DrawerAppBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", position: 'relative' }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar>
+        <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -132,19 +132,30 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            مقارئ السفرة
-          </Typography>
+          <Link href={'/'} style={{display: { xs: 'none', sm: 'block' }, textAlign: 'center'}}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              مقارئ السفرة
+            </Typography>
+          </Link>
+          <Link href={'/'} style={{flexGrow: 1}}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{position: 'absolute', left: '50%',  top:'50%', transform: 'translate(-50%, -50%)', display: { xs: 'block', sm: 'none', md: 'none' } }}
+            >
+              مقارئ السفرة
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {session && (
               <>
-                <Link href={"/"}>
+                {/* <Link href={"/"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الرئيسية</Button>
-                </Link>
+                </Link> */}
                 <Link href={"/user/profile"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
                 </Link>
