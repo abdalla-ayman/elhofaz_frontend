@@ -76,15 +76,17 @@ const Track = ({title, content}) => (
 export default function Sections() {
   return (
 <div>
-      {/* <Section
-        icon={<HomeIcon fontSize="large" color="primary" />}
-        title="مشروعنا"
-        content="حقيقةً بدأ هذا المشروع بفكرة بسيطة جدّاً، مكنونها تحويل هذه الأسافير و وسائط التواصل الإجتماعي إلى منبر لنشر كتاب الله و تحفيظه (خلوة إلكترونية)، استعنّا بالله و بدأنا هذا المشروع بغير تخطيط مؤسس و لم نظُن مجرد الظن أن هذا المشروع القرآني سيجد كل هذا الإحتفاف و الإقبال عليه من كل حدبٍ و صوب، لا نجد في الذاكرة تاريخ معين لبداية المشروع، و لكن يمكن القول بأن الإنطلاقة الحقيقية لهذه التجارة الرابحة كانت في عهد (الكورونا) ومنها انطلق بصورة لا يمكن وصفها كما النار في الهشيم.. "
-        // backgroundcolor='#EFF1F1'
-
-      /> */}
       <Section
-        icon={<Adjust fontSize="large" color="primary" />}
+        icon={<InfoIcon fontSize="large" color="primary"  sx={{margin: '0 0 10px 0'}}/>}
+        title="نبذة"
+        content={`* بدأ هذا المشروع بفكرة بسيطة جدّاً ، مكنونها تحويل هذه الأسافير ووسائط التواصل الإجتماعي إلى منبر لنشر كتاب الله و تحفيظه (خلوة إلكترونية).
+        
+        * استعنّا بالله وبدأنا هذا المشروع القرآني ولم نظن مجرد الظنّ أنه سيجد كل هذا الإحتفاف والإقبال عليه من كل حدب وصوب، وبعدها إنطلق كما النار في الهشيم.`}
+        backgroundcolor='#EFF1F1'
+
+      />
+      <Section
+        icon={<Adjust fontSize="large" color="primary" sx={{margin: '0 0 10px 0'}}/>}
         title="أهداف البرنامج"    
         backgroundcolor="#EFF1F1"
         content={`١- إعانة الطالب على حفظ القرآن الكريم كاملاً وإتقانه وفق خطط معينة ومدروسة 
@@ -98,7 +100,7 @@ export default function Sections() {
         ٥- تنوير المجتمع بدور المقاريء في التعليم عن بعد ومدى نجاحه 
         `}
 />
-      <Section
+      {/* <Section
         icon={<PersonAddAlt1 fontSize="large" color="primary" />}
         title="الاشتراك في البرنامج"
         content={`١/ متاح للبالغين  (للذكور حاليا) 
@@ -112,13 +114,13 @@ export default function Sections() {
         backgroundcolor='#EFF1F1'
         // textcolor= 'white'
       />
-      
+       */}
       <Box py={4} sx={{ backgroundColor: '#EFF1F1' }}>
       <Container maxWidth="lg" sx={{
         textAlign: 'center'
       }}>
         <Box mb={'30px'} sx={{display:'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-            <AssignmentInd fontSize='large' color='primary' />
+            <AssignmentInd fontSize='large' color='primary' sx={{margin: '0 0 10px 0'}}/>
             <Typography variant="h4"  marginLeft={2} fontSize={30} >
             مسارات البرنامج
             </Typography>
@@ -127,10 +129,7 @@ export default function Sections() {
           <Grid container>
             <Track 
                 title= 'المسارالتأهيلي'
-                content= {`
-                هو مخصص للطلاب المبتدئين في القراءة والغرض منه تعريف الطالب بالأحكام العامة للتجويد حيث يتم تدريبهم وتأهيلهم لقراءة القرآن الكريم مجوداً مع شرح دروس التجويد
-                يتم قبول الطلاب مباشرة في هذا المسار 
-                تتراوح مدته من ثلاثة إلى أربعة أشهر`}
+                content= {`هو مخصص للطلاب المبتدئين في القراءة والغرض منه تعريف الطالب بالأحكام العامة للتجويد حيث يتم تدريبهم وتأهيلهم لقراءة القرآن الكريم مجوداً  وشرح دروس التجويد  مع حفظ  مقدار أسبوعي وجهين في الأسبوع يتم قبول الطلاب مباشرة في هذا المسار تتراوح مدته من أربعة إلى خمسة أشهر.`}
             />
             <Track 
                 title= 'مسار الحافظ الجديد'
