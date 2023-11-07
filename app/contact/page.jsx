@@ -8,7 +8,9 @@ import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import Link as muiLink from '@mui/material/Link';
+import Link from "@mui/material/Link";
+import Heading from "./heading";
+import SocialMedia from "./socialMedia";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -17,55 +19,20 @@ export default function Contact() {
   let { data: session } = useSession();
 
   return (
-    <Container
+    <Box
       sx={{
         minHeight: "100vh",
         py: 5,
-        paddingTop: 12,
-        mt: 4,
+        backgroundColor: "#cba346",
+        color: "white",
       }}
-
-      //   maxWidth={"sm"}
     >
-      <Typography align="center" variant="h4">
-        التواصل
-      </Typography>
+      <Heading />
+      <SocialMedia />
 
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          backgroundColor: "#cba346",
-          width: "100%",
-          mt: 2,
-        }}
-      >
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained"
-        >
-            <a href=""></a>
-          الأسألة الأكثر شيوعا
-        </Button>
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained"
-        >
-          تواصل معنا
-        </Button>
-      </Box>
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
       <Loading loading={loading} text={"جاري التحميل"} />
-    </Container>
+    </Box>
   );
 }
