@@ -1,4 +1,5 @@
 import React from "react";
+
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -12,7 +13,7 @@ export default function Heading() {
         justifyContent: "center",
 
         width: "100%",
-        height: "90vh",
+        height: "100vh",
       }}
     >
       <Typography align="center" variant="h4">
@@ -29,7 +30,7 @@ export default function Heading() {
           mt: 2,
         }}
       >
-         <Button
+        <Button
           // align="center"
           sx={{
             my: 4,
@@ -37,7 +38,8 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          وسائل التواصل الإجتماعي
+          {" "}
+          <a href="#social-media"> وسائل التواصل الإجتماعي</a>
         </Button>
         <Button
           // align="center"
@@ -47,7 +49,6 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href=""></a>
           الأسألة الأكثر شيوعا
         </Button>
         <Button
@@ -60,7 +61,6 @@ export default function Heading() {
         >
           الشكاوي \ المقترحات \ الإستفسارات
         </Button>
-       
       </Box>
     </Box>
   );

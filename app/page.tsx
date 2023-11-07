@@ -74,7 +74,7 @@ export default function Home() {
       <Sections />
       {/* Card Section */}
 
-      <Box sx={{ backgroundColor: '#D4E79E' }}>
+      <Box sx={{ backgroundColor: '#907235' }}>
       <Container
         sx={{
           paddingBottom: "100px",

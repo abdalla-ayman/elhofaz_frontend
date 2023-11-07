@@ -82,13 +82,13 @@ export default function Sections() {
         content={`* بدأ هذا المشروع بفكرة بسيطة جدّاً ، مكنونها تحويل هذه الأسافير ووسائط التواصل الإجتماعي إلى منبر لنشر كتاب الله و تحفيظه (خلوة إلكترونية).
         
         * استعنّا بالله وبدأنا هذا المشروع القرآني ولم نظن مجرد الظنّ أنه سيجد كل هذا الإحتفاف والإقبال عليه من كل حدب وصوب، وبعدها إنطلق كما النار في الهشيم.`}
-        backgroundcolor='#F1E3D3'
+        backgroundcolor='#C29F59'
 
       />
       <Section
         icon={<Adjust fontSize="large" color="primary" sx={{margin: '0 0 10px 0'}}/>}
         title="أهداف البرنامج"    
-        backgroundcolor="#F2D0A9"
+        backgroundcolor="#907235"
         content={`١- إعانة الطالب على حفظ القرآن الكريم كاملاً وإتقانه وفق خطط معينة ومدروسة 
     
         ٢- توفير الوقت والجهد والمال من خلال التواصل عبر المنصة الإلكترونية الموحدة او المجموعات الخاصة (واتساب)
@@ -115,7 +115,7 @@ export default function Sections() {
         // textcolor= 'white'
       />
        */}
-      <Box py={4} sx={{ backgroundColor: '#E6E49F' }}>
+      <Box py={4} sx={{ backgroundColor: '#C29F59' }}>
       <Container maxWidth="lg" sx={{
         textAlign: 'center'
       }}>

@@ -22,7 +22,7 @@ export default function Contact() {
     <Box
       sx={{
         minHeight: "100vh",
-        py: 5,
+        pt: 5,
         backgroundColor: "#cba346",
         color: "white",
       }}

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html {
+  scroll-behavior: smooth;
+}
+
 button,
 .btn {
   @apply py-1 px-2 rounded font-light;
