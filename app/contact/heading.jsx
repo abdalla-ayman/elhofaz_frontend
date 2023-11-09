@@ -49,7 +49,10 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          الأسألة الأكثر شيوعا
+          <a href="#FAQ">
+
+          الأسئلة الأكثر شيوعا
+          </a>
         </Button>
         <Button
           // align="center"

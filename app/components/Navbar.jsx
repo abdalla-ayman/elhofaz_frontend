@@ -93,6 +93,13 @@ function DrawerAppBar(props) {
             </ListItem>
           </>
         )}
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText>
+              <Link href={"/contact"}>تواصل معنا</Link>
+            </ListItemText>
+          </ListItemButton>
+        </ListItem>
         {!session && (
           <>
             {/* <ListItem disablePadding>
@@ -119,10 +126,10 @@ function DrawerAppBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", position: 'relative' }}>
+    <Box sx={{ display: "flex", position: "relative" }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar >
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -132,7 +139,13 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link href={'/'} style={{display: { xs: 'none', sm: 'block' }, textAlign: 'center'}}>
+          <Link
+            href={"/"}
+            style={{
+              display: { xs: "none", sm: "block" },
+              textAlign: "center",
+            }}
+          >
             <Typography
               variant="h6"
               component="div"
@@ -141,16 +154,25 @@ function DrawerAppBar(props) {
               مقارئ السفرة
             </Typography>
           </Link>
-          <Link href={'/'} style={{flexGrow: 1}}>
+          <Link href={"/"} style={{ flexGrow: 1 }}>
             <Typography
               variant="h6"
               component="div"
-              sx={{position: 'absolute', left: '50%',  top:'50%', transform: 'translate(-50%, -50%)', display: { xs: 'block', sm: 'none', md: 'none' } }}
+              sx={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                display: { xs: "block", sm: "none", md: "none" },
+              }}
             >
               مقارئ السفرة
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Link href={"/contact"}>
+              <Button sx={{ color: "#fff", mx: 1 }}>تواصل معنا</Button>
+            </Link>
             {session && (
               <>
                 {/* <Link href={"/"}>
@@ -166,14 +188,6 @@ function DrawerAppBar(props) {
             )}
             {!session && (
               <>
-                {" "}
-                {/* <Link href={"/auth/register"}>
-                  <Button
-                    sx={{ color: "#fff", bgcolor: "primary.light", mx: 1 }}
-                  >
-                    التسجيل
-                  </Button>
-                </Link> */}
                 <Link href={"/auth/login"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>تسجيل الدخول</Button>
                 </Link>

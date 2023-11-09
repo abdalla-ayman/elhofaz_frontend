@@ -10,6 +10,7 @@ import {
   YouTube,
   WhatsApp,
   Email,
+  EmailOutlined,
 } from "@mui/icons-material";
 
 export default function SocialMedia() {
@@ -17,9 +18,9 @@ export default function SocialMedia() {
     <Box
       id="social-media"
       sx={{
-        backgroundColor: "#D6B76F",
+        backgroundColor: "#7B612E",
         minHeight: "100vh",
-        color: "black",
+        // color: "black",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -52,7 +53,15 @@ export default function SocialMedia() {
           href="https://www.facebook.com/profile.php?id=100094450418374&mibextid=ZbWKwL"
           target="_blank"
         >
-          <Facebook htmlColor="#1877F2" sx={{ fontSize: "70px", m: 3 }} />
+          <Facebook
+            htmlColor="#1877F2"
+            sx={{
+              fontSize: "70px",
+              m: 3,
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
+          />
         </IconButton>
         <IconButton
           color="inherit"
@@ -70,6 +79,10 @@ export default function SocialMedia() {
             width="70"
             height="70"
             viewBox="0,0,256,256"
+            style={{
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
           >
             <g
               fill="#000000"
@@ -98,7 +111,15 @@ export default function SocialMedia() {
           href="https://instagram.com/maqaresafarah?igshid=MzNlNGNkZWQ4Mg=="
           target="_blank"
         >
-          <Instagram sx={{ fontSize: "70px", m: 3 }} htmlColor="#833AB4" />
+          <Instagram
+            sx={{
+              fontSize: "70px",
+              m: 3,
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
+            htmlColor="#833AB4"
+          />
         </IconButton>
         <IconButton
           color="inherit"
@@ -106,7 +127,15 @@ export default function SocialMedia() {
           href="https://www.youtube.com/@maqaresafarah"
           target="_blank"
         >
-          <YouTube sx={{ fontSize: "70px", m: 3 }} htmlColor="#c4302b" />
+          <YouTube
+            sx={{
+              fontSize: "70px",
+              m: 3,
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
+            htmlColor="#c4302b"
+          />
         </IconButton>
         <IconButton
           color="inherit"
@@ -114,7 +143,15 @@ export default function SocialMedia() {
           href="https://www.youtube.com/@maqaresafarah"
           target="_blank"
         >
-          <Email sx={{ fontSize: "70px", m: 3 }} htmlColor="#ffff" />
+          <EmailOutlined
+            sx={{
+              fontSize: "70px",
+              m: 3,
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
+            htmlColor="#c4302b"
+          />
         </IconButton>
         <IconButton
           color="inherit"
@@ -122,7 +159,15 @@ export default function SocialMedia() {
           href="https://api.whatsapp.com/send?phone=15551234567"
           target="_blank"
         >
-          <WhatsApp sx={{ fontSize: "70px", m: 3 }} htmlColor="#128c7e" />
+          <WhatsApp
+            sx={{
+              fontSize: "70px",
+              m: 3,
+              backgroundColor: "#E8DBC1",
+              borderRadius: "10px",
+            }}
+            htmlColor="#128c7e"
+          />
         </IconButton>
       </Box>
     </Box>

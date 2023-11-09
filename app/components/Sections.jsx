@@ -76,7 +76,7 @@ const Track = ({title, content}) => (
 export default function Sections() {
   return (
 <div>
-      <Section
+      <Section 
         icon={<InfoIcon fontSize="large" color="primary"  sx={{margin: '0 0 10px 0'}}/>}
         title="نبذة"
         content={`* بدأ هذا المشروع بفكرة بسيطة جدّاً ، مكنونها تحويل هذه الأسافير ووسائط التواصل الإجتماعي إلى منبر لنشر كتاب الله و تحفيظه (خلوة إلكترونية).

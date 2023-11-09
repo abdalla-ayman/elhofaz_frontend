@@ -9,8 +9,11 @@ import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Link from "@mui/material/Link";
+
 import Heading from "./heading";
 import SocialMedia from "./socialMedia";
+import FAQ from "./FAQ";
+
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -29,6 +32,7 @@ export default function Contact() {
     >
       <Heading />
       <SocialMedia />
+      <FAQ />
 
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}
