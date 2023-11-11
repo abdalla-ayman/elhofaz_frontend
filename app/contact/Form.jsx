@@ -150,8 +150,6 @@ export default function FAQ() {
               }
             />
 
-            {error && <Alert severity="error" message={error} />}
-            {success && <Alert severity="success" message={success} />}
 
             <Button variant="contained" type="submit" sx={{ m: 1 }}>
               إرسال
