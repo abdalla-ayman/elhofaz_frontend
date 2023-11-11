@@ -47,8 +47,8 @@ export default function FAQ() {
         <Accordion
           sx={{
             backgroundColor: "#E0CFAC",
+            m: 1,
           }}
-          
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -75,9 +75,12 @@ export default function FAQ() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion   sx={{
+        <Accordion
+          sx={{
             backgroundColor: "#E0CFAC",
-          }}>
+            m: 1,
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -100,9 +103,12 @@ export default function FAQ() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion   sx={{
+        <Accordion
+          sx={{
             backgroundColor: "#E0CFAC",
-          }}>
+            m: 1,
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
