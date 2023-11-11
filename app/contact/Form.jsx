@@ -26,7 +26,7 @@ export default function FAQ() {
 
   return (
     <Box
-      id="FAQ"
+      id="message"
       sx={{
         backgroundColor: "#7B612E",
         minHeight: "100vh",

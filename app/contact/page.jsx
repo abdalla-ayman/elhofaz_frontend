@@ -33,7 +33,7 @@ export default function Contact() {
       <Heading />
       <SocialMedia />
       <FAQ />
-      <Form  loading={loading} serError={setError} setSuccess={setSuccess}/>
+      <Form loading={loading} serError={setError} setSuccess={setSuccess} />
 
       {error && <Alert severity="error" message={error} />}
       {success && <Alert message={success} severity="success" />}

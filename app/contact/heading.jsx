@@ -49,10 +49,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#FAQ">
-
-          الأسئلة الأكثر شيوعا
-          </a>
+          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
         </Button>
         <Button
           // align="center"
@@ -62,7 +59,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          الشكاوي \ المقترحات \ الإستفسارات
+          <a href="#message">الشكاوي \ المقترحات \ الإستفسارات</a>
         </Button>
       </Box>
     </Box>
