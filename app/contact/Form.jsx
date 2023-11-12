@@ -80,12 +80,14 @@ export default function FAQ() {
           >
             <h2 className="text-2xl mb-4 text-center">التواصل</h2>
             <FormControl sx={{ width: "100%", my: 1 }}>
-              <InputLabel id="demo-simple-select-label">إختيار نموزج</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                إختيار نموزج
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="نوع الرسالة"
-                onChange={(e) => handleStateChange("gender", e.target.value)}
+                onChange={(e) => setType( e.target.value)}
               >
                 <MenuItem value={"complaint"}>شكوى</MenuItem>
                 <MenuItem value={"suggestion"}>مقترح</MenuItem>
