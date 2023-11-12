@@ -140,7 +140,7 @@ export default function SocialMedia() {
         <IconButton
           color="inherit"
           component="a"
-          href="https://www.youtube.com/@maqaresafarah"
+          href="mailto:maqaresafarah@gmail.com"
           target="_blank"
         >
           <EmailOutlined
@@ -156,7 +156,7 @@ export default function SocialMedia() {
         <IconButton
           color="inherit"
           component="a"
-          href="https://api.whatsapp.com/send?phone=15551234567"
+          href="https://api.whatsapp.com/send?phone=249912153727"
           target="_blank"
         >
           <WhatsApp

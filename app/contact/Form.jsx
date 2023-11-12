@@ -80,7 +80,7 @@ export default function FAQ() {
           >
             <h2 className="text-2xl mb-4 text-center">التواصل</h2>
             <FormControl sx={{ width: "100%", my: 1 }}>
-              <InputLabel id="demo-simple-select-label">نوع الرسالة</InputLabel>
+              <InputLabel id="demo-simple-select-label">إختيار نموزج</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -88,7 +88,7 @@ export default function FAQ() {
                 onChange={(e) => handleStateChange("gender", e.target.value)}
               >
                 <MenuItem value={"complaint"}>شكوى</MenuItem>
-                <MenuItem value={"suggestion"}>إقتراح</MenuItem>
+                <MenuItem value={"suggestion"}>مقترح</MenuItem>
                 <MenuItem value={"question"}>إستفسار</MenuItem>
               </Select>
             </FormControl>
@@ -149,7 +149,6 @@ export default function FAQ() {
                 />
               }
             />
-
 
             <Button variant="contained" type="submit" sx={{ m: 1 }}>
               إرسال
