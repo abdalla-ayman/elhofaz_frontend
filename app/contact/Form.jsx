@@ -11,18 +11,78 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import { Divider } from "@mui/material";
 
-export default function FAQ() {
-  let [error, setError] = useState("");
-  let [success, setSuccess] = useState("");
-  let [loading, setLoading] = useState(false);
+import { contact } from "@/lib/contact";
 
+export default function Form({ data, setError, setLoading, setSuccess }) {
   let [name, setName] = useState("");
   let [phone, setPhone] = useState("");
   let [email, setEmail] = useState("");
+  let [subject, setSubject] = useState("");
   let [message, setMessage] = useState("");
   let [type, setType] = useState("");
+
   let [hideIdentity, setHideIdentity] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!formControl()) {
+      setLoading(false);
+      return;
+    }
+    let body = {
+      message,
+      subject,
+      type,
+    };
+
+    if (!hideIdentity) {
+      body.name = Object.keys(data).length === 0 ? name : data.user.name;
+      body.email = Object.keys(data).length === 0 ? email : data.user.email;
+      body.phone =
+        Object.keys(data).length === 0
+          ? phone
+          : `${data.user.phone_code}${data.user.phone}`;
+    }
+    let res = await contact(body);
+
+    if (res.code == 200) {
+      setSuccess("تم إرسال الرسالة بنجاح");
+    } else {
+      setError(res.message);
+    }
+
+    setLoading(false);
+  };
+
+  let formControl = () => {
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!type || !subject || !message) {
+      setError("يجب توفير معلومات الرسالة كاملة");
+      return false;
+    }
+    if (!hideIdentity && !phone)
+      setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
+    if (!hideIdentity && !email)
+      setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
+    if (!hideIdentity && !name) setError("يجب توفير الأسم أو إخفاء الهوية");
+
+    if ((!hideIdentity && !name) || !phone || !email) return false;
+
+    if (!/^[ ء-ي]+$/.test(name)) {
+      setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
+      return false;
+    }
+    if (!email.match(mailFormat)) {
+      setError("صيغة البريد الالكتروني غير صحيحة");
+      setLoading(false);
+      return false;
+    }
+    return true;
+  };
 
   return (
     <Box
@@ -71,6 +131,7 @@ export default function FAQ() {
           }}
         >
           <form
+            onSubmit={handleSubmit}
             action={"#"}
             style={{
               display: "flex",
@@ -79,6 +140,86 @@ export default function FAQ() {
             }}
           >
             <h2 className="text-2xl mb-4 text-center">التواصل</h2>
+
+            {!hideIdentity && (
+              <>
+                <TextField
+                  id="outlined-basic"
+                  onChange={(e) => setName(e.target.value)}
+                  value={Object.keys(data).length === 0 ? name : data.user.name}
+                  label="الإسم رباعي"
+                  variant="outlined"
+                  type="text"
+                  sx={{
+                    my: 1,
+                  }}
+                  disabled={hideIdentity || Object.keys(data).length !== 0}
+                />
+                <TextField
+                  id="outlined-basic"
+                  onChange={(e) => {
+                    if (!/^[0-9]*$/.test(e.target.value)) {
+                      e.preventDefault();
+                      return;
+                    }
+                    setPhone(e.target.value);
+                  }}
+                  value={
+                    Object.keys(data).length === 0
+                      ? phone
+                      : `${data.user.phone_code}${data.user.phone}`
+                  }
+                  label=" رقم الهاتف"
+                  helperText="الرقم في صورة 2499xxxxxxx "
+                  variant="outlined"
+                  type="tel"
+                  sx={{
+                    my: 1,
+                  }}
+                  disabled={hideIdentity || Object.keys(data).length !== 0}
+                />
+                <TextField
+                  id="outlined-basic"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={
+                    Object.keys(data).length === 0 ? email : data.user.email
+                  }
+                  label="البريد الإلكتروني"
+                  variant="outlined"
+                  type="email"
+                  sx={{
+                    my: 1,
+                  }}
+                  disabled={hideIdentity || Object.keys(data).length !== 0}
+                />
+              </>
+            )}
+            <FormControlLabel
+              sx={{ alignSelf: "start" }}
+              label="إخفاء الهوية"
+              control={
+                <Checkbox
+                  checked={hideIdentity}
+                  onChange={(e) => setHideIdentity(e.target.checked)}
+                />
+              }
+            />
+
+            <Divider
+              sx={{
+                my: 2,
+              }}
+            />
+            <TextField
+              id="outlined-basic"
+              onChange={(e) => setSubject(e.target.value)}
+              label="العنوان"
+              variant="outlined"
+              type="text"
+              sx={{
+                my: 1,
+              }}
+            />
             <FormControl sx={{ width: "100%", my: 1 }}>
               <InputLabel id="demo-simple-select-label">
                 إختيار نموزج
@@ -87,69 +228,19 @@ export default function FAQ() {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="نوع الرسالة"
-                onChange={(e) => setType( e.target.value)}
+                onChange={(e) => setType(e.target.value)}
               >
                 <MenuItem value={"complaint"}>شكوى</MenuItem>
                 <MenuItem value={"suggestion"}>مقترح</MenuItem>
                 <MenuItem value={"question"}>إستفسار</MenuItem>
               </Select>
             </FormControl>
-            {!hideIdentity && (
-              <>
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => setName(e.target.value)}
-                  label="الإسم رباعي"
-                  variant="outlined"
-                  type="text"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity}
-                />
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => setPhone(e.target.value)}
-                  label=" رقم الهاتف"
-                  helperText="الرقم في صورة 2499xxxxxxx "
-                  variant="outlined"
-                  type="tel"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity}
-                />
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => setEmail(e.target.value)}
-                  label="البريد الإلكتروني"
-                  variant="outlined"
-                  type="email"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity}
-                />
-              </>
-            )}
-
             <TextField
               id="outlined-multiline-static"
               label="الرسالة"
               onChange={(e) => setMessage(e.target.value)}
               multiline
               rows={4}
-            />
-
-            <FormControlLabel
-              sx={{ mx: 2, alignSelf: "start" }}
-              label="إخفاء الهوية"
-              control={
-                <Checkbox
-                  checked={hideIdentity}
-                  onChange={(e) => setHideIdentity(e.target.checked)}
-                />
-              }
             />
 
             <Button variant="contained" type="submit" sx={{ m: 1 }}>
