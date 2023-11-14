@@ -46,6 +46,7 @@ export default function Profile() {
     if (session) fetchUser();
   }, [session]);
 
+  
   const handleFileChange = async (event) => {
     try {
       setSuccess("");

@@ -2,24 +2,30 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
-import Link from "@mui/material/Link";
 
 import Heading from "./heading";
 import SocialMedia from "./socialMedia";
 import FAQ from "./FAQ";
 import Form from "./Form";
 
+import { getFAQ } from "@/lib/contact";
+
 export default function Contact() {
+  const [faq, setFAQ] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   let { data: session } = useSession();
+
+  useEffect(() => {
+    (async function () {
+      let res = await getFAQ();
+      setFAQ(res.data);
+    })();
+  }, []);
 
   return (
     <Box
@@ -32,11 +38,16 @@ export default function Contact() {
     >
       <Heading />
       <SocialMedia />
-      <FAQ />
-      <Form loading={loading} serError={setError} setSuccess={setSuccess} />
+      <FAQ faq={faq} />
+      <Form
+        setLoading={setLoading}
+        data={session || {}}
+        setError={setError}
+        setSuccess={setSuccess}
+      />
 
-      {error && <Alert severity="error" message={error} />}
-      {success && <Alert message={success} severity="success" />}
+      {error && <Alert severity="error" close={() => setError("")} message={error} />}
+      {success && <Alert message={success} severity="success" close={() => setSuccess("")}/>}
       <Loading loading={loading} text={"جاري التحميل"} />
     </Box>
   );
