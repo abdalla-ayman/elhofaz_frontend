@@ -54,6 +54,13 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
 
     if (res.code == 200) {
       setSuccess("تم إرسال الرسالة بنجاح");
+      setSubject('')
+      setType('')
+      setMessage('')
+      setName('')
+      setPhone('')
+      setEmail('')
+
     } else {
       setError(res.message);
     }
@@ -69,19 +76,21 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
       return false;
     }
     if (Object.keys(data).length === 0) {      
+      if (!hideIdentity && !name ){ 
+        setError("يجب توفير الإسم أو إخفاء الهوية");
+        return false
+        }
       if (!hideIdentity && !phone){
         setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
+        return false
         }
 
       if (!hideIdentity && !email){
         setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
-        }
+        return false
+      }
 
-      if (!hideIdentity && !name ){ 
-        setError("يجب توفير الإسم أو إخفاء الهوية");
-  }
-
-      if ((!hideIdentity && !name) && !phone && !email) return false;
+      // if ((!hideIdentity && !name) && !phone && !email) return false;
 
       if(!hideIdentity){
         if (!/^[ ء-ي]+$/.test(name)) {
@@ -256,6 +265,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
             <TextField
               id="outlined-basic"
               onChange={(e) => setSubject(e.target.value)}
+              value={subject}
               label="العنوان"
               variant="outlined"
               type="text"
@@ -272,7 +282,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                 id="demo-simple-select"
                 label="نوع الرسالة"
                 onChange={(e) => setType(e.target.value)}
-                defaultValue={''}
+                value={type}
               >
                 <MenuItem value={"complaint"}>شكوى</MenuItem>
                 <MenuItem value={"suggestion"}>مقترح</MenuItem>
@@ -283,6 +293,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
               id="outlined-multiline-static"
               label="الرسالة"
               onChange={(e) => setMessage(e.target.value)}
+              value={message}
               multiline
               rows={4}
             />
