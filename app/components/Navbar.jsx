@@ -85,6 +85,13 @@ function DrawerAppBar(props) {
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
+                  <Link href={"/contact"}>تواصل معنا</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
                   <Button sx={{ width: "100%", mx: "auto" }} onClick={signOut}>
                     تسجيل الخروج
                   </Button>
@@ -93,13 +100,7 @@ function DrawerAppBar(props) {
             </ListItem>
           </>
         )}
-        <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText>
-              <Link href={"/contact"}>تواصل معنا</Link>
-            </ListItemText>
-          </ListItemButton>
-        </ListItem>
+
         {!session && (
           <>
             {/* <ListItem disablePadding>
@@ -109,6 +110,13 @@ function DrawerAppBar(props) {
                 </ListItemText>
               </ListItemButton>
             </ListItem> */}
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/contact"}>تواصل معنا</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>

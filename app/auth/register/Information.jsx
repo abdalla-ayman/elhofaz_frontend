@@ -310,18 +310,7 @@ export default function Information({
             label="معلم"
           />
         </RadioGroup>
-        <Box>
-          <Button
-            onClick={() => handleStateChange("role", state.role =="user" ? "teacher": "user")}
-            sx={{
-              textDecoration: "underline",
-              my: 0,
-              color: "#cba346",
-            }}
-          >
-            أو التسجيل ك{state.role == "user" ? " معلم " : " طالب "}
-          </Button>
-        </Box>
+        
       </FormControl>
       <FormControlLabel
         sx={{ textAlign: "center", mb: 2 }}
