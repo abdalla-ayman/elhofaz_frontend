@@ -28,10 +28,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!formControl()) {
-      setLoading(false);
-      return;
-    }
+    
     let body = {
       message,
       subject,
@@ -46,10 +43,24 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
           ? phone
           : `${data.user.phone_code}${data.user.phone}`;
     }
+
+    if (!formControl(body)) {
+      setLoading(false);
+      return;
+    }
+
+
     let res = await contact(body);
 
     if (res.code == 200) {
       setSuccess("تم إرسال الرسالة بنجاح");
+      setSubject('')
+      setType('')
+      setMessage('')
+      setName('')
+      setPhone('')
+      setEmail('')
+
     } else {
       setError(res.message);
     }
@@ -57,31 +68,72 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
     setLoading(false);
   };
 
-  let formControl = () => {
+  let formControl = (body) => {
     let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (!type || !subject || !message) {
       setError("يجب توفير معلومات الرسالة كاملة");
       return false;
     }
-    if (!hideIdentity && !phone)
-      setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
-    if (!hideIdentity && !email)
-      setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
-    if (!hideIdentity && !name) setError("يجب توفير الأسم أو إخفاء الهوية");
+    if (Object.keys(data).length === 0) {      
+      if (!hideIdentity && !name ){ 
+        setError("يجب توفير الإسم أو إخفاء الهوية");
+        return false
+        }
+      if (!hideIdentity && !phone){
+        setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
+        return false
+        }
 
-    if ((!hideIdentity && !name) || !phone || !email) return false;
+      if (!hideIdentity && !email){
+        setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
+        return false
+      }
 
-    if (!/^[ ء-ي]+$/.test(name)) {
-      setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
-      return false;
-    }
-    if (!email.match(mailFormat)) {
-      setError("صيغة البريد الالكتروني غير صحيحة");
-      setLoading(false);
-      return false;
-    }
-    return true;
+      // if ((!hideIdentity && !name) && !phone && !email) return false;
+
+      if(!hideIdentity){
+        if (!/^[ ء-ي]+$/.test(name)) {
+          setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
+          return false;
+        }
+        if (!email.match(mailFormat)) {
+          setError("صيغة البريد الالكتروني غير صحيحة");
+          setLoading(false);
+          return false;
+        }
+      }
+
+      return true;
+  }
+    if (Object.keys(data).length !== 0) {
+      if (!hideIdentity && ! body.phone){
+        setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");}
+  
+      if (!hideIdentity && !body.email){
+        setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
+        }
+  
+      if (!hideIdentity && !body.name){ 
+        setError("يجب توفير الإسم أو إخفاء الهوية");
+  }
+  
+      if ((!hideIdentity && !body.name) && !body.phone && !body.email) return false;
+  
+      if (!hideIdentity) {        
+        if (!/^[ ء-ي]+$/.test(body.name)) {
+          setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
+          return false;
+        }
+        if (!body.email.match(mailFormat)) {
+          setError("صيغة البريد الالكتروني غير صحيحة");
+          setLoading(false);
+          return false;
+        }
+      }
+      return true;
+    }  
+    
   };
 
   return (
@@ -213,6 +265,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
             <TextField
               id="outlined-basic"
               onChange={(e) => setSubject(e.target.value)}
+              value={subject}
               label="العنوان"
               variant="outlined"
               type="text"
@@ -229,6 +282,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                 id="demo-simple-select"
                 label="نوع الرسالة"
                 onChange={(e) => setType(e.target.value)}
+                value={type}
               >
                 <MenuItem value={"complaint"}>شكوى</MenuItem>
                 <MenuItem value={"suggestion"}>مقترح</MenuItem>
@@ -239,6 +293,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
               id="outlined-multiline-static"
               label="الرسالة"
               onChange={(e) => setMessage(e.target.value)}
+              value={message}
               multiline
               rows={4}
             />
