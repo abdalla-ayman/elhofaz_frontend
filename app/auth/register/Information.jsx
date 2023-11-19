@@ -294,12 +294,34 @@ export default function Information({
           defaultValue="user"
           value={state.role}
           name="radio-buttons-group"
-          onChange={(e) => handleStateChange("role", e.target.value)}
+          // onChange={(e) => handleStateChange("role", e.target.value)}
           row
         >
-          <FormControlLabel value="user" control={<Radio />} label="طالب" />
-          <FormControlLabel value="teacher" control={<Radio />} label="معلم" />
+          <FormControlLabel
+            disabled={state.role == "teacher"}
+            value="user"
+            control={<Radio />}
+            label="طالب"
+          />
+          <FormControlLabel
+            disabled={state.role == "user"}
+            value="teacher"
+            control={<Radio />}
+            label="معلم"
+          />
         </RadioGroup>
+        <Box>
+          <Button
+            onClick={() => handleStateChange("role", state.role =="user" ? "teacher": "user")}
+            sx={{
+              textDecoration: "underline",
+              my: 0,
+              color: "#cba346",
+            }}
+          >
+            أو التسجيل ك{state.role == "user" ? " معلم " : " طالب "}
+          </Button>
+        </Box>
       </FormControl>
       <FormControlLabel
         sx={{ textAlign: "center", mb: 2 }}

@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 //componetns
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
-export default function Close({ startDate }) {
+export default function Close({ startDate, setRole }) {
   return (
     <Container
       sx={{
@@ -29,6 +29,25 @@ export default function Close({ startDate }) {
           </Typography>
         </Box>
       )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          onClick={() => setRole("teacher")}
+          variant="contained"
+          sx={{
+            textDecoration: "underline",
+            my: 2,
+            mx: "auto",
+            // color: "#cba346",
+          }}
+        >
+          أو التسجيل ك معلم
+        </Button>
+      </Box>
     </Container>
   );
 }

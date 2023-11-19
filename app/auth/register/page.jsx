@@ -27,8 +27,9 @@ export default function Register() {
     residation: "",
     phone_code: "",
     phone: "",
-    role: "user",
+    role: "",
   });
+
   let [acceptedConditions, setAcceptedConditions] = useState(false);
   let [error, setError] = useState("");
   let [loading, setLoading] = useState(false);
@@ -161,7 +162,7 @@ export default function Register() {
         التسجيل في مقارئ السفرة
       </Typography>
 
-      {!registerOpen && (
+      {((state.role && registerOpen) || state.role == "teacher") && (
         <>
           <Information
             state={state}
@@ -171,10 +172,10 @@ export default function Register() {
           />
 
           {/* {error && (
-            <Alert severity="error" icon={false}>
-              {error}
-            </Alert>
-          )} */}
+    <Alert severity="error" icon={false}>
+      {error}
+    </Alert>
+  )} */}
           {error && <Alert severity="error" message={error} />}
 
           <Box
@@ -185,15 +186,32 @@ export default function Register() {
             }}
           >
             <Button
-              sx={{
-                mx: "auto",
-              }}
+              sx={
+                {
+                  // mx: "auto",
+                }
+              }
               size="medium"
               variant="outlined"
               disabled={false}
               onClick={handleSubmit}
             >
               التسجيل
+            </Button>
+            <Button
+              onClick={() =>
+                setState((prev) => ({
+                  ...prev,
+                  role: state.role == "user" ? "teacher" : "user",
+                }))
+              }
+              sx={{
+                mx: 1,
+              }}
+              size="medium"
+              variant="outlined"
+            >
+              أو التسجيل ك{state.role == "user" ? " معلم " : " طالب "}
             </Button>
           </Box>
           <Typography
@@ -210,7 +228,43 @@ export default function Register() {
         </>
       )}
 
-      {registerOpen && <Close startDate={start_date} />}
+      {state.role && !registerOpen && state.role == "user" && (
+        <Close
+          startDate={start_date}
+          setRole={(val) => setState((prev) => ({ ...prev, role: val }))}
+        />
+      )}
+
+      {!state.role && (
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            my: 4,
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              mx: 1,
+            }}
+            size="small"
+            onClick={() => setState((prev) => ({ ...prev, role: "user" }))}
+          >
+            التسجيل ك طالب
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              mx: 1,
+            }}
+            size="small"
+            onClick={() => setState((prev) => ({ ...prev, role: "teacher" }))}
+          >
+            التسجيل كمعلم
+          </Button>
+        </Container>
+      )}
     </Fragment>
   );
 }
