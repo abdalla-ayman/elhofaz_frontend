@@ -20,7 +20,6 @@ import InfoIcon from "@mui/icons-material/Attribution";
 import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
 import BackgroundImage from "@/app/components/BackgroundImage";
 import Sections from "@/app/components/Sections";
-import HomeSpeedDail from "@/app/components/HomeSpeedDail";
 import { StackedLineChart, Timeline } from "@mui/icons-material";
 
 export default function Home() {
@@ -139,7 +138,6 @@ export default function Home() {
             </Container>
           </Paper>
         </Container>
-        <HomeSpeedDail />
       </Box>
     </div>
   );
