@@ -251,7 +251,7 @@ export default function Register() {
             size="small"
             onClick={() => setState((prev) => ({ ...prev, role: "user" }))}
           >
-            التسجيل ك طالب
+            التسجيل كطالب
           </Button>
           <Button
             variant="contained"
