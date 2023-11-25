@@ -27,14 +27,13 @@ export default function Home() {
     <div className="">
       <Box
         sx={{
-          //   backgroundImage:
-          //     "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
+          // backgroundImage:
+          //   "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
           //   backgroundAttachment: "fixed",
           height: "100vh",
           //   backgroundSize: "cover",
           //   backgroundPosition: "center -140px",
-        }}
-      >
+        }}>
         <BackgroundImage alt={"bg"} src={"/bg1.jpeg"} position={"absolute"} />
         <Container>
           <Typography
@@ -45,8 +44,7 @@ export default function Home() {
               fontWeight: "bold",
               paddingTop: "40vh",
               textAlign: "center",
-            }}
-          >
+            }}>
             مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
@@ -58,13 +56,11 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               marginTop: "2rem",
-            }}
-          >
+            }}>
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginRight: "1rem" }}
-            >
+              sx={{ marginRight: "1rem" }}>
               إبدأ الأن
             </Button>
           </Box>
@@ -80,20 +76,17 @@ export default function Home() {
             paddingBottom: "100px",
             paddingTop: "20px",
             // backgroundColor: "#EFF1F1",
-          }}
-        >
+          }}>
           <Box
             display="flex"
             alignItems="center"
             justifyContent="center"
-            marginBottom="30px"
-          >
+            marginBottom="30px">
             <Timeline color="primary" fontSize="large" sx={{}} />
             <Typography
               variant="h4"
               fontSize={30}
-              sx={{ textAlign: "center", marginLeft: 1 }}
-            >
+              sx={{ textAlign: "center", marginLeft: 1 }}>
               مراحل البرنامج
             </Typography>
           </Box>
@@ -104,16 +97,14 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 borderRight: "1px solid #e0e0e0",
-              }}
-            >
+              }}>
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   flexWrap: "wrap",
-                }}
-              >
+                }}>
                 <HomeCard
                   title={"مرحلة الضبط"}
                   text={"و هي أساس الحفظ و الإتقان"}
