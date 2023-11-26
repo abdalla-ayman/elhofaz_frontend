@@ -20,6 +20,9 @@ import InfoIcon from "@mui/icons-material/Attribution";
 import CheckCircleIcon from "@mui/icons-material/CheckCircleOutline";
 import BackgroundImage from "@/app/components/BackgroundImage";
 import Sections from "@/app/components/Sections";
+import HomeAbout from "@/app/components/HomePage-Sections/about";
+import HomeGoals from "@/app/components/HomePage-Sections/goals";
+import HomeTracks from "@/app/components/HomePage-Sections/tracks";
 import { StackedLineChart, Timeline } from "@mui/icons-material";
 
 export default function Home() {
@@ -67,7 +70,10 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Sections />
+      {/* Card Section */}
+      <HomeAbout />
+      <HomeGoals />
+      <HomeTracks />
       {/* Card Section */}
 
       <Box sx={{ backgroundColor: "#907235" }}>

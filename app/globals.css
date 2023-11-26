@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
   scroll-behavior: smooth;
 }
@@ -31,6 +30,10 @@ button,
   border-width: 2px;
 }
 
+:root {
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
+}
 /* custom css styles for card */
 /* .card {
   width: 100%;

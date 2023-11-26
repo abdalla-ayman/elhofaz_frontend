@@ -23,9 +23,6 @@ import Box from "@mui/material/Box";
 import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 
-//animation library test
-import "animate.css";
-
 export default function Login() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
@@ -89,8 +86,7 @@ export default function Login() {
       <form
         className="w-80 m-auto flex items-center flex-col"
         action={"#"}
-        onSubmit={handleSubmit}
-      >
+        onSubmit={handleSubmit}>
         <h2 className="text-2xl mb-4 text-center">تسجيل الدخول</h2>
         <FormControl variant="outlined">
           <TextField
@@ -135,8 +131,7 @@ export default function Login() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   // onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
+                  edge="end">
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
@@ -163,8 +158,7 @@ export default function Login() {
             style={{
               textDecoration: "underline",
               color: "#cba346",
-            }}
-          >
+            }}>
             إضغط هنا
           </Link>
         </Typography>
@@ -185,8 +179,7 @@ export default function Login() {
                 textDecoration: "underline",
                 fontSize: "19px",
                 color: "#cba346",
-              }}
-            >
+              }}>
               حساب جديد ؟
             </Link>
           </Box>

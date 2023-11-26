@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Kufam } from "next/font/google";
-import Footer from './components/Footer'
 
 //provider
 import { Providers } from "./provider";
