@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  /* scroll-behavior: smooth; */
-  width: 100% !important;
-  overflow-x: hidden !important;
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
 }
 
 button,
@@ -37,9 +41,6 @@ button,
   --animate-delay: 0.9s;
 }
 @media screen and (max-width: 630px) {
-  * {
-    overflow-x: hidden !important;
-  }
   .cont-img {
     display: none !important;
   }

@@ -40,7 +40,7 @@ export default function Home() {
         {/* <BackgroundImage alt={"bg"} src={"/bg0.png"} position={"absolute"} /> */}
         <Container>
           <Typography
-            variant="h4"
+            variant="h3"
             fontSize={26}
             sx={{
               color: "white",
@@ -51,8 +51,10 @@ export default function Home() {
             مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
-          <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
-            لتعليم القرآن الكريم و علومه بمنهجية مقارئ الحفاظ
+          <Typography
+            variant="subtitle1"
+            sx={{ color: "white", textAlign: "center", mt: 3 }}>
+            لتعليم القرآن الكريم و علومه (بمنهجية مقارئ الحفاظ)
           </Typography>
           <Box
             sx={{
