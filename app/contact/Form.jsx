@@ -161,8 +161,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
           <Grid container>
             <Grid item xs={12} md={6}>
               <motion.div
-                initial={{ opacity: 0, x: 400 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -100 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 viewport={{ once: true }}>
                 <img
@@ -176,8 +176,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
 
             <Grid item xs={12} md={6}>
               <motion.div
-                initial={{ opacity: 0, x: -400 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -100 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 viewport={{ once: true }}>
                 <Paper

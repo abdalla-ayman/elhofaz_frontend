@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 html,
-body {
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* Prevents overflow on the x-axis */
   overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-body {
-  position: relative;
 }
 
 button,

@@ -50,8 +50,8 @@ export default function HomeGoals() {
         <Grid container sx={{ marginTop: 10 }}>
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: 400 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
@@ -91,8 +91,8 @@ export default function HomeGoals() {
           </Grid>
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: -400 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
@@ -131,8 +131,8 @@ export default function HomeGoals() {
           </Grid>
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: 400 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
@@ -170,8 +170,8 @@ export default function HomeGoals() {
           </Grid>
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: -400 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -100 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
