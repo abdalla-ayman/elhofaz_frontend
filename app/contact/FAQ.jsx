@@ -46,12 +46,12 @@ export default function FAQ({ faq }) {
         }}>
         {faq.map((item) => (
           <motion.div
+            key={item.id}
             initial={{ opacity: 0, x: 300 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.1, ease: "easeInOut" }}
             viewport={{ once: true }}>
             <Accordion
-              key={item.id}
               sx={{
                 backgroundColor: "#E0CFAC",
                 my: 1,

@@ -328,7 +328,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                       marginTop: "10px",
                     }}>
                     <Typography variant="h6">
-                      تواصل عن طريق الايميل او الواتساب{" "}
+                      تواصل مباشرة عن طريق الايميل او الواتساب{" "}
                     </Typography>
                   </Container>
                   <Container
