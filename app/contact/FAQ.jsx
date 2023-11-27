@@ -48,7 +48,8 @@ export default function FAQ({ faq }) {
           <motion.div
             initial={{ opacity: 0, x: 300 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.1, ease: "easeInOut" }}>
+            transition={{ duration: 1.1, ease: "easeInOut" }}
+            viewport={{ once: true }}>
             <Accordion
               key={item.id}
               sx={{
