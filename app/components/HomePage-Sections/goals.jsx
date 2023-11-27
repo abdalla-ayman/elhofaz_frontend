@@ -48,7 +48,7 @@ export default function HomeGoals() {
             <motion.div
               initial={{ opacity: 0, x: 400 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
+              transition={{ duration: 1.1, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
                 sx={{
@@ -89,7 +89,7 @@ export default function HomeGoals() {
             <motion.div
               initial={{ opacity: 0, x: -400 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
+              transition={{ duration: 1.1, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
                 sx={{
@@ -129,7 +129,7 @@ export default function HomeGoals() {
             <motion.div
               initial={{ opacity: 0, x: 400 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
                 sx={{
@@ -168,7 +168,7 @@ export default function HomeGoals() {
             <motion.div
               initial={{ opacity: 0, x: -400 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}>
               <Card
                 sx={{

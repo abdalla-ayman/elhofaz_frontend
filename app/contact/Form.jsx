@@ -11,9 +11,11 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
-import { Divider } from "@mui/material";
+import { Divider, Grid, Container, IconButton } from "@mui/material";
+import { EmailOutlined, WhatsApp } from "@mui/icons-material";
 
 import { contact } from "@/lib/contact";
+import { motion } from "framer-motion";
 
 export default function Form({ data, setError, setLoading, setSuccess }) {
   let [name, setName] = useState("");
@@ -28,7 +30,7 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     let body = {
       message,
       subject,
@@ -49,18 +51,16 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
       return;
     }
 
-
     let res = await contact(body);
 
     if (res.code == 200) {
       setSuccess("تم إرسال الرسالة بنجاح");
-      setSubject('')
-      setType('')
-      setMessage('')
-      setName('')
-      setPhone('')
-      setEmail('')
-
+      setSubject("");
+      setType("");
+      setMessage("");
+      setName("");
+      setPhone("");
+      setEmail("");
     } else {
       setError(res.message);
     }
@@ -75,24 +75,24 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
       setError("يجب توفير معلومات الرسالة كاملة");
       return false;
     }
-    if (Object.keys(data).length === 0) {      
-      if (!hideIdentity && !name ){ 
+    if (Object.keys(data).length === 0) {
+      if (!hideIdentity && !name) {
         setError("يجب توفير الإسم أو إخفاء الهوية");
-        return false
-        }
-      if (!hideIdentity && !phone){
+        return false;
+      }
+      if (!hideIdentity && !phone) {
         setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
-        return false
-        }
+        return false;
+      }
 
-      if (!hideIdentity && !email){
+      if (!hideIdentity && !email) {
         setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
-        return false
+        return false;
       }
 
       // if ((!hideIdentity && !name) && !phone && !email) return false;
 
-      if(!hideIdentity){
+      if (!hideIdentity) {
         if (!/^[ ء-ي]+$/.test(name)) {
           setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
           return false;
@@ -105,22 +105,24 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
       }
 
       return true;
-  }
+    }
     if (Object.keys(data).length !== 0) {
-      if (!hideIdentity && ! body.phone){
-        setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");}
-  
-      if (!hideIdentity && !body.email){
+      if (!hideIdentity && !body.phone) {
+        setError("يجب توفير رقم الهاتف للتواصل أو إخفاء الهوية");
+      }
+
+      if (!hideIdentity && !body.email) {
         setError("يجب توفير رقم البريد الإلكتروني للتواصل أو إخفاء الهوية");
-        }
-  
-      if (!hideIdentity && !body.name){ 
+      }
+
+      if (!hideIdentity && !body.name) {
         setError("يجب توفير الإسم أو إخفاء الهوية");
-  }
-  
-      if ((!hideIdentity && !body.name) && !body.phone && !body.email) return false;
-  
-      if (!hideIdentity) {        
+      }
+
+      if (!hideIdentity && !body.name && !body.phone && !body.email)
+        return false;
+
+      if (!hideIdentity) {
         if (!/^[ ء-ي]+$/.test(body.name)) {
           setError("يجب أن يتكون الأسم من الأحرف العربية فقط!");
           return false;
@@ -132,177 +134,237 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
         }
       }
       return true;
-    }  
-    
+    }
   };
 
   return (
     <Box
       id="message"
       sx={{
-        backgroundColor: "#7B612E",
         minHeight: "100vh",
         py: 4,
-        // color: "black",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+        backgroundColor: "#bb9457",
+      }}>
       <Typography
         variant="h4"
         align="center"
         sx={{
-          mb: 4,
-        }}
-      >
+          mt: 12,
+          marginBottom: 9,
+          color: "black",
+        }}>
         الشكاوي \ المقترحات \ الإستفسارات
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "80%",
-          maxWidth: 700,
-        }}
-      >
-        <Paper
-          // variant="outlined"
-          // className="animate__animated animate__bounce"
-          elevation={3}
-          sx={{
-            p: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            width: "100%",
-            maxWidth: 700,
-            minWidth: 320,
-          }}
-        >
-          <form
-            onSubmit={handleSubmit}
-            action={"#"}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-            }}
-          >
-            <h2 className="text-2xl mb-4 text-center">التواصل</h2>
 
-            {!hideIdentity && (
-              <>
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => setName(e.target.value)}
-                  value={Object.keys(data).length === 0 ? name : data.user.name}
-                  label="الإسم رباعي"
-                  variant="outlined"
-                  type="text"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity || Object.keys(data).length !== 0}
+      <Box>
+        <Container>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: 400 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                viewport={{ once: true }}>
+                <img
+                  className="cont-img"
+                  src="/Contact-Us.png"
+                  alt="contact image"
+                  style={{ marginTop: "70px", paddingBottom: 30 }}
                 />
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => {
-                    if (!/^[0-9]*$/.test(e.target.value)) {
-                      e.preventDefault();
-                      return;
-                    }
-                    setPhone(e.target.value);
-                  }}
-                  value={
-                    Object.keys(data).length === 0
-                      ? phone
-                      : `${data.user.phone_code}${data.user.phone}`
-                  }
-                  label=" رقم الهاتف"
-                  helperText="الرقم في صورة 2499xxxxxxx "
-                  variant="outlined"
-                  type="tel"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity || Object.keys(data).length !== 0}
-                />
-                <TextField
-                  id="outlined-basic"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={
-                    Object.keys(data).length === 0 ? email : data.user.email
-                  }
-                  label="البريد الإلكتروني"
-                  variant="outlined"
-                  type="email"
-                  sx={{
-                    my: 1,
-                  }}
-                  disabled={hideIdentity || Object.keys(data).length !== 0}
-                />
-              </>
-            )}
-            <FormControlLabel
-              sx={{ alignSelf: "start" }}
-              label="إخفاء الهوية"
-              control={
-                <Checkbox
-                  checked={hideIdentity}
-                  onChange={(e) => setHideIdentity(e.target.checked)}
-                />
-              }
-            />
+              </motion.div>
+            </Grid>
 
-            <Divider
-              sx={{
-                my: 2,
-              }}
-            />
-            <TextField
-              id="outlined-basic"
-              onChange={(e) => setSubject(e.target.value)}
-              value={subject}
-              label="العنوان"
-              variant="outlined"
-              type="text"
-              sx={{
-                my: 1,
-              }}
-            />
-            <FormControl sx={{ width: "100%", my: 1 }}>
-              <InputLabel id="demo-simple-select-label">
-                إختيار نموزج
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="نوع الرسالة"
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-              >
-                <MenuItem value={"complaint"}>شكوى</MenuItem>
-                <MenuItem value={"suggestion"}>مقترح</MenuItem>
-                <MenuItem value={"question"}>إستفسار</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField
-              id="outlined-multiline-static"
-              label="الرسالة"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-              multiline
-              rows={4}
-            />
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: -400 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                viewport={{ once: true }}>
+                <Paper
+                  elevation={3}
+                  sx={{
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    p: 2,
+                    width: "100%",
+                    maxWidth: 900,
+                    minWidth: 320,
+                  }}>
+                  <form
+                    onSubmit={handleSubmit}
+                    action={"#"}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                    }}>
+                    <h2 className="text-2xl mb-4 text-center">التواصل</h2>
 
-            <Button variant="contained" type="submit" sx={{ m: 1 }}>
-              إرسال
-            </Button>
-          </form>
-        </Paper>
+                    {!hideIdentity && (
+                      <>
+                        <TextField
+                          id="outlined-basic"
+                          onChange={(e) => setName(e.target.value)}
+                          value={
+                            Object.keys(data).length === 0
+                              ? name
+                              : data.user.name
+                          }
+                          label="الإسم رباعي"
+                          variant="outlined"
+                          type="text"
+                          sx={{
+                            my: 1,
+                          }}
+                          disabled={
+                            hideIdentity || Object.keys(data).length !== 0
+                          }
+                        />
+                        <TextField
+                          id="outlined-basic"
+                          onChange={(e) => {
+                            if (!/^[0-9]*$/.test(e.target.value)) {
+                              e.preventDefault();
+                              return;
+                            }
+                            setPhone(e.target.value);
+                          }}
+                          value={
+                            Object.keys(data).length === 0
+                              ? phone
+                              : `${data.user.phone_code}${data.user.phone}`
+                          }
+                          label=" رقم الهاتف"
+                          helperText="الرقم في صورة 2499xxxxxxx "
+                          variant="outlined"
+                          type="tel"
+                          sx={{
+                            my: 1,
+                          }}
+                          disabled={
+                            hideIdentity || Object.keys(data).length !== 0
+                          }
+                        />
+                        <TextField
+                          id="outlined-basic"
+                          onChange={(e) => setEmail(e.target.value)}
+                          value={
+                            Object.keys(data).length === 0
+                              ? email
+                              : data.user.email
+                          }
+                          label="البريد الإلكتروني"
+                          variant="outlined"
+                          type="email"
+                          sx={{
+                            my: 1,
+                          }}
+                          disabled={
+                            hideIdentity || Object.keys(data).length !== 0
+                          }
+                        />
+                      </>
+                    )}
+                    <FormControlLabel
+                      sx={{ alignSelf: "start" }}
+                      label="إخفاء الهوية"
+                      control={
+                        <Checkbox
+                          checked={hideIdentity}
+                          onChange={(e) => setHideIdentity(e.target.checked)}
+                        />
+                      }
+                    />
+
+                    <Divider
+                      sx={{
+                        my: 2,
+                      }}
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      onChange={(e) => setSubject(e.target.value)}
+                      value={subject}
+                      label="العنوان"
+                      variant="outlined"
+                      type="text"
+                      sx={{
+                        my: 1,
+                      }}
+                    />
+                    <FormControl sx={{ width: "100%", my: 1 }}>
+                      <InputLabel id="demo-simple-select-label">
+                        إختيار نموزج
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="نوع الرسالة"
+                        onChange={(e) => setType(e.target.value)}
+                        value={type}>
+                        <MenuItem value={"complaint"}>شكوى</MenuItem>
+                        <MenuItem value={"suggestion"}>مقترح</MenuItem>
+                        <MenuItem value={"question"}>إستفسار</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <TextField
+                      id="outlined-multiline-static"
+                      label="الرسالة"
+                      onChange={(e) => setMessage(e.target.value)}
+                      value={message}
+                      multiline
+                      rows={4}
+                    />
+
+                    <Button variant="contained" type="submit" sx={{ m: 1 }}>
+                      إرسال
+                    </Button>
+                  </form>
+                  <br />
+                  <Divider>او</Divider>
+                  <Container
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      marginTop: "10px",
+                    }}>
+                    <Typography variant="h6">
+                      تواصل عن طريق الايميل او الواتساب{" "}
+                    </Typography>
+                  </Container>
+                  <Container
+                    sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    <IconButton
+                      color="inherit"
+                      component="a"
+                      href="mailto:maqaresafarah@gmail.com"
+                      target="_blank">
+                      <EmailOutlined
+                        sx={{
+                          fontSize: "30px",
+                          borderRadius: "10px",
+                        }}
+                        htmlColor="#c4302b"
+                      />
+                    </IconButton>
+                    <IconButton
+                      color="inherit"
+                      component="a"
+                      href="https://api.whatsapp.com/send?phone=249912153727"
+                      target="_blank">
+                      <WhatsApp
+                        sx={{
+                          fontSize: "30px",
+                          borderRadius: "10px",
+                        }}
+                        htmlColor="#128c7e"
+                      />
+                    </IconButton>
+                  </Container>
+                </Paper>
+              </motion.div>
+            </Grid>
+          </Grid>
+        </Container>
       </Box>
     </Box>
   );

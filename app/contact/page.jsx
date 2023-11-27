@@ -32,19 +32,16 @@ export default function Contact() {
       sx={{
         minHeight: "100vh",
         pt: 5,
-        backgroundColor: "#cba346",
         color: "white",
-      }}
-    >
+      }}>
       <Heading />
-      <SocialMedia />
-      <FAQ faq={faq} />
       <Form
         setLoading={setLoading}
         data={session || {}}
         setError={setError}
         setSuccess={setSuccess}
       />
+      <FAQ faq={faq} />
 
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />
@@ -57,6 +54,7 @@ export default function Contact() {
         />
       )}
       <Loading loading={loading} text={"جاري التحميل"} />
+      <div id="socialmedia"></div>
     </Box>
   );
 }

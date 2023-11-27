@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function HomeAbout() {
   return (
-    <div className="#">
+    <div className="#" id="about">
       <Box
         marginTop={17}
         display="flex"

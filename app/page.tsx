@@ -64,7 +64,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ marginRight: "1rem" }}>
-              إبدأ الأن
+              <a href="#about">تصفح الأن</a>
             </Button>
           </Box>
         </Container>
@@ -81,7 +81,6 @@ export default function Home() {
           sx={{
             paddingBottom: "100px",
             paddingTop: "20px",
-            // backgroundColor: "#EFF1F1",
           }}>
           <Box
             display="flex"
@@ -96,44 +95,42 @@ export default function Home() {
               مراحل البرنامج
             </Typography>
           </Box>
-          <Paper>
-            <Container
+
+          <Container
+            sx={{
+              padding: "16px",
+              display: "flex",
+              flexDirection: "column",
+            }}>
+            <Box
               sx={{
-                padding: "16px",
                 display: "flex",
-                flexDirection: "column",
-                borderRight: "1px solid #e0e0e0",
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
               }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                }}>
-                <HomeCard
-                  title={"مرحلة الضبط"}
-                  text={"و هي أساس الحفظ و الإتقان"}
-                  Icon={Setting}
-                />
-                <HomeCard
-                  title={"مرحلة التعاهد"}
-                  text={"يختم الطالب فيها القرآن كل أسبوع"}
-                  Icon={CheckCircleIcon}
-                />
-                <HomeCard
-                  title={"مرحلة الإسناد "}
-                  text={"للقراءة بسند متصل إلى النبي صلى الله عليه و سلم"}
-                  Icon={InfoIcon}
-                />
-                <HomeCard
-                  title={"مرحلة القراءات "}
-                  text={"لمن يرغب بمواصلة جمع القراءات السبع"}
-                  Icon={Book}
-                />
-              </Box>
-            </Container>
-          </Paper>
+              <HomeCard
+                title={"مرحلة الضبط"}
+                text={"و هي أساس الحفظ و الإتقان"}
+                Icon={Setting}
+              />
+              <HomeCard
+                title={"مرحلة التعاهد"}
+                text={"يختم الطالب فيها القرآن كل أسبوع"}
+                Icon={CheckCircleIcon}
+              />
+              <HomeCard
+                title={"مرحلة الإسناد "}
+                text={"للقراءة بسند متصل إلى النبي صلى الله عليه و سلم"}
+                Icon={InfoIcon}
+              />
+              <HomeCard
+                title={"مرحلة القراءات "}
+                text={"لمن يرغب بمواصلة جمع القراءات السبع"}
+                Icon={Book}
+              />
+            </Box>
+          </Container>
         </Container>
       </Box>
     </div>

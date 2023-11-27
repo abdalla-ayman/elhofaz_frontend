@@ -3,50 +3,55 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import { motion } from "framer-motion";
 
 export default function HomeCard({ title, text, Icon }) {
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        height: 200,
-        width: 200,
-        p: 2,
-        m: 2,
-        backgroundColor:"#DFE2E2",
-        cursor: 'pointer',
-        "&:hover": {
-          backgroundColor: '#9a9c9c'
-        }
-      }}
-    >
-      <Box
+    <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      viewport={{ once: true }}>
+      <Card
+        variant="outlined"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Icon
+          height: 220,
+          width: 220,
+          p: 2,
+          m: 2,
+          backgroundColor: "#432818",
+          color: "white",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "#bb9457",
+          },
+        }}>
+        <Box
           sx={{
-            mb: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+          <Icon
+            sx={{
+              mb: 1,
+            }}
+          />
+          <Typography align="center" variant="h6" className="title">
+            {title}
+          </Typography>
+        </Box>
+        <Typography
+          sx={{
+            my: 2,
           }}
-        />
-        <Typography align="center" variant="h6" className="title">
-          {title}
+          align="center"
+          variant="body1"
+          className="text">
+          {text}
         </Typography>
-      </Box>
-      <Typography
-        sx={{
-          my: 2,
-        }}
-        align="center"
-        variant="body1"
-        className="text"
-      >
-        {text}
-      </Typography>
-    </Card>
+      </Card>
+    </motion.div>
   );
 }
