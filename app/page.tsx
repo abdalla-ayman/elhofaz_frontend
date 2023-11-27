@@ -52,7 +52,7 @@ export default function Home() {
           </Typography>
 
           <Typography variant="h6" sx={{ color: "white", textAlign: "center" }}>
-            لتعليم القرآن الكريم و علومه
+            لتعليم القرآن الكريم و علومه بمنهجية مقارئ الحفاظ
           </Typography>
           <Box
             sx={{
