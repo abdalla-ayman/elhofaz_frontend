@@ -66,13 +66,14 @@ export default function HomeTracks() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  ...
+                  {/* <Typography variant="body2">
                     هو مخصص للطلاب المبتدئين في القراءة والغرض منه تعريف الطالب
                     بالأحكام العامة للتجويد حيث يتم تدريبهم وتأهيلهم لقراءة
                     القرآن الكريم مجوداً وشرح دروس التجويد مع حفظ مقدار أسبوعي
                     وجهين في الأسبوع يتم قبول الطلاب مباشرة في هذا المسار تتراوح
                     مدته من أربعة إلى خمسة أشهر.
-                  </Typography>
+                  </Typography> */}
                 </AccordionDetails>
               </Accordion>
             </Container>
@@ -116,14 +117,15 @@ export default function HomeTracks() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  ...
+                  {/* <Typography variant="body2">
                     هو مخصص للطلاب الذين يرغبون في حفظ كتاب الله كاملاً // يخضع
                     جميع طلاب هذا المسار لإختبار تمهيدي يتم من خلاله التأكد من
                     جودة القراءة والمخارج الصحيحة وإذا اجتاز الطالب هذا الاختبار
                     يحق له الدخول في المسار مباشرة وإذا لم يجتاز الاختبار يتم
                     تحويله إلى مسار التأهيل // يسمح لهم بمقدار يومي من الحفظ
                     (نصف وجه، وجه، وجهين)
-                  </Typography>
+                  </Typography> */}
                 </AccordionDetails>
               </Accordion>
             </Container>
@@ -167,13 +169,14 @@ export default function HomeTracks() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  ...
+                  {/* <Typography variant="body2">
                     هو مخصص للطلاب الحافظين للقرآن كاملاً ويرغبون بتجويد حفظهم
                     واتقانه أو الطلاب الذين تفلت منهم القرآن لضعف التعاهد او
                     الانشغال عن المراجعة المنتظمة الصحيحة // يتم قبول الطلاب
                     مباشرة في المسار بعد التأكد من صحة البيانات // يسمح لهم
                     بمقدار يومي من الحفظ (وجه، وجهين، ثلاثة أوجه، أربعة أوجه)
-                  </Typography>
+                  </Typography> */}
                 </AccordionDetails>
               </Accordion>
             </Container>
@@ -217,10 +220,11 @@ export default function HomeTracks() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  ...
+                  {/* <Typography variant="body2">
                     سيكون متاحا ان شاء الله لاحقاً ليساعد الطالب على حفظ أجزاء
                     معينة من القرآن
-                  </Typography>
+                  </Typography> */}
                 </AccordionDetails>
               </Accordion>
             </Container>
@@ -264,10 +268,11 @@ export default function HomeTracks() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  ...
+                  {/* <Typography variant="body2">
                     سيكون متاحا ان شاء الله لاحقاً ليساعد الطالب على حفظ سور
                     محددة كالبقرة وآل عمران والرحمن وغيرهم
-                  </Typography>
+                  </Typography> */}
                 </AccordionDetails>
               </Accordion>
             </Container>

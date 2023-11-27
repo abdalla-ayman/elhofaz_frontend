@@ -40,7 +40,11 @@ export default function HomeGoals() {
           <Typography variant="h4" fontSize={30} sx={{ color: "white" }}>
             أهداف البرنامج
           </Typography>
-          <Star fontSize="large" color="blue" sx={{ margin: "0 0 10px 0" }} />
+          <Star
+            fontSize="large"
+            htmlColor="brown"
+            sx={{ margin: "0 0 10px 0" }}
+          />
         </Container>
 
         <Grid container sx={{ marginTop: 10 }}>
@@ -52,12 +56,12 @@ export default function HomeGoals() {
               viewport={{ once: true }}>
               <Card
                 sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
                   margin: "20px",
                   height: "140px",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
                     "& .hoverContainer": {
                       backgroundColor: "white",
                     },
@@ -93,12 +97,12 @@ export default function HomeGoals() {
               viewport={{ once: true }}>
               <Card
                 sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
                   margin: "20px",
                   height: "140px",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
                     "& .hoverContainer": {
                       backgroundColor: "white",
                     },
@@ -133,12 +137,12 @@ export default function HomeGoals() {
               viewport={{ once: true }}>
               <Card
                 sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
                   margin: "20px",
                   height: "140px",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
                     "& .hoverContainer": {
                       backgroundColor: "white",
                     },
@@ -172,12 +176,12 @@ export default function HomeGoals() {
               viewport={{ once: true }}>
               <Card
                 sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
                   margin: "20px",
                   height: "140px",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
                     "& .hoverContainer": {
                       backgroundColor: "white",
                     },
@@ -212,12 +216,12 @@ export default function HomeGoals() {
               viewport={{ once: true }}>
               <Card
                 sx={{
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
                   margin: "20px",
                   height: "140px",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
                     "& .hoverContainer": {
                       backgroundColor: "white",
                     },

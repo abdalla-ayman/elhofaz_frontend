@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
+  width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 button,
@@ -35,10 +37,11 @@ button,
   --animate-delay: 0.9s;
 }
 @media screen and (max-width: 630px) {
+  * {
+    overflow-x: hidden !important;
+  }
   .cont-img {
-    height: 350px !important;
-    width: 350px !important;
-    position: left 50;
+    display: none !important;
   }
 }
 /* custom css styles for card */

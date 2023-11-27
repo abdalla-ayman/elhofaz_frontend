@@ -30,14 +30,14 @@ export default function Home() {
     <div className="">
       <Box
         sx={{
-          // backgroundImage:
-          //   "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg1.jpeg)",
-          //   backgroundAttachment: "fixed",
+          backgroundImage:
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.54) 50%, rgba(0, 0, 0, 0.54) 50%),url(/bg0.png)",
+          backgroundAttachment: "fixed",
           height: "100vh",
-          //   backgroundSize: "cover",
-          //   backgroundPosition: "center -140px",
+          // backgroundSize: "cover",
+          // backgroundPosition: "center -140px",
         }}>
-        <BackgroundImage alt={"bg"} src={"/bg1.jpeg"} position={"absolute"} />
+        {/* <BackgroundImage alt={"bg"} src={"/bg0.png"} position={"absolute"} /> */}
         <Container>
           <Typography
             variant="h4"
