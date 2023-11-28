@@ -66,7 +66,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ marginRight: "1rem" }}>
-              <a href="#about">تصفح الأن</a>
+              <a href="#about">تصفح الآن</a>
             </Button>
           </Box>
         </Container>
