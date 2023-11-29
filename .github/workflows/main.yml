@@ -1,8 +1,7 @@
-name: Build & Deploy
+name: ServerDeployment
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
@@ -17,7 +16,7 @@ jobs:
 
           scripts: |
             cd Projects/elhofaz_frontend
-            git pull https://github.com/abdalla-ayman/elhofaz_frontend.git
+            git pull git@github.com:abdalla-ayman/elhofaz_frontend.git
             npm i
             pm2 restart elhofaz_frontend
             echo 'deployment succeeded'
