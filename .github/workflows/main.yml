@@ -15,9 +15,4 @@ jobs:
           username: ${{secrets.SSH_USERNAME}}
           port: 5432
 
-          scripts: |
-            cd Projects/elhofaz_frontend
-            git pull git@github.com:abdalla-ayman/elhofaz_frontend.git
-            npm i
-            pm2 restart elhofaz_frontend
-            echo 'deployment succeeded'
+          script: /home/ahmed3310/Projects/elhofaz_frontend/deploy.sh
