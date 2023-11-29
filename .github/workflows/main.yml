@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy NextJs app
-        uses: appleboy/ssh-action@v0.2
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
+          port: 5432
 
           scripts: |
             cd Projects/elhofaz_frontend
