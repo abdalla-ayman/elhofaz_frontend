@@ -11,6 +11,9 @@ body,
   padding: 0;
   /* Prevents overflow on the x-axis */
   overflow-x: hidden;
+
+
+  scroll-behavior: smooth;
 }
 
 button,
@@ -41,11 +44,13 @@ button,
   --animate-duration: 800ms;
   --animate-delay: 0.9s;
 }
+
 @media screen and (max-width: 630px) {
   .cont-img {
     display: none !important;
   }
 }
+
 /* custom css styles for card */
 /* .card {
   width: 100%;

@@ -18,7 +18,8 @@ export default function Heading() {
       }}
     >
       <Typography align="center" sx={{ color: "white" }} variant="h4">
-        تواصل معنا <ContactSupportIcon fontSize="large" />
+        البرامج المصاحبة
+        <ContactSupportIcon fontSize="large" />
       </Typography>
       <Box
         sx={{
@@ -39,7 +40,8 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
+          {" "}
+          <a href="#socialmedia"> المسابقات</a>
         </Button>
         <Button
           // align="center"
@@ -49,7 +51,27 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#message">الشكاوي \ المقترحات \ الإستفسارات</a>
+          <a href="#FAQ">الصندوق التكافلي</a>
+        </Button>
+        <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#message">الصندوق الخيري</a>
+        </Button>
+        <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#message">حلقة تصحيح التلاوة</a>
         </Button>
       </Box>
     </Box>

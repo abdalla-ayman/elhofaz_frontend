@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Kufam } from "next/font/google";
+import { Noto_Naskh_Arabic } from "next/font/google";
 
 //provider
 import { Providers } from "./provider";
 
-const inter = Kufam({ subsets: ["arabic"] });
+const inter = Noto_Naskh_Arabic({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "مقارئ السفرة",
