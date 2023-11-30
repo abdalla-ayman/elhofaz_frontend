@@ -31,16 +31,7 @@ export default function Heading() {
           mt: 2,
         }}
       >
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained"
-        >
-          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
-        </Button>
+      
         <Button
           // align="center"
           sx={{
@@ -50,6 +41,16 @@ export default function Heading() {
           variant="contained"
         >
           <a href="#message">الشكاوي \ المقترحات \ الإستفسارات</a>
+        </Button>
+        <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
         </Button>
       </Box>
     </Box>

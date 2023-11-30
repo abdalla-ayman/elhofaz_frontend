@@ -83,13 +83,14 @@ function DrawerAppBar(props) {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-            <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
                   <Link href={"/events"}>البرامج المصاحبة</Link>
                 </ListItemText>
               </ListItemButton>
             </ListItem>
+            <ListItem disablePadding>
+
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
                   <Link href={"/contact"}>تواصل معنا</Link>
