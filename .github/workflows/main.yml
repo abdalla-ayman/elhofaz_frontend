@@ -1,23 +1,19 @@
-name: Build & Deploy
+name: ServerDeployment
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.4
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy NextJs app
-        uses: appleboy/ssh-action@v0.2
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
+          passphrase: ${{secrets.SSH_PASSPHRASE}}
+          port: 4532
 
-          scripts: |
-            cd Projects/elhofaz_frontend
-            git pull https://github.com/abdalla-ayman/elhofaz_frontend.git
-            npm i
-            pm2 restart elhofaz_frontend
-            echo 'deployment succeeded'
+          script: /home/ahmed3310/Projects/elhofaz_frontend/deploy.sh
