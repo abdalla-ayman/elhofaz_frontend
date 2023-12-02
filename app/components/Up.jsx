@@ -3,7 +3,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { Button, IconButton, Box } from "@mui/material";
 import { relative } from "path";
 
-export default function Up({ href }) {
+export default function Up() {
   let [show, setShow] = useState(false);
 
   const handleScroll = () => {
