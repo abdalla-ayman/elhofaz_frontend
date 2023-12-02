@@ -90,7 +90,6 @@ function DrawerAppBar(props) {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
                   <Link href={"/contact"}>تواصل معنا</Link>
@@ -200,13 +199,12 @@ function DrawerAppBar(props) {
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          <Link href={"/events"}>
+            <Link href={"/events"}>
               <Button sx={{ color: "#fff", mx: 1 }}>البرامج المصاحبة</Button>
             </Link>
             <Link href={"/contact"}>
               <Button sx={{ color: "#fff", mx: 1 }}>تواصل معنا</Button>
             </Link>
-            
 
             {session && (
               <>

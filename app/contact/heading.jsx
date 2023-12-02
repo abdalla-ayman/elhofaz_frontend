@@ -31,7 +31,6 @@ export default function Heading() {
           mt: 2,
         }}
       >
-      
         <Button
           // align="center"
           sx={{
