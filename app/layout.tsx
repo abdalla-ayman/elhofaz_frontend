@@ -9,7 +9,7 @@ const inter = Kufam({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "مقارئ السفرة",
-  description: "الموقع الرسمي لمنصة مقارئ السفرة لتحفيظ القران الكريم",
+  description: "الموقع الالكتروني الرسمي لمنصة مقارئ السفرة لتحفيظ القران الكريم",
 };
 
 export default function RootLayout({
