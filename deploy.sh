@@ -1,5 +1,6 @@
 #!/bin/bash
-git pull https://github.com/abdalla-ayman/elhofaz_frontend.git
+cd /home/ahmed3310/Projects/elhofaz_frontend/
+git pull
 npm install
 pm2 restart elhofaz_frontend
 echo 'deployment succeeded'
