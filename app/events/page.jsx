@@ -7,20 +7,22 @@ import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 
 import Heading from "./heading";
+import RecitingCorrection from "./RecitingCorrection";
 
 export default function Contact() {
-  const [faq, setFAQ] = useState([]);
+  // const [faq, setFAQ] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   let { data: session } = useSession();
 
-  useEffect(() => {
-    (async function () {
-      let res = await getFAQ();
-      setFAQ(res.data);
-    })();
-  }, []);
+  
+  // useEffect(() => {
+  //   (async function () {
+  //     let res = await getFAQ();
+  //     setFAQ(res.data);
+  //   })();
+  // }, []);
 
   return (
     <Box
@@ -32,6 +34,7 @@ export default function Contact() {
       }}
     >
       <Heading />
+      <RecitingCorrection />
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />
       )}
