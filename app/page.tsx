@@ -17,9 +17,12 @@ import Up from "@/app/components/Up";
 
 export default function Home() {
   return (
-    <div style={{
-      position:"relative"
-    }}>
+    <div
+      style={{
+        position: "relative",
+
+      }}
+    >
       <Box
         sx={{
           backgroundImage:

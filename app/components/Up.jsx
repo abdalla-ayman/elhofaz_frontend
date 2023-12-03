@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { Button, IconButton, Box } from "@mui/material";
-import { relative } from "path";
+import { Button } from "@mui/material";
 
-export default function Up({ href }) {
+export default function Up() {
   let [show, setShow] = useState(false);
 
   const handleScroll = () => {

@@ -39,7 +39,6 @@ export default function Form() {
           variant="contained"
           onClick={handleClickOpen}
         >
-
           ارسال تقرير
         </Button>
         <Button
@@ -50,18 +49,26 @@ export default function Form() {
           size="small"
           variant="contained"
           onClick={handleClickOpen}
-
->
+        >
           ارسال طلب غياب
         </Button>
       </Box>
       <Dialog
+        fullWidth
+        maxWidth="xs"
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        sx={{
+          overflow: "visible",
+        }}
       >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Modal title
+        <DialogTitle
+          sx={{ m: 0, p: 2 }}
+          align="center"
+          id="customized-dialog-title"
+        >
+          نوع التقرير
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -76,25 +83,19 @@ export default function Form() {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-            dui. Donec ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          {/* <RepeatsForm extensive={false} /> */}
+          <DailyForm />
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
+          <Button
+            sx={{
+              mx: "auto",
+            }}
+            autoFocus
+            onClick={handleClose}
+            variant="contained"
+          >
+            إرسال
           </Button>
         </DialogActions>
       </Dialog>
