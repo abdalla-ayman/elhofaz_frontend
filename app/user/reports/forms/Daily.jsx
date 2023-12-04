@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 
-export default function DailyForm({ extensive }) {
+export default function DailyForm() {
   return (
     <Box
       sx={{
@@ -34,6 +34,13 @@ export default function DailyForm({ extensive }) {
         id="combo-box-demo"
         options={ajza}
         renderInput={(params) => <TextField {...params} label="الجزء" />}
+      />
+       <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={ajza}
+        sx={{ my: 2 }}
+        renderInput={(params) => <TextField {...params} label="السورة" />}
       />
       <FormControl sx={{ width: "100%", my: 2 }}>
         <InputLabel id="demo-simple-select-label">مقدار الحفظ</InputLabel>
@@ -111,7 +118,6 @@ export default function DailyForm({ extensive }) {
         id="combo-box-demo"
         options={ajza}
         sx={{ my: 2 }}
-
         renderInput={(params) => <TextField {...params} label="السابق" />}
       />
       <Autocomplete
@@ -119,7 +125,6 @@ export default function DailyForm({ extensive }) {
         id="combo-box-demo"
         options={ajza}
         sx={{ my: 2 }}
-
         renderInput={(params) => <TextField {...params} label="القديم" />}
       />
       <Autocomplete
@@ -127,7 +132,6 @@ export default function DailyForm({ extensive }) {
         id="combo-box-demo"
         options={ajza}
         sx={{ my: 2 }}
-
         renderInput={(params) => <TextField {...params} label="الشيخ" />}
       />
     </Box>

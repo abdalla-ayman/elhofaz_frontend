@@ -11,7 +11,6 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       async authorize(credentials: any, req) {
         let { data, code, message } = await login(credentials);
-
         if (code == 200) {
           const name = data.user.name;
           return { ...data.user, name, accessToken: data.token };
