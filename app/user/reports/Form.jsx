@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ArdForm from "./forms/Ard";
 import DailyForm from "./forms/Daily";
@@ -18,7 +18,8 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export default function Form() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState("")
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,15 +43,23 @@ export default function Form() {
           ارسال تقرير
         </Button>
         <Button
-          sx={{
-            mx: 1,
-          }}
           color="error"
           size="small"
           variant="contained"
           onClick={handleClickOpen}
         >
-          ارسال طلب غياب
+          ارسال طلب غياب/تخفيف البرنامج
+        </Button>
+        <Button
+          sx={{
+            mx: 1,
+          }}
+          color="success"
+          size="small"
+          variant="contained"
+          onClick={handleClickOpen}
+        >
+          ارسال طلب تغيير مقدار الحفظ
         </Button>
       </Box>
       <Dialog
@@ -84,7 +93,8 @@ export default function Form() {
         </IconButton>
         <DialogContent dividers>
           {/* <RepeatsForm extensive={false} /> */}
-          <DailyForm />
+          {/* <DailyForm /> */}
+          <AbsenceForm />
         </DialogContent>
         <DialogActions>
           <Button

@@ -1,7 +1,28 @@
-import React from 'react'
+import React from "react";
 
-export default function AbsenceForm() {
+import DatePicker from "@/app/components/BasicDatePicker";
+
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+
+export default function Absence() {
   return (
-    <div>Form</div>
-  )
+    <Box
+      sx={{
+        my: 1,
+      }}
+    >
+      <DatePicker label="من يوم" />
+      <DatePicker label="الى يوم" />
+      <TextField
+        sx={{
+          width: "100%",
+        }}
+        id="outlined-multiline-flexible"
+        label="السبب"
+        multiline
+        rows={4}
+      />
+    </Box>
+  );
 }
