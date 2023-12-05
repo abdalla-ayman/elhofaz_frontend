@@ -43,7 +43,7 @@ export default function RepeatsForm({ extensive }) {
           onChange={(e) => handleStateChange("gender", e.target.value)}
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((repeat) => (
-            <MenuItem value={repeat}>{repeat}</MenuItem>
+            <MenuItem key={repeat} value={repeat}>{repeat}</MenuItem>
           ))}
         </Select>
       </FormControl>
