@@ -136,21 +136,21 @@ export default function Form() {
   let types = {
     report: [
       "اختر نوع التقرير",
-      <SelectType report={true} setType={setType} />,
+      <SelectType key={1} report={true} setType={setType} />,
     ],
     request: [
       "اختر نوع الطلب",
-      <SelectType report={false} setType={setType} />,
+      <SelectType key={2} report={false} setType={setType} />,
     ],
-    change: ["تغيير مقدار الحفظ", <ChangeNew />],
-    daily: ["التقرير اليومي", <DailyForm />],
-    daily_begginer: ["التقرير اليومي", <BeginnerDailyForm />],
-    repeats: ["تقرير التكرار", <RepeatsForm />],
-    extensive: ["التكرار المكثف", <RepeatsForm extensive={true} />],
-    ard: ["تقرير العرض", <ArdForm />],
-    levely: ["تقرير العرض المرحلي", <ArdForm levely={true} />],
-    absence: ["طلب غياب", <AbsenceForm />],
-    diluted: ["طلب البرنامج المخفف", <AbsenceForm />],
+    change: ["تغيير مقدار الحفظ", <ChangeNew key={3}/>],
+    daily: ["التقرير اليومي", <DailyForm key={4}/>],
+    daily_begginer: ["التقرير اليومي", <BeginnerDailyForm key={5}/>],
+    repeats: ["تقرير التكرار", <RepeatsForm key={6}/>],
+    extensive: ["التكرار المكثف", <RepeatsForm key={7} extensive={true} />],
+    ard: ["تقرير العرض", <ArdForm key={8}/>],
+    levely: ["تقرير العرض المرحلي", <ArdForm key={9} levely={true} />],
+    absence: ["طلب غياب", <AbsenceForm key={10}/>],
+    diluted: ["طلب البرنامج المخفف", <AbsenceForm key={11}/>],
   };
 
   const handleClickOpen = (type) => {
