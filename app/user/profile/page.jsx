@@ -119,7 +119,8 @@ export default function Profile() {
         minHeight: "100vh",
         py: 5,
         paddingTop: 12,
-      }}>
+      }}
+    >
       <Typography variant="h5" sx={{ mt: 5, textAlign: "center" }}>
         الملف الشخصي
       </Typography>
@@ -127,31 +128,37 @@ export default function Profile() {
         <Box
           sx={{
             mt: 4,
-          }}>
-          {!user.track && user.role == "user" && !user.has_test && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                my: 2,
-                border: "1px solid red",
-                p: 2,
-                borderRadius: 3,
-              }}>
-              <Typography> يجب </Typography>
-              <Button
-                variant="outlined"
-                size="small"
+          }}
+        >
+          {!user.track &&
+            user.stage == "dabt" &&
+            user.role == "user" &&
+            !user.has_test && (
+              <Box
                 sx={{
-                  mx: 1,
-                }}>
-                <Link href={"/user/track"}> إختيار المسار </Link>
-              </Button>
-              <Typography> لإكمال التسجيل </Typography>
-            </Box>
-          )}
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  my: 2,
+                  border: "1px solid red",
+                  p: 2,
+                  borderRadius: 3,
+                }}
+              >
+                <Typography> يجب </Typography>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    mx: 1,
+                  }}
+                >
+                  <Link href={"/user/track"}> إختيار المسار </Link>
+                </Button>
+                <Typography> لإكمال التسجيل </Typography>
+              </Box>
+            )}
 
           {user.role == "user" && user.has_test && (
             <Box
@@ -164,7 +171,8 @@ export default function Profile() {
                 border: "1px solid #A4A4A4",
                 p: 2,
                 borderRadius: 3,
-              }}>
+              }}
+            >
               <Typography>
                 {" "}
                 يتم مراجعة طلبك من قبل الإدارة . . . , سيتم التواصل معك في أقرب
@@ -181,11 +189,13 @@ export default function Profile() {
                   flexDirection: "column",
                   alignItems: "center",
                   marginRight: "20px",
-                }}>
+                }}
+              >
                 <Box
                   sx={{
                     position: "relative",
-                  }}>
+                  }}
+                >
                   <Avatar
                     sx={{
                       width: 200,
@@ -211,7 +221,8 @@ export default function Profile() {
                         color: "white",
                         backgroundColor: "rgba(0, 0, 0, 0.4)",
                       },
-                    }}>
+                    }}
+                  >
                     <CloudUploadTwoToneIcon />
                   </IconButton>
                   {user.image && (
@@ -227,7 +238,8 @@ export default function Profile() {
                         height: 20,
                         // transform: "translate(-50%,-50%)",
                         // color: "transparent",
-                      }}>
+                      }}
+                    >
                       <CancelOutlinedIcon />
                     </IconButton>
                   )}
@@ -237,14 +249,16 @@ export default function Profile() {
                     mt: 2,
                   }}
                   variant="h6"
-                  align="center">
+                  align="center"
+                >
                   {user?.name}
                 </Typography>
                 <Typography
                   color={"gray"}
                   sx={{
                     mt: 1,
-                  }}>
+                  }}
+                >
                   #{user?.id.toString().padStart(6, "0")}
                 </Typography>
                 <Chip
@@ -278,7 +292,8 @@ export default function Profile() {
                 sx={{
                   mt: 3,
                 }}
-                justifyContent="flex-start">
+                justifyContent="flex-start"
+              >
                 <UserEditModal
                   user={user}
                   fetchUser={fetchUser}
@@ -293,7 +308,8 @@ export default function Profile() {
                   padding: "20px",
                   backgroundColor: "#E1DEE3",
                   borderRadius: "12px",
-                }}>
+                }}
+              >
                 <List>
                   <ListItem>
                     <TextField
@@ -368,18 +384,18 @@ export default function Profile() {
                     />
                   </ListItem>
                   <br />
-
-                  {user.role == "user" && (
-                    <Item label={"المسار"} value={tracks[user.track]} />
-                  )}
-                  {user.role == "user" && (
-                    <Item label={"المرحلة"} value={stages[user.stage]} />
-                  )}
-
                   <Item
                     label={"نوع الحساب"}
                     value={"حساب " + roles[user.role]}
                   />
+                 
+                  {user.role == "user" && (
+                    <Item label={"المرحلة"} value={stages[user.stage]} />
+                  )}
+ {user.role == "user" && (
+                    <Item label={"المسار"} value={tracks[user.track]} />
+                  )}
+               
                 </List>
               </Box>
             </Grid>

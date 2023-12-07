@@ -40,7 +40,7 @@ export default function BeginnerDailyForm() {
         sx={{ my: 2 }}
         renderInput={(params) => <TextField {...params} label="الدرس" />}
       />
-          <Autocomplete
+      <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={ajza}
