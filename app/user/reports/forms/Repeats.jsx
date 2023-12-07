@@ -37,14 +37,17 @@ export default function RepeatsForm({ extensive }) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={4}
+          value={extensive ? 7 : 4}
           label="عدد من المرات"
-          disabled={!extensive}
+          disabled={true}
           onChange={(e) => handleStateChange("gender", e.target.value)}
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((repeat) => (
-            <MenuItem key={repeat} value={repeat}>{repeat}</MenuItem>
-          ))}
+          <MenuItem key={4} value={4}>
+            4
+          </MenuItem>
+          <MenuItem key={7} value={7}>
+            7
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>

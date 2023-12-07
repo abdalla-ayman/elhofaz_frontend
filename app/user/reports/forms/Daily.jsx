@@ -34,12 +34,14 @@ export default function DailyForm() {
         id="combo-box-demo"
         options={ajza}
         renderInput={(params) => <TextField {...params} label="الجزء" />}
+        multiple
       />
        <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={ajza}
         sx={{ my: 2 }}
+        multiple
         renderInput={(params) => <TextField {...params} label="السورة" />}
       />
       <FormControl sx={{ width: "100%", my: 2 }}>

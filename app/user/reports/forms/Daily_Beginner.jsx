@@ -32,18 +32,21 @@ export default function BeginnerDailyForm() {
         }}
       ></Box>
       <DatePicker label="التاريخ" />
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={ajza}
-        renderInput={(params) => <TextField {...params} label="الجزء" />}
-      />
+
       <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={ajza}
         sx={{ my: 2 }}
         renderInput={(params) => <TextField {...params} label="الدرس" />}
+      />
+          <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={ajza}
+        sx={{ my: 2 }}
+        multiple
+        renderInput={(params) => <TextField {...params} label="السورة" />}
       />
 
       <Autocomplete
@@ -71,9 +74,11 @@ export default function BeginnerDailyForm() {
         }}
       >
         <Typography
-          sx={{
-            // mx: 1,
-          }}
+          sx={
+            {
+              // mx: 1,
+            }
+          }
           variant="body2"
         >
           الجزء الحالي:
