@@ -12,7 +12,6 @@ body,
   /* Prevents overflow on the x-axis */
   overflow-x: hidden;
 
-
   scroll-behavior: smooth;
 }
 
@@ -52,6 +51,12 @@ button,
 }
 
 /* custom css styles for card */
+.report-card {
+  background-color: #ffeccc;
+}
+.report_btn {
+  background-color: #3e1929;
+}
 /* .card {
   width: 100%;
   max-width: 290px;

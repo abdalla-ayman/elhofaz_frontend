@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 import Form from "./Form";
-
+import MainPage from "./Main";
 //componentes
 
 import Typography from "@mui/material/Typography";
@@ -33,13 +33,17 @@ export default function Profile() {
         minHeight: "100vh",
         py: 5,
         paddingTop: 12,
-      }}
-    >
+      }}>
       <Typography variant="h5" sx={{ mt: 5, textAlign: "center" }}>
         التقارير
       </Typography>
 
-    
+      <MainPage />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <Form />
 
       {error && <Alert severity="error" message={error} />}
