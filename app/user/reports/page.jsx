@@ -34,12 +34,7 @@ export default function Profile() {
         py: 5,
         paddingTop: 12,
       }}>
-      <Typography variant="h5" sx={{ mt: 5, textAlign: "center" }}>
-        التقارير
-      </Typography>
-
       <MainPage />
-      <br />
       <br />
       <br />
       <br />
