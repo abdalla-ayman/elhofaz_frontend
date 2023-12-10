@@ -212,7 +212,7 @@ export default function Exam() {
               </Box>
             </>
           )}
-        {session.user !== null && session.user.has_test == false && (
+        {session && session.user !== null && session.user.has_test == false && (
           <Typography variant="h4" textAlign={"center"}>
             تم اجتياز الاختبار مسبقا عفوا
           </Typography>
