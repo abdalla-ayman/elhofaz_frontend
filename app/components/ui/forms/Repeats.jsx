@@ -1,6 +1,5 @@
+"use client"
 import React from "react";
-
-import DatePicker from "@/app/components/BasicDatePicker";
 
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -10,11 +9,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 
-export default function ArdForm({ levely }) {
+export default function RepeatsForm({ extensive }) {
   return (
     <Box
       sx={{
@@ -31,35 +27,30 @@ export default function ArdForm({ levely }) {
           alignItems: "center",
         }}
       ></Box>
-      <DatePicker label="التاريخ" />
-      {!levely && (
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={ajza}
-          sx={{ my: 2 }}
-          renderInput={(params) => <TextField {...params} label="الجزء" />}
-        />
-      )}
-
-      {levely && (
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={ajza}
-          sx={{ my: 2 }}
-          multiple
-          renderInput={(params) => <TextField {...params} label="المستوى" />}
-        />
-      )}
-
       <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={ajza}
-        sx={{ my: 2 }}
-        renderInput={(params) => <TextField {...params} label="الشيخ" />}
+        renderInput={(params) => <TextField {...params} label="تكرار الجزء" />}
       />
+      <FormControl sx={{ width: "100%", my: 3 }}>
+        <InputLabel id="demo-simple-select-label">عدد من المرات</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={extensive ? 7 : 4}
+          label="عدد من المرات"
+          disabled={true}
+          onChange={(e) => handleStateChange("gender", e.target.value)}
+        >
+          <MenuItem key={4} value={4}>
+            4
+          </MenuItem>
+          <MenuItem key={7} value={7}>
+            7
+          </MenuItem>
+        </Select>
+      </FormControl>
     </Box>
   );
 }

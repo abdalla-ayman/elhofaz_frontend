@@ -6,7 +6,7 @@ const icons = {
 			viewBox="0 0 24 24"
 			strokeWidth="1.5"
 			stroke="currentColor"
-			className="text-green-500 w-6 h-6"
+			className="text-green-700 w-6 h-6"
 		>
 			<path
 				strokeLinecap="round"
