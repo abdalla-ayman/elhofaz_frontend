@@ -128,87 +128,94 @@ export default function Exam() {
           justifyContent: "center",
         }}
       >
-        {data.length !== 0 && (
-          <>
-            {data.map((item) => (
-              <Box
-                sx={{
-                  my: 2,
-                  py: 1,
-                  borderTop: ".5px solid #333",
-                }}
-                key={item.id}
-              >
-                <Typography sx={{ mb: 2 }}>
-                  {" "}
-                  قم بتسجيل قرائتك للمقطع أدناه:
-                </Typography>
-                <div
-                  style={{
-                    backgroundColor: "#D1B783",
-                    padding: "10px",
-                    paddingTop: "20px",
-                    paddingBottom: "20px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderRadius: "10px",
-                    fontFamily: "serif",
-                    lineHeight:'27px',
-                    letterSpacing:'1px'
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html: item.question,
-                  }}
-                />
+        {data.length !== 0 &&
+          session.user !== null &&
+          session.user.has_test !== false && (
+            <>
+              {data.map((item) => (
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mt: 2,
+                    my: 2,
+                    py: 1,
+                    borderTop: ".5px solid #333",
                   }}
+                  key={item.id}
                 >
-                  <AudioRecorder
-                    onRecordingComplete={(blob) =>
-                      addAudioElement(blob, item.id)
-                    }
-                    audioTrackConstraints={{
-                      noiseSuppression: true,
-                      echoCancellation: true,
+                  <Typography sx={{ mb: 2 }}>
+                    {" "}
+                    قم بتسجيل قرائتك للمقطع أدناه:
+                  </Typography>
+                  <div
+                    style={{
+                      backgroundColor: "#D1B783",
+                      padding: "10px",
+                      paddingTop: "20px",
+                      paddingBottom: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                      borderRadius: "10px",
+                      fontFamily: "serif",
+                      lineHeight: "27px",
+                      letterSpacing: "1px",
                     }}
-                    downloadOnSavePress={false}
-                    downloadFileExtension="mp3"
+                    dangerouslySetInnerHTML={{
+                      __html: item.question,
+                    }}
                   />
-                  {item.url && (
-                    <audio
-                      style={{
-                        marginTop: "10px",
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      mt: 2,
+                    }}
+                  >
+                    <AudioRecorder
+                      onRecordingComplete={(blob) =>
+                        addAudioElement(blob, item.id)
+                      }
+                      audioTrackConstraints={{
+                        noiseSuppression: true,
+                        echoCancellation: true,
                       }}
-                      src={item.url}
-                      controls={true}
+                      downloadOnSavePress={false}
+                      downloadFileExtension="mp3"
                     />
-                  )}
+                    {item.url && (
+                      <audio
+                        style={{
+                          marginTop: "10px",
+                        }}
+                        src={item.url}
+                        controls={true}
+                      />
+                    )}
+                  </Box>
                 </Box>
-              </Box>
-            ))}
+              ))}
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                pt: 2,
-                borderTop: "1px solid #333",
-              }}
-            >
-              <Button size="large" onClick={handleSubmit} variant="contained">
-                تسليم الإختبار
-              </Button>
-            </Box>
-          </>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  pt: 2,
+                  borderTop: "1px solid #333",
+                }}
+              >
+                <Button size="large" onClick={handleSubmit} variant="contained">
+                  تسليم الإختبار
+                </Button>
+              </Box>
+            </>
+          )}
+        {session.user !== null && session.user.has_test == false && (
+          <Typography variant="h4" textAlign={"center"}>
+            تم اجتياز الاختبار مسبقا عفوا
+          </Typography>
         )}
       </Box>
       {error && <Alert severity="error" message={error} />}
