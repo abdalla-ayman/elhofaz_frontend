@@ -11,6 +11,7 @@ import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 import { AudioRecorder } from "react-audio-voice-recorder";
 import { Button } from "@mui/material";
+import Link from "next/link";
 
 export default function Exam() {
   let [data, setData] = useState([]);
@@ -213,9 +214,15 @@ export default function Exam() {
             </>
           )}
         {session && session.user !== null && session.user.has_test == false && (
-          <Typography variant="h4" textAlign={"center"}>
-            تم اجتياز الاختبار مسبقا عفوا
-          </Typography>
+          <Container sx={{ marginTop: 10, textAlign: "center" }}>
+            <Typography variant="h4">تم اجتياز الاختبار مسبقا عفوا</Typography>
+            <br />
+            <Link href={"/user/profile"}>
+              <Button color="primary" variant="contained">
+                الرجوع الى الملف الشخصي
+              </Button>
+            </Link>
+          </Container>
         )}
       </Box>
       {error && <Alert severity="error" message={error} />}
