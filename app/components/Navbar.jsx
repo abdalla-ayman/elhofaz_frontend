@@ -199,9 +199,6 @@ function DrawerAppBar(props) {
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Link href={"/events"}>
-              <Button sx={{ color: "#fff", mx: 1 }}>البرامج المصاحبة</Button>
-            </Link>
             <Link href={"/contact"}>
               <Button sx={{ color: "#fff", mx: 1 }}>تواصل معنا</Button>
             </Link>
@@ -213,9 +210,6 @@ function DrawerAppBar(props) {
                 </Link> */}
                 <Link href={"/user/profile"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
-                </Link>
-                <Link href={"/user/reports"}>
-                  <Button sx={{ color: "#fff", mx: 1 }}>التقارير</Button>
                 </Link>
                 <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
                   تسجيل الخروج
