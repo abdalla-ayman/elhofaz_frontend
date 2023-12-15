@@ -15,7 +15,8 @@ export default function Heading() {
         width: "100%",
         height: "550px",
         backgroundColor: "#A5823D",
-      }}>
+      }}
+    >
       <Typography align="center" sx={{ color: "white" }} variant="h4">
         تواصل معنا <ContactSupportIcon fontSize="large" />
       </Typography>
@@ -28,34 +29,27 @@ export default function Heading() {
 
           width: "100%",
           mt: 2,
-        }}>
+        }}
+      >
         <Button
           // align="center"
           sx={{
             my: 4,
             mx: 1,
           }}
-          variant="contained">
-          {" "}
-          <a href="#socialmedia"> وسائل التواصل الإجتماعي</a>
-        </Button>
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained">
-          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
-        </Button>
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained">
+          variant="contained"
+        >
           <a href="#message">الشكاوي \ المقترحات \ الإستفسارات</a>
+        </Button>
+        <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#FAQ">الأسئلة الأكثر شيوعا</a>
         </Button>
       </Box>
     </Box>

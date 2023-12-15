@@ -1,16 +1,5 @@
 "use client";
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-} from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import HomeCard from "@/app/components/card";
 //icons
@@ -24,10 +13,16 @@ import HomeAbout from "@/app/components/HomePage-Sections/about";
 import HomeGoals from "@/app/components/HomePage-Sections/goals";
 import HomeTracks from "@/app/components/HomePage-Sections/tracks";
 import { StackedLineChart, Timeline } from "@mui/icons-material";
+import Up from "@/app/components/Up";
 
 export default function Home() {
   return (
-    <div className="">
+    <div
+      style={{
+        position: "relative",
+
+      }}
+    >
       <Box
         sx={{
           backgroundImage:
@@ -36,7 +31,8 @@ export default function Home() {
           height: "100vh",
           // backgroundSize: "cover",
           // backgroundPosition: "center -140px",
-        }}>
+        }}
+      >
         {/* <BackgroundImage alt={"bg"} src={"/bg0.png"} position={"absolute"} /> */}
         <Container>
           <Typography
@@ -47,13 +43,15 @@ export default function Home() {
               fontWeight: "bold",
               paddingTop: "40vh",
               textAlign: "center",
-            }}>
+            }}
+          >
             مرحبا بكم في منصة مقارئ السفرة
           </Typography>
 
           <Typography
             variant="subtitle1"
-            sx={{ color: "white", textAlign: "center", mt: 3 }}>
+            sx={{ color: "white", textAlign: "center", mt: 3 }}
+          >
             لتعليم القرآن الكريم و علومه (بمنهجية مقارئ الحفاظ)
           </Typography>
           <Box
@@ -61,11 +59,13 @@ export default function Home() {
               display: "flex",
               justifyContent: "center",
               marginTop: "2rem",
-            }}>
+            }}
+          >
             <Button
               variant="contained"
               color="primary"
-              sx={{ marginRight: "1rem" }}>
+              sx={{ marginRight: "1rem" }}
+            >
               <a href="#about">تصفح الآن</a>
             </Button>
           </Box>
@@ -83,17 +83,20 @@ export default function Home() {
           sx={{
             paddingBottom: "100px",
             paddingTop: "20px",
-          }}>
+          }}
+        >
           <Box
             display="flex"
             alignItems="center"
             justifyContent="center"
-            marginBottom="30px">
+            marginBottom="30px"
+          >
             <Timeline color="primary" fontSize="large" sx={{}} />
             <Typography
               variant="h4"
               fontSize={30}
-              sx={{ textAlign: "center", marginLeft: 1 }}>
+              sx={{ textAlign: "center", marginLeft: 1 }}
+            >
               مراحل البرنامج
             </Typography>
           </Box>
@@ -103,14 +106,16 @@ export default function Home() {
               padding: "16px",
               display: "flex",
               flexDirection: "column",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 flexWrap: "wrap",
-              }}>
+              }}
+            >
               <HomeCard
                 title={"مرحلة الضبط"}
                 text={"و هي أساس الحفظ و الإتقان"}
@@ -135,6 +140,7 @@ export default function Home() {
           </Container>
         </Container>
       </Box>
+      <Up />
     </div>
   );
 }

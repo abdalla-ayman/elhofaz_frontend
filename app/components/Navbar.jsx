@@ -85,7 +85,21 @@ function DrawerAppBar(props) {
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
+                  <Link href={"/events"}>البرامج المصاحبة</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
                   <Link href={"/contact"}>تواصل معنا</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/user/reports"}>التقارير</Link>
                 </ListItemText>
               </ListItemButton>
             </ListItem>
@@ -110,6 +124,13 @@ function DrawerAppBar(props) {
                 </ListItemText>
               </ListItemButton>
             </ListItem> */}
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/events"}>البرامج المصاحبة</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
@@ -181,6 +202,7 @@ function DrawerAppBar(props) {
             <Link href={"/contact"}>
               <Button sx={{ color: "#fff", mx: 1 }}>تواصل معنا</Button>
             </Link>
+
             {session && (
               <>
                 {/* <Link href={"/"}>

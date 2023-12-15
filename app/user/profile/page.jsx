@@ -130,32 +130,35 @@ export default function Profile() {
             mt: 4,
           }}
         >
-          {!user.track && user.role == "user" && !user.has_test && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                my: 2,
-                border: "1px solid red",
-                p: 2,
-                borderRadius: 3,
-              }}
-            >
-              <Typography> يجب </Typography>
-              <Button
-                variant="outlined"
-                size="small"
+          {!user.track &&
+            user.stage == "dabt" &&
+            user.role == "user" &&
+            !user.has_test && (
+              <Box
                 sx={{
-                  mx: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  my: 2,
+                  border: "1px solid red",
+                  p: 2,
+                  borderRadius: 3,
                 }}
               >
-                <Link href={"/user/track"}> إختيار المسار </Link>
-              </Button>
-              <Typography> لإكمال التسجيل </Typography>
-            </Box>
-          )}
+                <Typography> يجب </Typography>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    mx: 1,
+                  }}
+                >
+                  <Link href={"/user/track"}> إختيار المسار </Link>
+                </Button>
+                <Typography> لإكمال التسجيل </Typography>
+              </Box>
+            )}
 
           {user.role == "user" && user.has_test && (
             <Box
@@ -381,18 +384,17 @@ export default function Profile() {
                     />
                   </ListItem>
                   <br />
-
-                  {user.role == "user" && (
-                    <Item label={"المسار"} value={tracks[user.track]} />
-                  )}
-                  {user.role == "user" && (
-                    <Item label={"المرحلة"} value={stages[user.stage]} />
-                  )}
-
                   <Item
                     label={"نوع الحساب"}
                     value={"حساب " + roles[user.role]}
                   />
+
+                  {user.role == "user" && (
+                    <Item label={"المرحلة"} value={stages[user.stage]} />
+                  )}
+                  {user.role == "user" && (
+                    <Item label={"المسار"} value={tracks[user.track]} />
+                  )}
                 </List>
               </Box>
             </Grid>
