@@ -144,7 +144,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
         minHeight: "100vh",
         py: 4,
         backgroundColor: "#bb9457",
-      }}>
+      }}
+    >
       <Typography
         variant="h4"
         align="center"
@@ -152,7 +153,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
           mt: 12,
           marginBottom: 9,
           color: "black",
-        }}>
+        }}
+      >
         الشكاوي \ المقترحات \ الإستفسارات
       </Typography>
 
@@ -164,7 +166,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                 initial={{ opacity: 0, y: -100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
-                viewport={{ once: true }}>
+                viewport={{ once: true }}
+              >
                 <img
                   className="cont-img"
                   src="/Contact-Us.png"
@@ -179,7 +182,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                 initial={{ opacity: 0, y: -100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
-                viewport={{ once: true }}>
+                viewport={{ once: true }}
+              >
                 <Paper
                   elevation={3}
                   sx={{
@@ -188,7 +192,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                     width: "100%",
                     maxWidth: 900,
                     minWidth: 320,
-                  }}>
+                  }}
+                >
                   <form
                     onSubmit={handleSubmit}
                     action={"#"}
@@ -196,7 +201,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                       display: "flex",
                       flexDirection: "column",
                       width: "100%",
-                    }}>
+                    }}
+                  >
                     <h2 className="text-2xl mb-4 text-center">التواصل</h2>
 
                     {!hideIdentity && (
@@ -300,7 +306,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                         id="demo-simple-select"
                         label="نوع الرسالة"
                         onChange={(e) => setType(e.target.value)}
-                        value={type}>
+                        value={type}
+                      >
                         <MenuItem value={"complaint"}>شكوى</MenuItem>
                         <MenuItem value={"suggestion"}>مقترح</MenuItem>
                         <MenuItem value={"question"}>إستفسار</MenuItem>
@@ -326,18 +333,21 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                       display: "flex",
                       justifyContent: "flex-start",
                       marginTop: "10px",
-                    }}>
+                    }}
+                  >
                     <Typography variant="h6">
                       تواصل مباشرة عن طريق الايميل او الواتساب{" "}
                     </Typography>
                   </Container>
                   <Container
-                    sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                  >
                     <IconButton
                       color="inherit"
                       component="a"
-                      href="mailto:maqaresafarah@gmail.com"
-                      target="_blank">
+                      href="mailto:info@tahfeeth.org"
+                      target="_blank"
+                    >
                       <EmailOutlined
                         sx={{
                           fontSize: "30px",
@@ -350,7 +360,8 @@ export default function Form({ data, setError, setLoading, setSuccess }) {
                       color="inherit"
                       component="a"
                       href="https://api.whatsapp.com/send?phone=249912153727"
-                      target="_blank">
+                      target="_blank"
+                    >
                       <WhatsApp
                         sx={{
                           fontSize: "30px",
