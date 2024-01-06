@@ -11,7 +11,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import TaskIcon from '@mui/icons-material/Task';
 
 
-export default function Contact() {
+export default function TajweedLessons() {
   // const [faq, setFAQ] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
