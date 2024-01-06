@@ -6,6 +6,7 @@ import Lesson from './lesson'
 import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
+import Container from '@mui/material/Container';
 
 
 export default function Page({params}) {
@@ -44,8 +45,8 @@ export default function Page({params}) {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        pt: 5,
+        minHeight: "80vh",
+        pt: 12,
         backgroundColor: "#cba346",
         color: "white",
       }}
@@ -60,11 +61,13 @@ export default function Page({params}) {
           close={() => setSuccess("")}
         />
       )}
-      <Loading loading={loading} text={"جاري التحميل"} />
-      { !isAList && (<Lesson title={toWords(params.lessonId)} id={params.lessonId-1} img={getImage(images)} />)}
-      { isAList && 
-        multipleLessons
-      }
+      <Loading loading={loading} text={"جاري التحميل"} /> 
+      <Container>
+        { !isAList && (<Lesson title={toWords(params.lessonId)} id={params.lessonId-1} img={getImage(images)} />)}
+        { isAList && 
+          multipleLessons
+        }
+      </Container>
     </Box>
   );
 }

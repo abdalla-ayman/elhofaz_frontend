@@ -36,7 +36,7 @@ export default function Contact() {
         color: "white",
       }}
     >
-    <Typography align="center" sx={{ color: "white" }} variant="h4">دروس التجويد<TaskIcon fontSize="large" />
+    <Typography align="center" sx={{ color: "white" }} variant="h4"><TaskIcon fontSize="large" />دروس التجويد
       </Typography>
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />

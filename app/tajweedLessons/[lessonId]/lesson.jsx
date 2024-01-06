@@ -15,7 +15,7 @@ const LessonPage = ({title , id, img}) => {
 //   const lessonUrl = "https://example.com/lessons/123";
 
   return (
-    <Container maxWidth="md" sx={{ pt: 8, pb: 8 }}>
+    <Container maxWidth="sm" sx={{ pb:4 }}>
       <Typography variant="h3" component="h1" align="center" mb={8} gutterBottom>
         {pageTitle}
       </Typography>
