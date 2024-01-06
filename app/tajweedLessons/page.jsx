@@ -1,14 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Lessons from './lessons'
 
 import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import ContactSupportIcon from "@mui/icons-material/ContactSupport";
+import TaskIcon from '@mui/icons-material/Task';
 
-import Heading from "./heading";
-import RecitingCorrection from "./RecitingCorrection";
-import CharitableFunds from './charitableFund'
 
 export default function Contact() {
   // const [faq, setFAQ] = useState([]);
@@ -29,14 +30,14 @@ export default function Contact() {
     <Box
       sx={{
         minHeight: "100vh",
-        pt: 5,
-        backgroundColor: "#cba346",
+        pt: 16,
+        // backgroundColor: "#cba346",
+        backgroundColor: '#907235',
         color: "white",
       }}
     >
-      <Heading />
-      <RecitingCorrection />
-      <CharitableFunds />
+    <Typography align="center" sx={{ color: "white" }} variant="h4"><TaskIcon fontSize="large" />دروس التجويد
+      </Typography>
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />
       )}
@@ -48,6 +49,8 @@ export default function Contact() {
         />
       )}
       <Loading loading={loading} text={"جاري التحميل"} />
+      <Lessons />
     </Box>
   );
 }
+

@@ -89,6 +89,7 @@ function DrawerAppBar(props) {
                 </ListItemText>
               </ListItemButton>
             </ListItem>
+            
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
@@ -216,6 +217,9 @@ function DrawerAppBar(props) {
                 </Link>
                 <Link href={"/user/reports"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>التقارير</Button>
+                </Link>
+                <Link href={"/tajweedLessons"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>دروس التجويد</Button>
                 </Link>
                 <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
                   تسجيل الخروج
