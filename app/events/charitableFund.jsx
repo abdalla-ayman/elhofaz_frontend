@@ -17,7 +17,7 @@ import { contact } from "@/lib/contact";
 import { motion } from "framer-motion";
 
 
-export default function charitableFund() {
+export default function CharitableFund() {
   let [name, setName] = useState("");
     let [phone, setPhone] = useState("");
     let [email, setEmail] = useState("");
