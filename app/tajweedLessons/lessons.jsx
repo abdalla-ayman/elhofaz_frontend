@@ -38,7 +38,7 @@ export default function lessons() {
   return (
     <Container maxWidth="md" sx={{ py: 8  }}>
     <TableContainer sx={{}}>
-      <Table sx={{backgroundColor:'#907235'}}>
+      <Table sx={{backgroundColor:'#907235', display: { xs: "none", sm: "block" } }}>
         {/* Table Body */}
         <TableBody>
           {[...Array(numberOfRows)].map((_, rowIndex) => (
@@ -57,6 +57,43 @@ export default function lessons() {
                     backgroundColor: '#432818',
                     color: 'white',
                     cursor: 'pointer',
+                    ":hover": {
+                      // backgroundColor: '#574116'
+                      backgroundColor: '#bb9457'
+                    }
+                }}><Link style={{width:'100%',height:'100%'}} href={`tajweedLessons/${generateId(rowIndex,colIndex)}`} >
+                    {/* #7B612E */}
+                  {generateLessonName(rowIndex, colIndex)}</Link>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      <Table sx={{backgroundColor:'#907235', display: { xs: "block", sm: "none" } }}>
+        {/* Table Body */}
+        <TableBody>
+          {[...Array(numberOfRows)].map((_, rowIndex) => (
+            <TableRow key={rowIndex} sx={{borderStyle: 'none' }}>
+              {[...Array(numberOfColumns)].map((_, colIndex) => (
+                <TableCell key={colIndex} sx={{
+                    // paddingY:'20px',
+                    // margin:'40px',
+                    // flex:'1',
+                    width: '33%',
+                    // height:'0',
+                    whiteSpace: "pre-line",
+                    borderRadius: '35px',
+                    border: 'solid 10px #907235',
+                    textAlign: 'center',
+                    // backgroundColor: '#7B612E',
+                    backgroundColor: '#432818',
+                    color: 'white',
+                    cursor: 'pointer',
+                    fontSize:'12px',
+                    fontStyle:'italic',
+
                     ":hover": {
                       // backgroundColor: '#574116'
                       backgroundColor: '#bb9457'

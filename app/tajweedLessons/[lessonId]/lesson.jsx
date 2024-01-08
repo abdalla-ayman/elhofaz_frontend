@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
+import Image from 'next/image'
 
 const LessonPage = ({title , id, img, lessonTitle}) => {
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -32,7 +33,7 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
 
 
   return (
-    <Container maxWidth="sm" sx={{ pb:4 }}>
+    <Container maxWidth="sm" sx={{ pb:4, position:'relative' }}>
       <Typography variant="h3" component="h1" align="center" mb={8} gutterBottom>
         {pageTitle}
       </Typography>
@@ -71,7 +72,7 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
           </div> */}
       </Card>
       {/* <KeyboardBackspace /><ArrowRightAlt /> */}
-      {/* <Modal
+      <Modal
           open={isImageModalOpen}
           onClose={handleCloseImageModal}
           aria-labelledby="image-modal"
@@ -80,13 +81,15 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
         ><>
             
             
-          <div style={{display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center'
+        //   ,position:'relative'
+          }}>
 
               <IconButton sx={{  
                 color:'#fff',
                 position:'absolute',
-                top: "-25%",
-                left: "-25%",
+                top: "-45%",
+                left: "45%",
                 width: '100vw', 
                 height: '100vh',
                 cursor:'pointer'}}
@@ -96,7 +99,7 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
 
             <img src={imageUrl} alt={lessonTitle} style={{ width: '100vw', height: '100vh', objectFit: 'contain' }} />
           </div></>
-        </Modal> */}
+        </Modal>
     </Container>
   );
 };
