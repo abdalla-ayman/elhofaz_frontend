@@ -89,6 +89,16 @@ function DrawerAppBar(props) {
                 </ListItemText>
               </ListItemButton>
             </ListItem> */}
+<<<<<<< HEAD
+=======
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/tajweedLessons"}>دروس التجويد</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+>>>>>>> dev
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
@@ -131,6 +141,16 @@ function DrawerAppBar(props) {
                 </ListItemText>
               </ListItemButton>
             </ListItem> */}
+<<<<<<< HEAD
+=======
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText>
+                  <Link href={"/tajweedLessons"}>دروس التجويد</Link>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+>>>>>>> dev
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText>
@@ -199,6 +219,15 @@ function DrawerAppBar(props) {
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
+<<<<<<< HEAD
+=======
+            {/* <Link href={"/events"}>
+              <Button sx={{ color: "#fff", mx: 1 }}>البرامج المصاحبة</Button>
+            </Link> */}
+            <Link href={"/tajweedLessons"}>
+              <Button sx={{ color: "#fff", mx: 1 }}>دروس التجويد</Button>
+            </Link>
+>>>>>>> dev
             <Link href={"/contact"}>
               <Button sx={{ color: "#fff", mx: 1 }}>تواصل معنا</Button>
             </Link>
@@ -211,6 +240,15 @@ function DrawerAppBar(props) {
                 <Link href={"/user/profile"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
                 </Link>
+<<<<<<< HEAD
+=======
+                {/* <Link href={"/user/reports"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>التقارير</Button>
+                </Link> */}
+                {/* <Link href={"/tajweedLessons"}>
+                  <Button sx={{ color: "#fff", mx: 1 }}>دروس التجويد</Button>
+                </Link> */}
+>>>>>>> dev
                 <Button sx={{ color: "#fff", mx: 1 }} onClick={signOut}>
                   تسجيل الخروج
                 </Button>
