@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import Link from "next/link";
+import Typography from "@mui/material/Typography";
+
 
   
 export default function lessons() {
@@ -17,9 +19,14 @@ export default function lessons() {
   const numberOfRows = 12;
   const numberOfColumns = 3;
 
+  const generateLessonNumber = (rowIndex, colIndex) => {
+    const lessonNumber = rowIndex * numberOfColumns + colIndex + 1;
+    return `الدرس ${toWords(lessonNumber)}`;
+  };
+
   const generateLessonName = (rowIndex, colIndex) => {
     const lessonNumber = rowIndex * numberOfColumns + colIndex + 1;
-    return `الدرس ${toWords(lessonNumber)}
+    return `
             
             (${lessonTitels[lessonNumber-1]})
                       `;
@@ -37,17 +44,20 @@ export default function lessons() {
 
   return (
     <Container maxWidth="md" sx={{ py: 8  }}>
-    <TableContainer sx={{}}>
+    <TableContainer sx={{display:"flex",
+        justifyContent:"center", alignItems:'center'}}>
       <Table sx={{backgroundColor:'#907235', display: { xs: "none", sm: "block" } }}>
         {/* Table Body */}
         <TableBody>
           {[...Array(numberOfRows)].map((_, rowIndex) => (
-            <TableRow key={rowIndex} sx={{borderStyle: 'none', }}>
+                    
+                    <TableRow key={rowIndex} sx={{borderStyle: 'none',}}>
               {[...Array(numberOfColumns)].map((_, colIndex) => (
                 <TableCell key={colIndex} sx={{
                     // paddingY:'20px',
-                    // margin:'40px',
-                    width: '33%',
+                    margin:'3px',
+                    flexGrow:1,
+                    width: '33.3%',
                     // height:'0',
                     whiteSpace: "pre-line",
                     borderRadius: '35px',
@@ -57,13 +67,16 @@ export default function lessons() {
                     backgroundColor: '#432818',
                     color: 'white',
                     cursor: 'pointer',
+                    
                     ":hover": {
                       // backgroundColor: '#574116'
                       backgroundColor: '#bb9457'
                     }
                 }}><Link style={{width:'100%',height:'100%'}} href={`tajweedLessons/${generateId(rowIndex,colIndex)}`} >
+                  <Typography variant='p'component="p" >
                     {/* #7B612E */}
-                  {generateLessonName(rowIndex, colIndex)}</Link>
+                    {generateLessonNumber(rowIndex, colIndex)}            
+                  {generateLessonName(rowIndex, colIndex)}</Typography></Link>
                 </TableCell>
               ))}
             </TableRow>
@@ -75,17 +88,19 @@ export default function lessons() {
         {/* Table Body */}
         <TableBody>
           {[...Array(numberOfRows)].map((_, rowIndex) => (
-            <TableRow key={rowIndex} sx={{borderStyle: 'none' }}>
+                    
+                    <TableRow key={rowIndex} sx={{borderStyle: 'none',display:'flex', justifyContent:'center' , }}>
               {[...Array(numberOfColumns)].map((_, colIndex) => (
                 <TableCell key={colIndex} sx={{
                     // paddingY:'20px',
-                    // margin:'40px',
+                    flexGrow:1,
+                    margin:'1px',
                     // flex:'1',
-                    width: '33%',
+                    width: '100%',
                     // height:'0',
                     whiteSpace: "pre-line",
-                    borderRadius: '35px',
-                    border: 'solid 10px #907235',
+                    borderRadius: '15px',
+                    border: 'double 4px #907235',
                     textAlign: 'center',
                     // backgroundColor: '#7B612E',
                     backgroundColor: '#432818',
@@ -99,8 +114,10 @@ export default function lessons() {
                       backgroundColor: '#bb9457'
                     }
                 }}><Link style={{width:'100%',height:'100%'}} href={`tajweedLessons/${generateId(rowIndex,colIndex)}`} >
+                    <Typography variant='p'component="p" fontSize={10}>
                     {/* #7B612E */}
-                  {generateLessonName(rowIndex, colIndex)}</Link>
+                  {generateLessonNumber(rowIndex, colIndex)
+                  }{generateLessonName(rowIndex, colIndex)}</Typography></Link>
                 </TableCell>
               ))}
             </TableRow>

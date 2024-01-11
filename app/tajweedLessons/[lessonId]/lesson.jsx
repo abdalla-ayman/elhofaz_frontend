@@ -11,7 +11,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
 import Image from 'next/image'
-
+import Skeleton from '@mui/material/Skeleton'
 const LessonPage = ({title , id, img, lessonTitle}) => {
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
@@ -33,15 +33,17 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
 
 
   return (
-    <Container maxWidth="sm" sx={{ pb:4, position:'relative' }}>
+    <Container maxWidth="sm" sx={{ pb:'0px', position:'relative' }}>
       <Typography variant="h3" component="h1" align="center" mb={8} gutterBottom>
         {pageTitle}
       </Typography>
       <Typography variant="h4" component="h1" align="center" gutterBottom color={'black'}>
             {lessonTitle}
           </Typography>
+          
       <Card sx={{backgroundColor:'inherit'}}>
-        
+      {imageUrl ? (
+      <>
         <CardMedia
           component="img"
           alt={title}
@@ -51,6 +53,14 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
           onClick={handleOpenImageModal}
           
         />
+        </>) : (<>
+      
+      {/* skeleton */}
+          
+        
+      <div style={{display:'flex', justifyContent:'center'}}><Skeleton variant="rectangular" width={580} height={400} /></div>
+        
+      </>)}
         
             
         {/* <CardContent>
@@ -99,9 +109,9 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
 
             <img src={imageUrl} alt={lessonTitle} style={{ width: '100vw', height: '100vh', objectFit: 'contain' }} />
           </div></>
-        </Modal>
+        </Modal> 
     </Container>
   );
 };
-
+{/*  */}
 export default LessonPage;
