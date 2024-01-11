@@ -42,8 +42,7 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
           </Typography>
           
       <Card sx={{backgroundColor:'inherit'}}>
-      {imageUrl ? (
-      <>
+
         <CardMedia
           component="img"
           alt={title}
@@ -53,14 +52,6 @@ const LessonPage = ({title , id, img, lessonTitle}) => {
           onClick={handleOpenImageModal}
           
         />
-        </>) : (<>
-      
-      {/* skeleton */}
-          
-        
-      <div style={{display:'flex', justifyContent:'center'}}><Skeleton variant="rectangular" width={580} height={400} /></div>
-        
-      </>)}
         
             
         {/* <CardContent>
