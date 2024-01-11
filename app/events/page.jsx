@@ -6,7 +6,7 @@ import Loading from "@/app/components/Loading";
 import Alert from "@/app/components/Alert";
 import Box from "@mui/material/Box";
 
-import Heading from "./heading";
+// import Heading from "./heading";
 import RecitingCorrection from "./RecitingCorrection";
 import CharitableFunds from './charitableFund'
 
@@ -34,7 +34,7 @@ export default function Contact() {
         color: "white",
       }}
     >
-      <Heading />
+      {/* <Heading /> */}
       <RecitingCorrection />
       <CharitableFunds />
       {error && (
