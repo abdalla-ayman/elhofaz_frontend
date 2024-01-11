@@ -34,8 +34,8 @@ export default function Contact() {
         color: "white",
       }}
     >
-      {/* <Heading /> */}
-      {/* <RecitingCorrection />
+      <Heading />
+      <RecitingCorrection />
       <CharitableFunds />
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />
@@ -47,7 +47,7 @@ export default function Contact() {
           close={() => setSuccess("")}
         />
       )}
-      <Loading loading={loading} text={"جاري التحميل"} /> */}
+      <Loading loading={loading} text={"جاري التحميل"} />
     </Box>
   );
 }
