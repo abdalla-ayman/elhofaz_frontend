@@ -49,7 +49,7 @@ const MainPage = () => {
                 title={"مقدار الحفظ"}
                 subtitle={"مقدار الحفظ اليومي"}
                 content={"4"}
-                btnText={"تغيير"}
+                btnText={"/user/reports"}
               />
             </Container>
           </Grid>
