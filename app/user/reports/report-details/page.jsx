@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import DataTable from "@/app/user/reports/Table";
+import DataTable from "@/app/components/Table";
 import { Container, Button } from "@mui/material";
 
 const columns = [
