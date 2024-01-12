@@ -178,8 +178,7 @@ function DrawerAppBar(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
+            sx={{ mr: 2, display: { sm: "none" } }}>
             <MenuIcon />
           </IconButton>
           <Link
@@ -187,13 +186,11 @@ function DrawerAppBar(props) {
             style={{
               display: { xs: "none", sm: "block" },
               textAlign: "center",
-            }}
-          >
+            }}>
             <Typography
               variant="h6"
               component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
+              sx={{ display: { xs: "none", sm: "block" } }}>
               مقارئ السفرة
             </Typography>
           </Link>
@@ -207,8 +204,7 @@ function DrawerAppBar(props) {
                 top: "50%",
                 transform: "translate(-50%, -50%)",
                 display: { xs: "block", sm: "none", md: "none" },
-              }}
-            >
+              }}>
               مقارئ السفرة
             </Typography>
           </Link>
@@ -231,9 +227,9 @@ function DrawerAppBar(props) {
                 <Link href={"/user/profile"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>الملف الشخصي</Button>
                 </Link>
-                {/* <Link href={"/user/reports"}>
+                <Link href={"/user/reports"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>التقارير</Button>
-                </Link> */}
+                </Link>
                 {/* <Link href={"/tajweedLessons"}>
                   <Button sx={{ color: "#fff", mx: 1 }}>دروس التجويد</Button>
                 </Link> */}
@@ -267,8 +263,7 @@ function DrawerAppBar(props) {
               boxSizing: "border-box",
               width: drawerWidth,
             },
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
       </nav>

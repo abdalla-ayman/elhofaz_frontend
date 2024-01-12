@@ -1,11 +1,17 @@
+"use client";
 import React, { useState } from "react";
 
-import ArdForm from "./forms/Ard";
-import DailyForm from "./forms/Daily";
-import BeginnerDailyForm from "./forms/Daily_Beginner";
-import RepeatsForm from "./forms/Repeats";
-import AbsenceForm from "./forms/Absence";
-import ChangeNew from "./forms/ChangeNew";
+import ArdForm from "@/app/components/ui/forms/Ard";
+import DailyForm from "@/app/components/ui/forms/Daily";
+import BeginnerDailyForm from "@/app/components/ui/forms/Daily_Beginner";
+import RepeatsForm from "@/app/components/ui/forms/Repeats";
+import AbsenceForm from "@/app/components/ui/forms/Absence";
+import ChangeNew from "@/app/components/ui/forms/ChangeNew";
+
+//mustafa changes goes here
+import AddReportsMenus from "@/app/components/ui/AddReportOptions";
+import FilterReportsMenu from "@/app/components/ui/FilterReportOptions";
+import ReportsTables from "@/app/components/ui/ReportsTableOptions";
 
 //componets
 import Dialog from "@mui/material/Dialog";
@@ -26,8 +32,7 @@ function SelectType({ report, setType }) {
         justifyContent: "center",
         alignItems: "center",
         flexWrap: "wrap",
-      }}
-    >
+      }}>
       {report && (
         <>
           {" "}
@@ -38,8 +43,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("daily")}
-          >
+            onClick={() => setType("daily")}>
             التقرير اليومي
           </Button>
           <Button
@@ -49,8 +53,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("daily_begginer")}
-          >
+            onClick={() => setType("daily_begginer")}>
             التقرير اليومي التأهيلي
           </Button>
           <Button
@@ -60,8 +63,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("repeats")}
-          >
+            onClick={() => setType("repeats")}>
             تقرير التكرار
           </Button>
           <Button
@@ -71,8 +73,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("extensive")}
-          >
+            onClick={() => setType("extensive")}>
             تقرير التكرار المكثف
           </Button>
           <Button
@@ -82,8 +83,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("ard")}
-          >
+            onClick={() => setType("ard")}>
             تقرير العرض
           </Button>
           <Button
@@ -93,8 +93,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("levely")}
-          >
+            onClick={() => setType("levely")}>
             تقرير العرض المرحلي
           </Button>
         </>
@@ -108,8 +107,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("absence")}
-          >
+            onClick={() => setType("absence")}>
             طلب غياب
           </Button>
           <Button
@@ -119,8 +117,7 @@ function SelectType({ report, setType }) {
             size="small"
             variant="outlined"
             color="info"
-            onClick={() => setType("diluted")}
-          >
+            onClick={() => setType("diluted")}>
             طلب البرنامج المخفف
           </Button>
         </>
@@ -142,15 +139,15 @@ export default function Form() {
       "اختر نوع الطلب",
       <SelectType key={2} report={false} setType={setType} />,
     ],
-    change: ["تغيير مقدار الحفظ", <ChangeNew key={3}/>],
-    daily: ["التقرير اليومي", <DailyForm key={4}/>],
-    daily_begginer: ["التقرير اليومي", <BeginnerDailyForm key={5}/>],
-    repeats: ["تقرير التكرار", <RepeatsForm key={6}/>],
+    change: ["تغيير مقدار الحفظ", <ChangeNew key={3} />],
+    daily: ["التقرير اليومي", <DailyForm key={4} />],
+    daily_begginer: ["التقرير اليومي", <BeginnerDailyForm key={5} />],
+    repeats: ["تقرير التكرار", <RepeatsForm key={6} />],
     extensive: ["التكرار المكثف", <RepeatsForm key={7} extensive={true} />],
-    ard: ["تقرير العرض", <ArdForm key={8}/>],
+    ard: ["تقرير العرض", <ArdForm key={8} />],
     levely: ["تقرير العرض المرحلي", <ArdForm key={9} levely={true} />],
-    absence: ["طلب غياب", <AbsenceForm key={10}/>],
-    diluted: ["طلب البرنامج المخفف", <AbsenceForm key={11}/>],
+    absence: ["طلب غياب", <AbsenceForm key={10} />],
+    diluted: ["طلب البرنامج المخفف", <AbsenceForm key={11} />],
   };
 
   const handleClickOpen = (type) => {
@@ -172,16 +169,14 @@ export default function Form() {
           color="info"
           size="small"
           variant="contained"
-          onClick={() => handleClickOpen("report")}
-        >
+          onClick={() => handleClickOpen("report")}>
           ارسال تقرير
         </Button>
         <Button
           color="error"
           size="small"
           variant="contained"
-          onClick={() => handleClickOpen("request")}
-        >
+          onClick={() => handleClickOpen("request")}>
           ارسال طلب غياب/تخفيف البرنامج
         </Button>
         <Button
@@ -191,11 +186,17 @@ export default function Form() {
           color="success"
           size="small"
           variant="contained"
-          onClick={() => handleClickOpen("change")}
-        >
+          onClick={() => handleClickOpen("change")}>
           ارسال طلب تغيير مقدار الحفظ
         </Button>
       </Box>
+      <br />
+      <AddReportsMenus />
+      <br />
+      <FilterReportsMenu />
+      <br />
+      <ReportsTables />
+
       <Dialog
         fullWidth
         maxWidth="xs"
@@ -204,13 +205,11 @@ export default function Form() {
         open={open}
         sx={{
           overflow: "visible",
-        }}
-      >
+        }}>
         <DialogTitle
           sx={{ m: 0, p: 2 }}
           align="center"
-          id="customized-dialog-title"
-        >
+          id="customized-dialog-title">
           {type ? types[type][0] : "اختر احد الخيارات"}
         </DialogTitle>
         <IconButton
@@ -221,8 +220,7 @@ export default function Form() {
             right: 8,
             top: 8,
             color: (theme) => theme.palette.grey[500],
-          }}
-        >
+          }}>
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
@@ -242,8 +240,7 @@ export default function Form() {
             }}
             autoFocus
             onClick={handleClose}
-            variant="contained"
-          >
+            variant="contained">
             إرسال
           </Button>
         </DialogActions>
