@@ -1,28 +1,27 @@
-"use client"
-import React from "react";
+"use client";
+import { React, useState } from "react";
 
 import DatePicker from "@/app/components/BasicDatePicker";
 
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Autocomplete from "@mui/material/Autocomplete";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function ArdForm({ levely }) {
+export default function ArdForm() {
+  const [levely, setLevely] = useState(false);
+
   return (
     <Box
       sx={{
         mb: 4,
-      }}
-    >
-      <Typography align="center">تم بحمدالله</Typography>
+      }}>
+      <Typography align="center" variant="h4">
+        تقرير العرض
+      </Typography>
       <Box
         sx={{
           my: 3,
@@ -30,9 +29,13 @@ export default function ArdForm({ levely }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-        }}
-      ></Box>
+        }}></Box>
       <DatePicker label="التاريخ" />
+      <FormControlLabel
+        onChange={() => setLevely(!levely)}
+        control={<Checkbox />}
+        label="مرحلي؟"
+      />
       {!levely && (
         <Autocomplete
           disablePortal
@@ -61,6 +64,14 @@ export default function ArdForm({ levely }) {
         sx={{ my: 2 }}
         renderInput={(params) => <TextField {...params} label="الشيخ" />}
       />
+      <div className="text-center">
+        <Button
+          style={{ width: "240px", height: "40px" }}
+          variant="contained"
+          color="primary">
+          ارسال
+        </Button>
+      </div>
     </Box>
   );
 }

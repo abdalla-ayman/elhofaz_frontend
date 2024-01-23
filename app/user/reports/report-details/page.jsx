@@ -3,6 +3,10 @@ import * as React from "react";
 import DataTable from "@/app/components/Table";
 import { Container, Button } from "@mui/material";
 
+//mustafa changes goes here
+import AddReportsMenus from "@/app/components/ui/AddReportOptions";
+import FilterReportsMenu from "@/app/components/ui/FilterReportOptions";
+
 const columns = [
   { field: "id", headerName: "الرقم", width: 70 },
   { field: "date", headerName: "التاريخ", width: 100 },
@@ -163,17 +167,10 @@ export default function ReportDetails() {
           justifyContent: "flex-end",
           flexDirection: "row",
         }}>
-        <Button
-          sx={{
-            mx: 1,
-          }}
-          color="info"
-          size="small"
-          variant="contained"
-          // onClick={() => handleClickOpen("report")}
-        >
-          ارسال تقرير
-        </Button>
+        <div style={{ marginLeft: "10px" }}>
+          <FilterReportsMenu />
+        </div>
+        <AddReportsMenus />
       </Container>
 
       <DataTable columns={columns} rows={rows}></DataTable>

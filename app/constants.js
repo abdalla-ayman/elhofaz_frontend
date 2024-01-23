@@ -1,7 +1,6 @@
 export const reportTypes = {
-	periodic: "تقرير العرض",
-	daily: "التقرير اليومي",
-	repeated: "تقرير التكرار",
-	intense: "التكرار المكثف",
-	annual: "تقرير العرض المرحلي",
+  daily: "التقرير اليومي",
+  daily_beginer: "التقرير اليومي التأهيلي",
+  repeated: "تقرير التكرار",
+  ard: "تقرير العرض",
 };

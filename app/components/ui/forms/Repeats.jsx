@@ -1,5 +1,5 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -9,15 +9,21 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
-export default function RepeatsForm({ extensive }) {
+export default function RepeatsForm() {
+  const [extensive, setExtensive] = useState(false);
+
   return (
     <Box
       sx={{
         mb: 4,
-      }}
-    >
-      <Typography align="center">تم بحمدالله</Typography>
+      }}>
+      <Typography align="center" variant="h4">
+        تقرير التكرار
+      </Typography>
       <Box
         sx={{
           my: 3,
@@ -25,13 +31,17 @@ export default function RepeatsForm({ extensive }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-        }}
-      ></Box>
+        }}></Box>
       <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={ajza}
         renderInput={(params) => <TextField {...params} label="تكرار الجزء" />}
+      />
+      <FormControlLabel
+        onChange={() => setExtensive(!extensive)}
+        control={<Checkbox />}
+        label="مكثف"
       />
       <FormControl sx={{ width: "100%", my: 3 }}>
         <InputLabel id="demo-simple-select-label">عدد من المرات</InputLabel>
@@ -41,8 +51,7 @@ export default function RepeatsForm({ extensive }) {
           value={extensive ? 7 : 4}
           label="عدد من المرات"
           disabled={true}
-          onChange={(e) => handleStateChange("gender", e.target.value)}
-        >
+          onChange={(e) => handleStateChange("gender", e.target.value)}>
           <MenuItem key={4} value={4}>
             4
           </MenuItem>
@@ -51,6 +60,14 @@ export default function RepeatsForm({ extensive }) {
           </MenuItem>
         </Select>
       </FormControl>
+      <div className="text-center">
+        <Button
+          style={{ width: "240px", height: "40px" }}
+          variant="contained"
+          color="primary">
+          ارسال
+        </Button>
+      </div>
     </Box>
   );
 }
