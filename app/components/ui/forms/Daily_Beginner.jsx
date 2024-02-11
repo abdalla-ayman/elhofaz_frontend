@@ -1,14 +1,11 @@
+"use client";
 import React from "react";
 
 import DatePicker from "@/app/components/BasicDatePicker";
-
+import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Autocomplete from "@mui/material/Autocomplete";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -19,9 +16,10 @@ export default function BeginnerDailyForm() {
     <Box
       sx={{
         mb: 4,
-      }}
-    >
-      <Typography align="center">تم بحمدالله</Typography>
+      }}>
+      <Typography align="center" variant="h4">
+        التقرير اليومي التأهيلي
+      </Typography>
       <Box
         sx={{
           my: 3,
@@ -29,8 +27,7 @@ export default function BeginnerDailyForm() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-        }}
-      ></Box>
+        }}></Box>
       <DatePicker label="التاريخ" />
 
       <Autocomplete
@@ -62,8 +59,7 @@ export default function BeginnerDailyForm() {
         sx={{
           display: "flex",
           flexDirection: "row",
-        }}
-      >
+        }}>
         <FormControlLabel control={<Checkbox />} label="الإستماع" />
         <FormControlLabel control={<Checkbox />} label="التكرار" />
       </FormGroup>
@@ -71,16 +67,14 @@ export default function BeginnerDailyForm() {
       <Box
         sx={{
           my: 2,
-        }}
-      >
+        }}>
         <Typography
           sx={
             {
               // mx: 1,
             }
           }
-          variant="body2"
-        >
+          variant="body2">
           الجزء الحالي:
         </Typography>
 
@@ -90,8 +84,7 @@ export default function BeginnerDailyForm() {
             justifyContent: "space-between",
             my: 1,
             mx: 0,
-          }}
-        >
+          }}>
           <Autocomplete
             sx={{
               mr: 1,
@@ -133,6 +126,15 @@ export default function BeginnerDailyForm() {
         sx={{ my: 2 }}
         renderInput={(params) => <TextField {...params} label="الشيخ" />}
       />
+
+      <div className="text-center">
+        <Button
+          style={{ width: "240px", height: "40px" }}
+          variant="contained"
+          color="primary">
+          ارسال
+        </Button>
+      </div>
     </Box>
   );
 }

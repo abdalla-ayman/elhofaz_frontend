@@ -6,7 +6,7 @@ const MainPage = () => {
     {
       id: 1,
       title: "التقارير المستلمة",
-      subtitle: "عدد التقارير المستلمة للان",
+      subtitle: "عدد التقارير للان",
       content: "12",
       btnText: "عرض التقارير",
       btnLink: "/user/reports/report-details",
@@ -29,10 +29,10 @@ const MainPage = () => {
     },
     {
       id: 4,
-      title: "مقدار الحفظ",
+      title: "مقدار الحفظ اليومي",
       subtitle: "مقدار الحفظ اليومي",
       content: "4",
-      btnText: "تغيير",
+      btnText: "تغيير الحفظ",
       btnLink: "/user/reports",
     },
   ];
