@@ -70,11 +70,12 @@ export default function RecitingCorrection( {teachers, sessions} ) {
               teachers.map(teacher => (
               <TableRow key={index}>
 
-                <TableCell sx={{ textAlign:'center', }}>
-                  1. {getTeacherName(teacher, session.teacher_id) || `----` }   
-                  <br></br><br></br>          
-                  2. {getTeacherName(teacher,session.teacher2_id) || `----`}
+                <TableCell sx={{ whiteSpace: "pre-line", }}>
+                  {`1.${getTeacherName(teacher, session.teacher_id) || `----` }   
+                  2.${getTeacherName(teacher,session.teacher2_id) || `----`}`}
                 </TableCell>
+
+                
 
                 <TableCell sx={{ textAlign:'center', }}>{session.date}</TableCell>
                 <TableCell sx={{ textAlign:'center', }}>{session.time}</TableCell>
