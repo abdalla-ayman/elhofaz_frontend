@@ -5,15 +5,19 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel"
 import FormControlLabel from "@mui/material/FormControlLabel";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import RadioGroup from "@mui/material/RadioGroup"
+import Radio from "@mui/material/Radio"
+import FormGroup from '@mui/material/FormGroup'
 import { Divider, Grid, Container, IconButton } from "@mui/material";
 import { EmailOutlined, WhatsApp } from "@mui/icons-material";
 
-import { contact } from "@/lib/contact";
+// import { contact } from "@/lib/contact";
 import { motion } from "framer-motion";
 
 
@@ -24,6 +28,7 @@ export default function CharitableFund() {
     let [subject, setSubject] = useState("");
     let [message, setMessage] = useState("");
     let [type, setType] = useState("");
+    let [money, setMoney] = useState("")
   
     let [hideIdentity, setHideIdentity] = useState(false);
   
@@ -43,12 +48,17 @@ export default function CharitableFund() {
           variant="h4"
           align="center"
           sx={{
-            mt: 12,
-            marginBottom: 9,
-            color: "black",
+            mt: 6,
+            marginBottom: 6,
+            color: "white",
           }}>
-          الصندوق الخيري
+            صندوق الدعم الخيري
         </Typography>
+        {/* <Typography
+          align="center"
+          >
+            هو 
+        </Typography> */}
   
         {/* <Box> */}
           <Container>
@@ -78,7 +88,7 @@ export default function CharitableFund() {
                         flexDirection: "column",
                         width: "100%",
                       }}>
-                      <h2 className="text-2xl mb-4 text-center">التواصل</h2>
+                      <h2 className="text-2xl mb-4 text-center">بيانات الصندوق</h2>
   
                       {!hideIdentity && (
                         <>
@@ -160,87 +170,57 @@ export default function CharitableFund() {
                         sx={{
                           my: 2,
                         }}
-                      />
-                      {/* <TextField
-                        id="outlined-basic"
-                        onChange={(e) => setSubject(e.target.value)}
-                        value={subject}
-                        label="العنوان"
-                        variant="outlined"
-                        type="text"
-                        sx={{
-                          my: 1,
-                        }}
-                      />
-                      <FormControl sx={{ width: "100%", my: 1 }}>
-                        <InputLabel id="demo-simple-select-label">
-                          إختيار نموزج
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          label="نوع الرسالة"
-                          onChange={(e) => setType(e.target.value)}
-                          value={type}>
-                          <MenuItem value={"complaint"}>شكوى</MenuItem>
-                          <MenuItem value={"suggestion"}>مقترح</MenuItem>
-                          <MenuItem value={"question"}>إستفسار</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <TextField
-                        id="outlined-multiline-static"
-                        label="الرسالة"
-                        onChange={(e) => setMessage(e.target.value)}
-                        value={message}
-                        multiline
-                        rows={4}
-                      /> */}
-  
-                      <Button variant="contained" type="submit" sx={{ m: 1 }}>
+                      />               
+                    <br />
+                    {/* <FormControl>
+                      <FormLabel id="demo-radio-buttons-group-label">توجيه الدعم الى:</FormLabel>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel value="contests" control={<Radio />} label="المسابقات" />
+                        <FormControlLabel value="hafiz" control={<Radio />} label="الحوافز" />
+                        <FormControlLabel value="programs" control={<Radio />} label="البرامج(اشتراكات,...)" />
+                        <FormControlLabel value="charity projects" control={<Radio />} label="المشاريع الخيرية" />
+                        <FormControlLabel value="others" control={<Radio />} label="أخرى" />
+
+                      </RadioGroup>
+                    </FormControl> */}
+                    <Typography sx={{
+            marginBottom: 1,
+            color: "black",
+          }}>رقم الحساب: 2430539</Typography>
+                    <Typography sx={{
+            mt: 1,
+            marginBottom: 1,
+            color: "black",
+          }}>اسم الحساب: عيسى محمد الحسن</Typography>
+                    <Typography sx={{
+            mt: 1,
+            marginBottom: 1,
+            color: "black",
+          }}>رقم الوتساب: +249112217441</Typography>
+                    <TextField
+                            id="outlined-basic"
+                            onChange={(e) => setMoney(e.target.value)}
+
+                            label="مقدار الدعم المرسل"
+                            variant="outlined"
+                            type="number"
+                            helperText="المقدار يكتب بصورة ارقام فقط"
+                            sx={{
+                              my: 2,
+                            }}
+                             required 
+                          />
+
+                    <FormControlLabel required control={<Checkbox />} label="أوافق على ان يقوم برنامج مقارئ السفرة بتوجيه الدعم الى الحوجات الموجودة" />
+        
+                    <Button variant="contained" type="submit" sx={{ m: 1 }}>
                         إرسال
                       </Button>
                     </form>
-                    <br />
-                    {/* <Divider>او</Divider>
-                    <Container
-                      sx={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        marginTop: "10px",
-                      }}>
-                      <Typography variant="h6">
-                        تواصل مباشرة عن طريق الايميل او الواتساب{" "}
-                      </Typography>
-                    </Container>
-                    <Container
-                      sx={{ display: "flex", justifyContent: "flex-end" }}>
-                      <IconButton
-                        color="inherit"
-                        component="a"
-                        href="mailto:maqaresafarah@gmail.com"
-                        target="_blank">
-                        <EmailOutlined
-                          sx={{
-                            fontSize: "30px",
-                            borderRadius: "10px",
-                          }}
-                          htmlColor="#c4302b"
-                        />
-                      </IconButton>
-                      <IconButton
-                        color="inherit"
-                        component="a"
-                        href="https://api.whatsapp.com/send?phone=249912153727"
-                        target="_blank">
-                        <WhatsApp
-                          sx={{
-                            fontSize: "30px",
-                            borderRadius: "10px",
-                          }}
-                          htmlColor="#128c7e"
-                        />
-                      </IconButton>
-                    </Container> */}
                   </Paper>
                 </motion.div>
               </Box>
