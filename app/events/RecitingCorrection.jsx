@@ -23,7 +23,7 @@ export default function RecitingCorrection( {teachers, sessions} ) {
 
   const getTeacherName = (teacher, id) => {
 
-      if(teacher.id == id-1) {
+      if(teacher.id == id) {
         // console.log(teacher.id)
         // console.log(id)
         // console.log(teacher.name)
@@ -53,16 +53,16 @@ export default function RecitingCorrection( {teachers, sessions} ) {
         هو برنامج مفتوح للعامة لتصحيح التلاوة. سيتم توفير رابط الحلقة عن طريق (google meet) او (Zoom).
       </Typography>
       { sessions.length ? ( 
-      <TableContainer component={Paper} sx={{}}>
+      <TableContainer component={Paper} sx={{color:'#fff',backgroundColor:'#432818', border:'2px white solid'}}>
         
         <Table sx={{ fontSize:'10px'}}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ textAlign:'center',}}>المعلمين</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center',}}>المعلمين</TableCell>
               
-              <TableCell sx={{ textAlign:'center',}}>تاريخ الحلقة</TableCell>
-              <TableCell sx={{ textAlign:'center', }}>توقيت الحلقة</TableCell>
-              <TableCell sx={{ textAlign:'center',}}>رابط الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center',}}>تاريخ الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center', }}>توقيت الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center',}}>رابط الحلقة</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -70,18 +70,18 @@ export default function RecitingCorrection( {teachers, sessions} ) {
               teachers.map(teacher => (
               <TableRow key={index}>
 
-                <TableCell sx={{ whiteSpace: "pre-line", }}>
+                <TableCell sx={{color:'#fff', whiteSpace: "pre-line", }}>
                   {`1.${getTeacherName(teacher, session.teacher_id) || `----` }   
                   2.${getTeacherName(teacher,session.teacher2_id) || `----`}`}
                 </TableCell>
 
                 
 
-                <TableCell sx={{ textAlign:'center', }}>{session.date}</TableCell>
-                <TableCell sx={{ textAlign:'center', }}>{session.time}</TableCell>
+                <TableCell sx={{color:'#fff', textAlign:'center', }}>{session.date}</TableCell>
+                <TableCell sx={{color:'#fff', textAlign:'center', }}>{session.time}</TableCell>
                 
-                <TableCell sx={{ textAlign:'center', }}>
-                  <Link href={session.link} target="_blank" rel="noopener noreferrer">
+                <TableCell sx={{color:'#fff', textAlign:'center', }}>
+                  <Link href={session.link} target="_blank" rel="noopener noreferrer" sx={{color:'#fff',}}>
                   {session.title}
                   </Link>
                 </TableCell>
