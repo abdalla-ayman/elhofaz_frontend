@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
+import Link from "next/link";
 
 export default function RecitingCorrection( {teachers, sessions} ) {
   const teachersData = [
@@ -38,9 +38,11 @@ export default function RecitingCorrection( {teachers, sessions} ) {
   }
 
   return (
-    <Container maxWidth="sm" sx={{ 
+  <>
+    <Container disableGutters id="RC" maxWidth="sm" sx={{ 
+      px:1,
       py: 4,
-      display: "flex",
+      display: {xs:"flex",sm:'none'},
         flexDirection: "column",
         justifyContent:'center',
         alignItems: 'center',
@@ -53,37 +55,52 @@ export default function RecitingCorrection( {teachers, sessions} ) {
         هو برنامج مفتوح للعامة لتصحيح التلاوة. سيتم توفير رابط الحلقة عن طريق (google meet) او (Zoom).
       </Typography>
       { sessions.length ? ( 
-      <TableContainer component={Paper} sx={{color:'#fff',backgroundColor:'#432818', border:'2px white solid'}}>
+      <TableContainer component={Paper} sx={{color:'#fff',backgroundColor:'#432818', border:'2px white solid',}}>
         
-        <Table sx={{ fontSize:'10px'}}>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{color:'#fff', textAlign:'center',}}>المعلمين</TableCell>
+        <Table sx={{maxWidth:'xs'}}>
+          <TableHead >
+            <TableRow sx={{display:'flex', justifyContent:'center'}}>
+              <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>المعلمين</TableCell>
               
-              <TableCell sx={{color:'#fff', textAlign:'center',}}>تاريخ الحلقة</TableCell>
-              <TableCell sx={{color:'#fff', textAlign:'center', }}>توقيت الحلقة</TableCell>
-              <TableCell sx={{color:'#fff', textAlign:'center',}}>رابط الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>تاريخ الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>توقيت الحلقة</TableCell>
+              <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>رابط الحلقة</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {sessions.map((session, index) => (
-              teachers.map(teacher => (
-              <TableRow key={index}>
+              teachers.map((teacher,index2) => (
+              <TableRow key={index2} sx={{ display:'flex',justifyContent:'center' }}>
 
-                <TableCell sx={{color:'#fff', whiteSpace: "pre-line", }}>
-                  {`1.${getTeacherName(teacher, session.teacher_id) || `----` }   
-                  2.${getTeacherName(teacher,session.teacher2_id) || `----`}`}
+                <TableCell sx={{color:'#fff', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>
+                  <Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}>
+                  {`1. ${getTeacherName(teacher, session.teacher_id) || `----` }`} </Typography> 
+                  <Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}> 
+                  {`2. ${getTeacherName(teacher,session.teacher2_id) || `----`}`}
+                  </Typography>
                 </TableCell>
 
                 
 
-                <TableCell sx={{color:'#fff', textAlign:'center', }}>{session.date}</TableCell>
-                <TableCell sx={{color:'#fff', textAlign:'center', }}>{session.time}</TableCell>
+                <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap'}}><Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}>{session.date}</Typography></TableCell>
+                <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap'}}><Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}>{session.time}</Typography></TableCell>
                 
-                <TableCell sx={{color:'#fff', textAlign:'center', }}>
-                  <Link href={session.link} target="_blank" rel="noopener noreferrer" sx={{color:'#fff',}}>
+                <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1}}>
+                  <Container sx={{
+                    py:'2px',
+                    color:'#000', 
+                    border:'white 1px solid',
+                    borderRadius:'5px', 
+                    backgroundColor:'white',
+                    cursor:'pointer', 
+                    ":hover":{
+                    backgroundColor:'#432818',
+                     color:'#fff'
+                  }}}>
+                  <Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}>
+                  <Link href={session.link} target="_blank" rel="noopener noreferrer" >
                   {session.title}
-                  </Link>
+                  </Link></Typography></Container>
                 </TableCell>
               </TableRow>
               ))
@@ -98,5 +115,84 @@ export default function RecitingCorrection( {teachers, sessions} ) {
               </Typography>)
         }
     </Container>
+    
+        <Container id="RC" maxWidth="sm" sx={{ 
+          px:1,
+          py: 4,
+          display: {xs:"none",sm:'flex'},
+            flexDirection: "column",
+            justifyContent:'center',
+            alignItems: 'center',
+            width: "100%",
+            minHeight: "100vh", }}>
+          <Typography variant="h4" gutterBottom mb={4} textAlign={'center'}>
+          تصحيح التلاوة
+          </Typography>
+          <Typography variant="body4" paragraph>
+            هو برنامج مفتوح للعامة لتصحيح التلاوة. سيتم توفير رابط الحلقة عن طريق (google meet) او (Zoom).
+          </Typography>
+          { sessions.length ? ( 
+          <TableContainer component={Paper} sx={{color:'#fff',backgroundColor:'#432818', border:'2px white solid',}}>
+            
+            <Table>
+              <TableHead >
+                <TableRow sx={{display:'flex', justifyContent:'center'}}>
+                  <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>المعلمين</TableCell>
+                  
+                  <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>تاريخ الحلقة</TableCell>
+                  <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>توقيت الحلقة</TableCell>
+                  <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap', }}>رابط الحلقة</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sessions.map((session, index) => (
+                  teachers.map((teacher,index2) => (
+                  <TableRow key={index2} sx={{ display:'flex',justifyContent:'center' }}>
+    
+                    <TableCell sx={{color:'#fff', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>
+                      <Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}>
+                      {`1. ${getTeacherName(teacher, session.teacher_id) || `----` }`} </Typography> 
+                      <Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}> 
+                      {`2. ${getTeacherName(teacher,session.teacher2_id) || `----`}`}
+                      </Typography>
+                    </TableCell>
+    
+                    
+    
+                    <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap'}}><Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}>{session.date}</Typography></TableCell>
+                    <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1, whiteSpace: 'nowrap'}}><Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}>{session.time}</Typography></TableCell>
+                    
+                    <TableCell sx={{color:'#fff', textAlign:'center', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:1}}>
+                      <Container sx={{
+                        py:'1px',
+                        color:'#000', 
+                        border:'white 1px solid',
+                        borderRadius:'5px', 
+                        backgroundColor:'white',
+                        cursor:'pointer', 
+
+                        ":hover":{
+                        backgroundColor:'#432818',
+                         color:'#fff'
+                      }}}>
+                      <Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}>
+                      <Link href={session.link} target="_blank" rel="noopener noreferrer" >
+                      {session.title}
+                      </Link></Typography></Container>
+                    </TableCell>
+                  </TableRow>
+                  ))
+                ))} 
+              </TableBody>
+            </Table>
+            
+          </TableContainer>) : <></>}
+          {!sessions.length && 
+                  (<Typography variant="body4" paragraph p={8}>
+                    لا توجد دروس الآن
+                  </Typography>)
+            }
+        </Container>
+        </>
   )
 }

@@ -41,7 +41,7 @@ export default function Heading() {
           variant="contained"
         >
           {" "}
-          <a href="#socialmedia"> المسابقات</a>
+          <a href="#contests"> المسابقات</a>
         </Button>
         <Button
           // align="center"
@@ -51,7 +51,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#FAQ">الصندوق التكافلي</a>
+          <a href="#SSF">الصندوق التكافلي</a>
         </Button>
         <Button
           // align="center"
@@ -61,7 +61,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#message">الصندوق الخيري</a>
+          <a href="#CF">الصندوق الخيري</a>
         </Button>
         <Button
           // align="center"
@@ -71,7 +71,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#message">حلقة تصحيح التلاوة</a>
+          <a href="#RC">حلقة تصحيح التلاوة</a>
         </Button>
       </Box>
     </Box>

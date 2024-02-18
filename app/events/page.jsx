@@ -10,6 +10,7 @@ import Heading from "./heading";
 import RecitingCorrection from "./RecitingCorrection";
 import CharitableFunds from './charitableFund'
 import { getTeacher, getSession } from "@/lib/events"
+import Up from "@/app/components/Up";
 
 export default function Contact() {
   const [teacher, setTeacher] = useState([]);
@@ -60,6 +61,7 @@ export default function Contact() {
         />
       )}
       <Loading loading={loading} text={"جاري التحميل"} />
+    <Up />
     </Box>
   );
 }

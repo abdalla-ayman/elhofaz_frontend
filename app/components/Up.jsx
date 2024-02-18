@@ -6,7 +6,7 @@ export default function Up() {
   let [show, setShow] = useState(false);
 
   const handleScroll = () => {
-    console.log("working");
+    // console.log("working");
     if (
       document.body.scrollTop > 20 ||
       document.documentElement.scrollTop > 20

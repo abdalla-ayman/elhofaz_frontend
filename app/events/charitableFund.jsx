@@ -38,7 +38,7 @@ export default function CharitableFund() {
 
   return (
 <Box
-        id="message"
+        id="CF"
         sx={{
           minHeight: "100vh",
           py: 4,
@@ -200,7 +200,11 @@ export default function CharitableFund() {
             mt: 1,
             marginBottom: 1,
             color: "black",
-          }}>رقم الوتساب: +249112217441</Typography>
+            ":hover":{
+              
+            }
+          }}>رقم الوتساب: <a href="https://wa.me/+249902708568?text=hi" target='_blank' style={{textDecorationLine:'underline',}}>249902708568+</a></Typography>
+          {/* +249112217441 */}
                     <TextField
                             id="outlined-basic"
                             onChange={(e) => setMoney(e.target.value)}
