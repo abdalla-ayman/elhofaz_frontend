@@ -203,7 +203,7 @@ export default function CharitableFund() {
             ":hover":{
               
             }
-          }}>رقم الوتساب: <a href="https://wa.me/+249902708568?text=hi" target='_blank' style={{textDecorationLine:'underline',}}>249902708568+</a></Typography>
+          }}>رقم الوتساب: <a href="https://wa.me/+249112217441?text=" target='_blank' style={{textDecorationLine:'underline',}}>249112217441+</a></Typography>
           {/* +249112217441 */}
                     <TextField
                             id="outlined-basic"
