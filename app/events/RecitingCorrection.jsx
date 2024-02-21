@@ -21,24 +21,30 @@ export default function RecitingCorrection( {teachers, sessions} ) {
     // Add more teacher data as needed
   ];
 
-  const getTeacherName = (teacher, id) => {
+  const getTeacherName = (teachers,id) => {
+    let teacherName 
+    teachers.map(teacher =>{
+      if (teacher.id == id) teacherName = teacher.name
+      
+      })
+      return teacherName
+      
+      // if(teacher.id == id) {
+      //   // console.log(teacher.id)
+      //   // console.log(id)
+      //   // console.log(teacher.name)
+      //   return `${teacher.name}`
+      // }
+      // else {
 
-      if(teacher.id == id) {
-        // console.log(teacher.id)
-        // console.log(id)
-        // console.log(teacher.name)
-        return `${teacher.name}`
-      }
-      else {
-
-        return null
-      }
+      //   return null
+      // }
 
     
   }
 
   return (
-  <>
+  <div id='RC'>
     <Container disableGutters id="RC" maxWidth="sm" sx={{ 
       px:1,
       py: 4,
@@ -69,14 +75,14 @@ export default function RecitingCorrection( {teachers, sessions} ) {
           </TableHead>
           <TableBody>
             {sessions.map((session, index) => (
-              teachers.map((teacher,index2) => (
-              <TableRow key={index2} sx={{ display:'flex',justifyContent:'center' }}>
+              
+              <TableRow key={index} sx={{ display:'flex',justifyContent:'center' }}>
 
                 <TableCell sx={{color:'#fff', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>
                   <Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}>
-                  {`1. ${getTeacherName(teacher, session.teacher_id) || `----` }`} </Typography> 
+                  {`1. ${getTeacherName(teachers, session.teacher_id) || `----` }`} </Typography> 
                   <Typography variant="body2" component="span" sx={{ display: 'block', fontSize:11 }}> 
-                  {`2. ${getTeacherName(teacher,session.teacher2_id) || `----`}`}
+                  {`2. ${getTeacherName(teachers,session.teacher2_id) || `----`}`}
                   </Typography>
                 </TableCell>
 
@@ -103,7 +109,6 @@ export default function RecitingCorrection( {teachers, sessions} ) {
                   </Link></Typography></Container>
                 </TableCell>
               </TableRow>
-              ))
             ))} 
           </TableBody>
         </Table>
@@ -146,14 +151,14 @@ export default function RecitingCorrection( {teachers, sessions} ) {
               </TableHead>
               <TableBody>
                 {sessions.map((session, index) => (
-                  teachers.map((teacher,index2) => (
-                  <TableRow key={index2} sx={{ display:'flex',justifyContent:'center' }}>
+                  
+                  <TableRow key={index} sx={{ display:'flex',justifyContent:'center' }}>
     
                     <TableCell sx={{color:'#fff', fontSize: '14px',flexGrow:1,maxWidth:'20%',minWidth:'25%',px:'2px', whiteSpace: 'nowrap', }}>
                       <Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}>
-                      {`1. ${getTeacherName(teacher, session.teacher_id) || `----` }`} </Typography> 
+                      {`1. ${getTeacherName(teachers,session.teacher_id) || `----` }`} </Typography> 
                       <Typography variant="body2" component="span" sx={{ display: 'block', fontSize: '14px' }}> 
-                      {`2. ${getTeacherName(teacher,session.teacher2_id) || `----`}`}
+                      {`2. ${getTeacherName(teachers,session.teacher2_id) || `----`}`}
                       </Typography>
                     </TableCell>
     
@@ -181,18 +186,18 @@ export default function RecitingCorrection( {teachers, sessions} ) {
                       </Link></Typography></Container>
                     </TableCell>
                   </TableRow>
-                  ))
+                
                 ))} 
               </TableBody>
             </Table>
             
           </TableContainer>) : <></>}
           {!sessions.length && 
-                  (<Typography variant="body4" paragraph p={8}>
+                  (<Typography variant="body4" paragraph p={8} textAlign={'center'}>
                     لا توجد دروس الآن
                   </Typography>)
             }
         </Container>
-        </>
+        </div>
   )
 }
