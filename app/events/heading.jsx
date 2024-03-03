@@ -32,7 +32,7 @@ export default function Heading() {
           mt: 2,
         }}
       >
-        <Button
+        {/* <Button
           // align="center"
           sx={{
             my: 4,
@@ -42,8 +42,8 @@ export default function Heading() {
         >
           {" "}
           <a href="#contests"> المسابقات</a>
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           // align="center"
           sx={{
             my: 4,
@@ -52,7 +52,7 @@ export default function Heading() {
           variant="contained"
         >
           <a href="#SSF">الصندوق التكافلي</a>
-        </Button>
+        </Button> */}
         <Button
           // align="center"
           sx={{
@@ -61,7 +61,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#CF">الصندوق الخيري</a>
+          <a href="#CF">صندوق الدعم الخيري</a>
         </Button>
         <Button
           // align="center"
