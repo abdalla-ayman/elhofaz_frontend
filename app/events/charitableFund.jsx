@@ -22,12 +22,13 @@ import { motion } from "framer-motion";
 import { support } from '@/lib/events';
 
 
-export default function CharitableFund({ data, setError, setLoading, setSuccess }) {
+export default function CharitableFund({ setting,data, setError, setLoading, setSuccess }) {
   // let [name, setName] = useState("");
   //   let [phone, setPhone] = useState("");
   //   let [email, setEmail] = useState("");
 
     let [amount, setAmount] = useState("")
+    console.log(setting)
   
     // let [hideIdentity, setHideIdentity] = useState(false);
   
@@ -70,13 +71,14 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
             صندوق الدعم الخيري
         </Typography>
         <Typography
-           color={'black'} mt={3} mb={3}
-           variant="body4" paragraph>
-            يختص صندوق الدعم الخيري جمع تبرعات بغرض دعم الحوجات المختلفة (زواج , وفاة , عملية جراحية , بئر , كسوة ...الخ).
+           color={'white'} mt={3} mb={3}
+           variant="body6" paragraph>
+            يختص صندوق الدعم الخيري بجمع تبرعات بغرض دعم الحوجات المختلفة (زواج , وفاة , عملية جراحية , بئر , كسوة ...الخ).
             </Typography>
             <Typography
-           color={'black'} mt={3} mb={3}
-           variant="body4" paragraph> على من يرغب بأن يساعد البرنامج في دعم الحوجات تحويل المبلغ المراد المساهمة به في اي من الحسابات ادناه. ومن ثم ارسال الاشعار الى رقم الواتساب الموجود اسفل القائمة (اضغط على الرقم ليتم تحويلك الى الواتساب مباشرة).
+           color={'white'} mt={3} mb={3}
+           variant="body6" paragraph> على من يرغب بأن يساعد البرنامج في دعم الحوجات تحويل المبلغ المراد المساهمة به في اي من الحسابات ادناه. ومن ثم ارسال الاشعار الى رقم الواتساب الموجود اسفل القائمة (اضغط على الرقم ليتم تحويلك الى الواتساب مباشرة).
+           واخيرا ادخال المبلغ المرسل داخل فورمة بيانات الصندوق 
         </Typography>
         <Container>
         <Box pb={8} sx={{
@@ -111,7 +113,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
             marginBottom: 1,
             
             fontStyle:'bold'
-          }}> 2430539 </Typography></Container>
+          }}> {setting.account_number} </Typography></Container>
 
 
           <Container sx={{display:'flex',
@@ -128,7 +130,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                       mt: 1,
                       marginBottom: 1,
                       
-          }}>عيسى محمد الحسن</Typography></Container>
+          }}> {setting.account_name}</Typography></Container>
 
           <Typography className="text-2xl mb-4 text-center" my={2} variant="h6" fontSize={18} >حساب IBAN</Typography>
 
@@ -141,13 +143,13 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
             marginBottom: 1,
             
           }}>رقم الحساب  </Typography>
-                    <Typography flex={2} textAlign={'right'} sx={{
+                    <Typography flex={2} textAlign={'center'} sx={{
                       
                       mt: 1,
                       marginBottom: 1,
                       
-                      fontSize:12
-          }}> TR00 0000 0000 0000 0000 0000 00 </Typography></Container>
+                      fontSize:14
+          }}> {setting.account_iban} </Typography></Container>
 
           <Container sx={{display:'flex',
             justifyContent:'left',}}>
@@ -163,7 +165,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                       mt: 1,
                       marginBottom: 1,
                       
-          }}>عيسى محمد الحسن</Typography></Container>
+          }}> {setting.account_name}</Typography></Container>
 
           <Divider sx={{backgroundColor:'white'}}></Divider><br></br>
           <Container sx={{display:'flex',
@@ -182,7 +184,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                         backgroundColor:'#432818',
                         color:'white'
                       }
-          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>249112217441+</a></Typography></Container>
+          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>{setting.whatsapp}</a></Typography></Container>
           </Paper></Box></Container>
   
         {/* <Box> */}
@@ -193,11 +195,12 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                 alignItems: 'center'
 
               }}>
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: -100 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  viewport={{ once: true }}>
+                  viewport={{ once: true }}> */}
+                  
                   <Paper
                     elevation={3}
                     sx={{
@@ -254,7 +257,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                       </Button>
                     </form>
                   </Paper>
-                </motion.div>
+                {/* </motion.div> */}
               </Box>
             {/* </Grid> */}
           </Container>
