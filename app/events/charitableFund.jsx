@@ -147,7 +147,7 @@ export default function CharitableFund({ data, setError, setLoading, setSuccess 
                       marginBottom: 1,
                       
                       fontSize:12
-          }}> <span style={{fontSize:10}}>TR</span>00 0000 0000 0000 0000 0000 00 </Typography></Container>
+          }}> TR00 0000 0000 0000 0000 0000 00 </Typography></Container>
 
           <Container sx={{display:'flex',
             justifyContent:'left',}}>
