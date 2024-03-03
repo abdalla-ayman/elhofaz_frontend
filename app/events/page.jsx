@@ -24,7 +24,7 @@ export default function Contact() {
   useEffect(() => {
     (async function () {
       let res = await getTeacher();
-      // console.log(res.data.teachers)
+      console.log(res.data.teachers)
       count.current = res.data.teachers
       setTeacher(res.data.teachers);
     })();
@@ -33,7 +33,7 @@ export default function Contact() {
   useEffect(() => {
     (async function () {
       let res = await getSession();
-      // console.log(res.data)
+      console.log(res.data)
       setSessions(res.data);
     })();
   }, []);
@@ -49,7 +49,11 @@ export default function Contact() {
     >
       <Heading />
       <RecitingCorrection teachers={count.current} sessions={sessions} />
-      <CharitableFunds />
+      <CharitableFunds 
+        setLoading={setLoading}
+        data={session || {}}
+        setError={setError}
+        setSuccess={setSuccess} />
       {error && (
         <Alert severity="error" close={() => setError("")} message={error} />
       )}
