@@ -5,50 +5,187 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel"
 import FormControlLabel from "@mui/material/FormControlLabel";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import RadioGroup from "@mui/material/RadioGroup"
+import Radio from "@mui/material/Radio"
+import FormGroup from '@mui/material/FormGroup'
 import { Divider, Grid, Container, IconButton } from "@mui/material";
 import { EmailOutlined, WhatsApp } from "@mui/icons-material";
 
-import { contact } from "@/lib/contact";
+
 import { motion } from "framer-motion";
+import { support } from '@/lib/events';
 
 
-export default function CharitableFund() {
-  let [name, setName] = useState("");
-    let [phone, setPhone] = useState("");
-    let [email, setEmail] = useState("");
-    let [subject, setSubject] = useState("");
-    let [message, setMessage] = useState("");
-    let [type, setType] = useState("");
+export default function CharitableFund({ setting,data, setError, setLoading, setSuccess }) {
+  // let [name, setName] = useState("");
+  //   let [phone, setPhone] = useState("");
+  //   let [email, setEmail] = useState("");
+
+    let [amount, setAmount] = useState("")
+    console.log(setting)
   
-    let [hideIdentity, setHideIdentity] = useState(false);
+    // let [hideIdentity, setHideIdentity] = useState(false);
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setLoading(true);
+      let body = {amount}
+
+      let res = await support(body);
+
+      if (res.code == 200) {
+        setSuccess("تم إرسال الرسالة بنجاح");
+        setAmount("");
+        
+      } else {
+        setError(res.message);
+      }
+      setLoading(false);
     };
+    
+    
 
   return (
 <Box
-        id="message"
+        id="CF"
         sx={{
           minHeight: "100vh",
           py: 4,
+          px:1,
           backgroundColor: "#bb9457",
         }}>
         <Typography
           variant="h4"
           align="center"
           sx={{
-            mt: 12,
-            marginBottom: 9,
-            color: "black",
+            mt: 6,
+            marginBottom: 3,
+            color: "white",
           }}>
-          الصندوق الخيري
+            صندوق الدعم الخيري
         </Typography>
+        <Typography
+           color={'white'} mt={3} mb={3}
+           variant="body6" paragraph>
+            يختص صندوق الدعم الخيري بجمع تبرعات بغرض دعم الحوجات المختلفة (زواج , وفاة , عملية جراحية , بئر , كسوة ...الخ).
+            </Typography>
+            <Typography
+           color={'white'} mt={3} mb={3}
+           variant="body6" paragraph> على من يرغب بأن يساعد البرنامج في دعم الحوجات تحويل المبلغ المراد المساهمة به في اي من الحسابات ادناه. ومن ثم ارسال الاشعار الى رقم الواتساب الموجود اسفل القائمة (اضغط على الرقم ليتم تحويلك الى الواتساب مباشرة).
+           واخيرا ادخال المبلغ المرسل داخل فورمة بيانات الصندوق 
+        </Typography>
+        <Container>
+        <Box pb={8} sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+
+              }}>
+        <Paper
+          elevation={3}
+          sx={{
+            // backgroundColor: "rgba(255, 255, 255, 0.9)",
+            border:'1px solid white',
+            backgroundColor:'#432818',
+            color:'white',
+            py: 2,
+            width: "100%",
+          }}>
+            <Typography variant="h6"  className="text-2xl mb-4 text-center" my={2} fontSize={18}>حساب بنك الخرطوم</Typography>
+
+          <Container sx={{display:'flex',
+            justifyContent:'left',}}>
+            <Typography flexGrow={1} textAlign={'left'} sx={{
+            
+            mt: 1,
+            mx:2,
+            marginBottom: 1,
+            
+            }}>رقم الحساب  </Typography>
+            <Typography flexGrow={1} textAlign={'left'} sx={{                
+            mt: 1,
+            marginBottom: 1,
+            
+            fontStyle:'bold'
+          }}> {setting.account_number} </Typography></Container>
+
+
+          <Container sx={{display:'flex',
+            justifyContent:'left',}}>
+          <Typography flexGrow={1} textAlign={'left'} sx={{
+            
+            mt: 1,
+            mx:2,
+            marginBottom: 1,
+            
+          }}>اسم الحساب  </Typography>
+                    <Typography textAlign={'left'} flexGrow={1} sx={{
+                      
+                      mt: 1,
+                      marginBottom: 1,
+                      
+          }}> {setting.account_name}</Typography></Container>
+
+          <Typography className="text-2xl mb-4 text-center" my={2} variant="h6" fontSize={18} >حساب IBAN</Typography>
+
+          <Container sx={{display:'flex',
+            justifyContent:'left',}}>
+          <Typography flex={1} textAlign={'left'} sx={{
+            
+            mt: 1,
+            mx:2,
+            marginBottom: 1,
+            
+          }}>رقم الحساب  </Typography>
+                    <Typography flex={2} textAlign={'center'} sx={{
+                      
+                      mt: 1,
+                      marginBottom: 1,
+                      
+                      fontSize:14
+          }}> {setting.account_iban} </Typography></Container>
+
+          <Container sx={{display:'flex',
+            justifyContent:'left',}}>
+          <Typography flexGrow={1} textAlign={'left'} sx={{
+            
+            mt: 1,
+            mx:2,
+            marginBottom: 1,
+            
+          }}>اسم الحساب  </Typography>
+                    <Typography textAlign={'left'} flexGrow={1} sx={{
+                      
+                      mt: 1,
+                      marginBottom: 1,
+                      
+          }}> {setting.account_name}</Typography></Container>
+
+          <Divider sx={{backgroundColor:'white'}}></Divider><br></br>
+          <Container sx={{display:'flex',
+                      justifyContent:'left',}}>
+          <Typography  textAlign={'center'}  flexGrow={1}> رقم الواتساب</Typography>
+
+                    <Typography  textAlign={'center'} flexGrow={1} sx={{
+                      
+                      
+                      backgroundColor:'white',
+                      color:'#432818',
+                      border:'2px solid white',
+                      borderRadius:'5px',
+                      
+                      ":hover":{
+                        backgroundColor:'#432818',
+                        color:'white'
+                      }
+          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>{setting.whatsapp}</a></Typography></Container>
+          </Paper></Box></Container>
   
         {/* <Box> */}
           <Container>
@@ -58,11 +195,12 @@ export default function CharitableFund() {
                 alignItems: 'center'
 
               }}>
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: -100 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  viewport={{ once: true }}>
+                  viewport={{ once: true }}> */}
+                  
                   <Paper
                     elevation={3}
                     sx={{
@@ -78,171 +216,48 @@ export default function CharitableFund() {
                         flexDirection: "column",
                         width: "100%",
                       }}>
-                      <h2 className="text-2xl mb-4 text-center">التواصل</h2>
+                      <h2 className="text-2xl mb-4 text-center">بيانات الصندوق</h2>
   
-                      {!hideIdentity && (
-                        <>
-                          <TextField
+
+                    {/* <FormControl>
+                      <FormLabel id="demo-radio-buttons-group-label">توجيه الدعم الى:</FormLabel>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                      >
+                        <FormControlLabel value="contests" control={<Radio />} label="المسابقات" />
+                        <FormControlLabel value="hafiz" control={<Radio />} label="الحوافز" />
+                        <FormControlLabel value="programs" control={<Radio />} label="البرامج(اشتراكات,...)" />
+                        <FormControlLabel value="charity projects" control={<Radio />} label="المشاريع الخيرية" />
+                        <FormControlLabel value="others" control={<Radio />} label="أخرى" />
+
+                      </RadioGroup>
+                    </FormControl> */}
+                    
+          {/* +249112217441 */}
+                    <TextField
                             id="outlined-basic"
-                            onChange={(e) => setName(e.target.value)}
-                            // value={
-                            //   Object.keys(data).length === 0
-                            //     ? name
-                            //     : data.user.name
-                            // }
-                            label="الإسم رباعي"
+                            onChange={(e) => setAmount(e.target.value)}
+                            value={amount}
+                            label="مقدار الدعم المرسل"
                             variant="outlined"
                             type="text"
+                            helperText="المقدار يكتب بصورة ارقام فقط"
                             sx={{
-                              my: 1,
+                              my: 2,
                             }}
-                            // disabled={
-                            //   hideIdentity || Object.keys(data).length !== 0
-                            // }
+                             required 
                           />
-                          <TextField
-                            id="outlined-basic"
-                            onChange={(e) => {
-                              if (!/^[0-9]*$/.test(e.target.value)) {
-                                e.preventDefault();
-                                return;
-                              }
-                              setPhone(e.target.value);
-                            }}
-                            // value={
-                            //   Object.keys(data).length === 0
-                            //     ? phone
-                            //     : `${data.user.phone_code}${data.user.phone}`
-                            // }
-                            label=" رقم الهاتف"
-                            helperText="الرقم في صورة 2499xxxxxxx "
-                            variant="outlined"
-                            type="tel"
-                            sx={{
-                              my: 1,
-                            }}
-                            // disabled={
-                            //   hideIdentity || Object.keys(data).length !== 0
-                            // }
-                          />
-                          <TextField
-                            id="outlined-basic"
-                            onChange={(e) => setEmail(e.target.value)}
-                            // value={
-                            //   Object.keys(data).length === 0
-                            //     ? email
-                            //     : data.user.email
-                            // }
-                            label="البريد الإلكتروني"
-                            variant="outlined"
-                            type="email"
-                            sx={{
-                              my: 1,
-                            }}
-                            // disabled={
-                            //   hideIdentity || Object.keys(data).length !== 0
-                            // }
-                          />
-                        </>
-                      )}
-                      <FormControlLabel
-                        sx={{ alignSelf: "start" }}
-                        label="إخفاء الهوية"
-                        control={
-                          <Checkbox
-                            checked={hideIdentity}
-                            onChange={(e) => setHideIdentity(e.target.checked)}
-                          />
-                        }
-                      />
-  
-                      <Divider
-                        sx={{
-                          my: 2,
-                        }}
-                      />
-                      {/* <TextField
-                        id="outlined-basic"
-                        onChange={(e) => setSubject(e.target.value)}
-                        value={subject}
-                        label="العنوان"
-                        variant="outlined"
-                        type="text"
-                        sx={{
-                          my: 1,
-                        }}
-                      />
-                      <FormControl sx={{ width: "100%", my: 1 }}>
-                        <InputLabel id="demo-simple-select-label">
-                          إختيار نموزج
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          label="نوع الرسالة"
-                          onChange={(e) => setType(e.target.value)}
-                          value={type}>
-                          <MenuItem value={"complaint"}>شكوى</MenuItem>
-                          <MenuItem value={"suggestion"}>مقترح</MenuItem>
-                          <MenuItem value={"question"}>إستفسار</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <TextField
-                        id="outlined-multiline-static"
-                        label="الرسالة"
-                        onChange={(e) => setMessage(e.target.value)}
-                        value={message}
-                        multiline
-                        rows={4}
-                      /> */}
-  
-                      <Button variant="contained" type="submit" sx={{ m: 1 }}>
+
+                    <FormControlLabel  control={<Checkbox />} label="أوافق على ان يقوم برنامج مقارئ السفرة بتوجيه الدعم الى الحوجات الموجودة" required/>
+        
+                    <Button variant="contained" type="submit" sx={{ m: 1 }}>
                         إرسال
                       </Button>
                     </form>
-                    <br />
-                    {/* <Divider>او</Divider>
-                    <Container
-                      sx={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        marginTop: "10px",
-                      }}>
-                      <Typography variant="h6">
-                        تواصل مباشرة عن طريق الايميل او الواتساب{" "}
-                      </Typography>
-                    </Container>
-                    <Container
-                      sx={{ display: "flex", justifyContent: "flex-end" }}>
-                      <IconButton
-                        color="inherit"
-                        component="a"
-                        href="mailto:maqaresafarah@gmail.com"
-                        target="_blank">
-                        <EmailOutlined
-                          sx={{
-                            fontSize: "30px",
-                            borderRadius: "10px",
-                          }}
-                          htmlColor="#c4302b"
-                        />
-                      </IconButton>
-                      <IconButton
-                        color="inherit"
-                        component="a"
-                        href="https://api.whatsapp.com/send?phone=249912153727"
-                        target="_blank">
-                        <WhatsApp
-                          sx={{
-                            fontSize: "30px",
-                            borderRadius: "10px",
-                          }}
-                          htmlColor="#128c7e"
-                        />
-                      </IconButton>
-                    </Container> */}
                   </Paper>
-                </motion.div>
+                {/* </motion.div> */}
               </Box>
             {/* </Grid> */}
           </Container>

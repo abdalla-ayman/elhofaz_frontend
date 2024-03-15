@@ -32,7 +32,7 @@ export default function Heading() {
           mt: 2,
         }}
       >
-        <Button
+        {/* <Button
           // align="center"
           sx={{
             my: 4,
@@ -41,7 +41,27 @@ export default function Heading() {
           variant="contained"
         >
           {" "}
-          <a href="#socialmedia"> المسابقات</a>
+          <a href="#contests"> المسابقات</a>
+        </Button> */}
+        {/* <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#SSF">الصندوق التكافلي</a>
+        </Button> */}
+        <Button
+          // align="center"
+          sx={{
+            my: 4,
+            mx: 1,
+          }}
+          variant="contained"
+        >
+          <a href="#CF">صندوق الدعم الخيري</a>
         </Button>
         <Button
           // align="center"
@@ -51,27 +71,7 @@ export default function Heading() {
           }}
           variant="contained"
         >
-          <a href="#FAQ">الصندوق التكافلي</a>
-        </Button>
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained"
-        >
-          <a href="#message">الصندوق الخيري</a>
-        </Button>
-        <Button
-          // align="center"
-          sx={{
-            my: 4,
-            mx: 1,
-          }}
-          variant="contained"
-        >
-          <a href="#message">حلقة تصحيح التلاوة</a>
+          <a href="#RC">حلقة تصحيح التلاوة</a>
         </Button>
       </Box>
     </Box>
