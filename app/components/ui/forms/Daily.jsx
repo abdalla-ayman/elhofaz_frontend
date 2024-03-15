@@ -11,35 +11,38 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
+import { SourQuran, ajza } from "./SourQuran";
+import pages from "./SourQuran";
 
 export default function DailyForm() {
-  const [daily_report, setDaily_report] = useState({
-    date: "",
-    jozzo: "",
-    sorra: "",
-    hefth: 0,
-    newhefth: 0,
-    current: 0,
-    currFrom: [],
-    currTo: [],
-    prevhefth: 0,
-    oldhefth: 0,
-    sheikh: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setDaily_report((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const [date, setDate] = useState("");
+  const [jozzo, setJozzo] = useState([]);
+  const [sorra, setSorra] = useState([]);
+  const [hefth, setHefth] = useState("");
+  const [newhefth, setNewhefth] = useState([]);
+  const [currFrom, setCurrFrom] = useState("");
+  const [currTo, setCurrTo] = useState("");
+  const [prevhefth, setPrevhefth] = useState("");
+  const [oldhefth, setOldhefth] = useState("");
+  const [sheikh, setSheikh] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(daily_report);
+    let dataItem = {
+      type: "daily",
+      reportedAt: date,
+      chapters: jozzo,
+      surra: sorra,
+      amount_of_pages: hefth,
+      pages: newhefth,
+      current_from: currFrom,
+      current_to: currTo,
+      previous: prevhefth,
+      old: oldhefth,
+      teacher_id: sheikh,
+    };
+    console.log(dataItem);
   };
 
   return (
@@ -59,10 +62,15 @@ export default function DailyForm() {
           alignItems: "center",
         }}></Box>
       <form onSubmit={handleSubmit}>
-        <DatePicker label="التاريخ" name="date" onChange={handleChange} />
+        <DatePicker
+          label="التاريخ"
+          name="date"
+          onChange={(event) => setDate(e.target.value)}
+        />
+
         <Autocomplete
           name="jozzo"
-          onChange={handleChange}
+          onChange={(e, value) => setJozzo(value)}
           disablePortal
           id="combo-box-demo"
           options={ajza}
@@ -71,10 +79,10 @@ export default function DailyForm() {
         />
         <Autocomplete
           name="sorra"
-          onChange={handleChange}
+          onChange={(e, value) => setSorra(value)}
           disablePortal
           id="combo-box-demo"
-          options={ajza}
+          options={SourQuran}
           sx={{ my: 2 }}
           multiple
           renderInput={(params) => <TextField {...params} label="السورة" />}
@@ -83,10 +91,9 @@ export default function DailyForm() {
           <InputLabel id="demo-simple-select-label">مقدار الحفظ</InputLabel>
           <Select
             name="hefth"
-            onChange={handleChange}
+            onChange={(e) => setHefth(e.target.value)}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={4}
             label="مقدار الحفظ">
             <MenuItem value=".5">نصف وجه</MenuItem>
             <MenuItem value="1">وجه</MenuItem>
@@ -97,13 +104,15 @@ export default function DailyForm() {
         </FormControl>
         <Autocomplete
           name="newhefth"
-          onChange={handleChange}
+          onChange={(e, value) => setNewhefth(value)}
           disablePortal
           id="combo-box-demo"
-          options={ajza}
+          options={pages}
           multiple
           sx={{ my: 2 }}
-          renderInput={(params) => <TextField {...params} label="الجديد" />}
+          renderInput={(params) => (
+            <TextField {...params} label="الجديد مثلا صفحة 120" />
+          )}
         />
 
         <Box
@@ -125,28 +134,28 @@ export default function DailyForm() {
             }}>
             <Autocomplete
               name="currFrom"
-              onChange={handleChange}
+              onChange={(e, value) => setCurrFrom(value.label)}
               sx={{
                 mx: 1,
                 width: "100%",
               }}
               disablePortal
               id="combo-box-demo"
-              options={ajza}
+              options={pages}
               renderInput={(params) => (
                 <TextField {...params} label="الحالي من : " />
               )}
             />
             <Autocomplete
               name="currTo"
-              onChange={handleChange}
+              onChange={(e, value) => setCurrTo(value.label)}
               sx={{
                 mx: 1,
                 width: "100%",
               }}
               disablePortal
               id="combo-box-demo"
-              options={ajza}
+              options={pages}
               renderInput={(params) => (
                 <TextField {...params} label="الحالي الى :" />
               )}
@@ -155,7 +164,7 @@ export default function DailyForm() {
         </Box>
         <Autocomplete
           name="prevhefth"
-          onChange={handleChange}
+          onChange={(e, value) => setPrevhefth(value.label)}
           disablePortal
           id="combo-box-demo"
           options={ajza}
@@ -164,7 +173,7 @@ export default function DailyForm() {
         />
         <Autocomplete
           name="oldhefth"
-          onChange={handleChange}
+          onChange={(e, value) => setOldhefth(value.label)}
           disablePortal
           id="combo-box-demo"
           options={ajza}
@@ -173,7 +182,7 @@ export default function DailyForm() {
         />
         <Autocomplete
           name="sheikh"
-          onChange={handleChange}
+          onChange={(e, value) => setSheikh(value.label)}
           disablePortal
           id="combo-box-demo"
           options={ajza}
@@ -194,86 +203,3 @@ export default function DailyForm() {
     </Box>
   );
 }
-
-let ajza = [
-  {
-    label: "1",
-    value: 1,
-  },
-  {
-    label: "2",
-    value: 2,
-  },
-  {
-    label: "3",
-    value: 3,
-  },
-  {
-    label: "4",
-    value: 4,
-  },
-  {
-    label: "5",
-    value: 5,
-  },
-  {
-    label: "6",
-    value: 6,
-  },
-  {
-    label: "7",
-    value: 7,
-  },
-  {
-    label: "8",
-    value: "8",
-  },
-  {
-    label: "9",
-    value: 9,
-  },
-  {
-    label: "10",
-    value: 10,
-  },
-  {
-    label: "11",
-    value: 11,
-  },
-  {
-    label: "12",
-    value: 12,
-  },
-  {
-    label: "13",
-    value: 13,
-  },
-  {
-    label: "14",
-    value: 14,
-  },
-  {
-    label: "15",
-    value: 15,
-  },
-  {
-    label: "16",
-    value: 16,
-  },
-  {
-    label: "17",
-    value: 17,
-  },
-  {
-    label: "18",
-    value: 18,
-  },
-  {
-    label: "19",
-    value: 19,
-  },
-  {
-    label: "20",
-    value: 20,
-  },
-];
