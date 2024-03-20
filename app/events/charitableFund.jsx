@@ -28,7 +28,7 @@ export default function CharitableFund({ setting,data, setError, setLoading, set
   //   let [email, setEmail] = useState("");
 
     let [amount, setAmount] = useState("")
-    console.log(setting)
+    // console.log(setting)
   
     // let [hideIdentity, setHideIdentity] = useState(false);
   
@@ -184,7 +184,8 @@ export default function CharitableFund({ setting,data, setError, setLoading, set
                         backgroundColor:'#432818',
                         color:'white'
                       }
-          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>{setting.whatsapp}</a></Typography></Container>
+          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>{setting.account_whatsapp
+        }</a></Typography></Container>
           </Paper></Box></Container>
   
         {/* <Box> */}
