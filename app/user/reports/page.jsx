@@ -17,7 +17,6 @@ const Reports = () => {
       <br />
       <br />
       <br />
-      <Forms />
     </Container>
   );
 };
