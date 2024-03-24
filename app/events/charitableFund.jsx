@@ -184,7 +184,7 @@ export default function CharitableFund({ setting,data, setError, setLoading, set
                         backgroundColor:'#432818',
                         color:'white'
                       }
-          }}><a href="https://wa.me/+249112217441?text=" target='_blank' style={{}}>{setting.account_whatsapp
+          }}><a href={`https://wa.me/${setting.account_whatsapp}?text=`} target='_blank' style={{}}>{setting.account_whatsapp
         }</a></Typography></Container>
           </Paper></Box></Container>
   
